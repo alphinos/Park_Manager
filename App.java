@@ -11,6 +11,8 @@ public class App {
 		Max.comprarFichas(10);
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
-	}
 
+		Gerenciador appGerenciador = new Gerenciador();
+
+	}
 }
