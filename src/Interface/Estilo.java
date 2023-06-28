@@ -1,8 +1,12 @@
 package src.Interface;
 
 import java.awt.Color;
+import java.awt.Font;
 
-public class Paleta {
+// Aqui, estão todas as informações de cores, fontes e detalhes relevantes para as estilização
+// de cada tela.
+
+public class Estilo {
     public final static Color vermelhao = new Color( 168, 6, 0 );
     public final static Color vermelhinho = new Color( 255, 33, 25  );
     public final static Color vermelho = new Color( 245, 8, 1  );
@@ -14,4 +18,6 @@ public class Paleta {
     public final static Color quaseBranco = new Color( 243, 243, 243  );
 
     public final static Color preto = new Color( 0, 0, 0 );
+
+    public final static Font roboto = new Font( "roboto" , Font.BOLD, 36);
 }

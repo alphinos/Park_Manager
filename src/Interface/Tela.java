@@ -5,12 +5,14 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.Dimension;
-import java.awt.Font;
 
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
 
-public class Gerenciador {
+// Todas as telas devem estender esta classe!
+// A partir desta, deve-se adicionar o que for necessário para cada uma.
+
+public class Tela {
 
     private JFrame janela;
 
@@ -19,7 +21,7 @@ public class Gerenciador {
     private JPanel main;
     private JPanel footer;
 
-    public Gerenciador(){
+    public Tela(){
         this.janela = new JFrame("Gerenciador");
         this.janela.setSize(1280, 720);
         this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +40,7 @@ public class Gerenciador {
 
         this.body.setPreferredSize(size);
 
-        this.body.setBackground( Paleta.branco );
+        this.body.setBackground( Estilo.branco );
 
         this.initHeader();
         this.initMain();
@@ -56,7 +58,7 @@ public class Gerenciador {
 
         this.header.setPreferredSize(size);
 
-        this.header.setBackground( Paleta.vermelhao );
+        this.header.setBackground( Estilo.vermelhao );
 
     }
 
@@ -70,14 +72,12 @@ public class Gerenciador {
 
         this.main.setPreferredSize(size);
 
-        this.main.setBackground( Paleta.vermelhao );
+        this.main.setBackground( Estilo.vermelhao );
 
         JLabel txt = new JLabel("JURASSIC PARK");
 
-        Font nfont = new Font("helvetica", Font.BOLD, 36);
-
-        txt.setFont(nfont);
-        txt.setForeground( Paleta.branco );
+        txt.setFont(Estilo.roboto);
+        txt.setForeground( Estilo.branco );
         
 
         JPanel north = new JPanel();
@@ -112,11 +112,11 @@ public class Gerenciador {
         // east.setBackground( Paleta.vermelhinho );
         // west.setBackground( Paleta.vermelhinho );
 
-        north.setBackground( Paleta.vermelhao );
-        center.setBackground( Paleta.vermelhao );
-        south.setBackground( Paleta.vermelhao );
-        east.setBackground( Paleta.vermelhao );
-        west.setBackground( Paleta.vermelhao );
+        north.setBackground( Estilo.vermelhao );
+        center.setBackground( Estilo.vermelhao );
+        south.setBackground( Estilo.vermelhao );
+        east.setBackground( Estilo.vermelhao );
+        west.setBackground( Estilo.vermelhao );
 
         north.add(txt);
         
@@ -137,6 +137,6 @@ public class Gerenciador {
 
         this.footer.setPreferredSize(size);
 
-        this.footer.setBackground( Paleta.vermelhao );
+        this.footer.setBackground( Estilo.vermelhao );
     }
 }
