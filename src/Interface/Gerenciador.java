@@ -1,4 +1,4 @@
-package src;
+package src.Interface;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Color;
 
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
@@ -20,14 +19,7 @@ public class Gerenciador {
     private JPanel main;
     private JPanel footer;
 
-    private white_back;
-    private base_gray;
-
     public Gerenciador(){
-
-	this.white_back = new Color( 217, 217, 217 );
-	this.base_gray = new color ( 255, 255, 255 );
-
         this.janela = new JFrame("Gerenciador");
         this.janela.setSize(1280, 720);
         this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,9 +38,7 @@ public class Gerenciador {
 
         this.body.setPreferredSize(size);
 
-        Color rosa = new Color( 250, 52, 79, 98 );
-
-        this.body.setBackground( this.white_back );
+        this.body.setBackground( Paleta.branco );
 
         this.initHeader();
         this.initMain();
@@ -66,32 +56,29 @@ public class Gerenciador {
 
         this.header.setPreferredSize(size);
 
-        Color quaseVermelho = new Color( 227, 57, 36, 89 );
-
-        this.header.setBackground( this.base_gray );
+        this.header.setBackground( Paleta.vermelhao );
 
     }
 
     private void initMain(){
         this.main = new JPanel();
 
-        this.main.setLayout( new BorderLayout( 20, 20) );
+        // this.main.setLayout( new BorderLayout( 20, 20) );
+        this.main.setLayout( new BorderLayout( 0, 0) );
 
         Dimension size = new Dimension(1280, 480);
 
         this.main.setPreferredSize(size);
 
-        Color tipoLaranja = new Color( 253, 94, 40, 99 );
-
-        this.main.setBackground( this.base_gray );
+        this.main.setBackground( Paleta.vermelhao );
 
         JLabel txt = new JLabel("JURASSIC PARK");
 
         Font nfont = new Font("helvetica", Font.BOLD, 36);
-        txt.setFont(nfont);
 
-        // size = new Dimension(160, 90);
-        // txt.setPreferredSize(size);
+        txt.setFont(nfont);
+        txt.setForeground( Paleta.branco );
+        
 
         JPanel north = new JPanel();
         JPanel center = new JPanel();
@@ -119,11 +106,17 @@ public class Gerenciador {
         east.setPreferredSize( size );
         west.setPreferredSize( size );
 
-        north.setBackground(tipoLaranja);
-        center.setBackground(tipoLaranja);
-        south.setBackground(tipoLaranja);
-        east.setBackground(tipoLaranja);
-        west.setBackground(tipoLaranja);
+        // north.setBackground( Paleta.vermelhinho );
+        // center.setBackground( Paleta.vermelhinho );
+        // south.setBackground( Paleta.vermelhinho );
+        // east.setBackground( Paleta.vermelhinho );
+        // west.setBackground( Paleta.vermelhinho );
+
+        north.setBackground( Paleta.vermelhao );
+        center.setBackground( Paleta.vermelhao );
+        south.setBackground( Paleta.vermelhao );
+        east.setBackground( Paleta.vermelhao );
+        west.setBackground( Paleta.vermelhao );
 
         north.add(txt);
         
@@ -144,8 +137,6 @@ public class Gerenciador {
 
         this.footer.setPreferredSize(size);
 
-        Color quaseVermelho = new Color( 227, 57, 36, 89 );
-
-        this.footer.setBackground( this.base_gray );
+        this.footer.setBackground( Paleta.vermelhao );
     }
 }

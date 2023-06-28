@@ -14,7 +14,6 @@ public class Visitante {
 		this.fichas = 0;
 		this.atracoes = new ArrayList<Atracao>();
 	}
-	
 
 	public String getNome() {
 		return nome;

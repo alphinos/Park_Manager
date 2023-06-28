@@ -1,4 +1,6 @@
 package src;
+import src.Interface.Gerenciador;
+
 public class App {
 	public static void main(String args[]) {
 		Atracao sorveteria = new Atracao("Sorveteria", "Bom Sabor", 001, 30, 0, 0);
@@ -13,6 +15,5 @@ public class App {
 		Max.mostrarAtracoes();
 
 		Gerenciador appGerenciador = new Gerenciador();
-
 	}
 }
