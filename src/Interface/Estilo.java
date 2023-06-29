@@ -19,5 +19,6 @@ public class Estilo {
 
     public final static Color preto = new Color( 0, 0, 0 );
 
-    public final static Font roboto = new Font( "roboto" , Font.BOLD, 36);
+    public final static Font robotoTitle = new Font( "roboto" , Font.BOLD, 36);
+    public final static Font robotoButton = new Font( "roboto" , Font.BOLD, 24);
 }

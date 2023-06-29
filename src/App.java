@@ -2,6 +2,7 @@ package src;
 
 import src.Interface.Janela;
 import src.Interface.Tela;
+import src.Telas.Inicio;
 
 public class App {
 	public static void main(String args[]) {
@@ -16,8 +17,6 @@ public class App {
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
 
-		// Tela appGerenciador = new Tela();
-		// Tela appGerenciador = new Tela();
-		Janela janela = new Janela();
+		Janela janela = new Janela( new Inicio() );
 	}
 }

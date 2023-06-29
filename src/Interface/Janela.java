@@ -18,4 +18,16 @@ public class Janela extends JFrame {
 
         this.janela.setVisible(true);
     }
+
+    public Janela( Tela tela ){
+        this.janela = new JFrame("Gerenciador");
+        this.janela.setSize(1280, 720);
+        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.tela = tela;
+
+        this.janela.add( this.tela.body );
+
+        this.janela.setVisible(true);
+    }
 }

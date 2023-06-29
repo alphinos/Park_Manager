@@ -16,6 +16,7 @@ public class Tela {
     protected JPanel main;
     protected JPanel footer;
 
+    // Estas regiões são referentes ao painel main!
     protected JPanel north;
     protected JPanel center;
     protected JPanel south;
@@ -76,19 +77,19 @@ public class Tela {
         int majorWidth = (int) this.main.getPreferredSize().getWidth();
         int majorHeight = (int) this.main.getPreferredSize().getHeight();
 
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
+        size = new Dimension(majorWidth , majorHeight/100 * 15);
 
         this.north.setPreferredSize( size );
 
-        size = new Dimension(majorWidth/100 * 50 , majorHeight/100 * 50);
+        size = new Dimension(majorWidth/100 * 80 , majorHeight/100 * 70);
 
         this.center.setPreferredSize( size );
 
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
+        size = new Dimension(majorWidth , majorHeight/100 * 15);
 
         this.south.setPreferredSize( size );
 
-        size = new Dimension(majorWidth/100 * 25 , majorHeight/100 * 50);
+        size = new Dimension(majorWidth/100 * 10 , majorHeight/100 * 70);
 
         this.east.setPreferredSize( size );
         this.west.setPreferredSize( size );
