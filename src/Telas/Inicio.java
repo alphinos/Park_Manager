@@ -5,11 +5,14 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import src.Interface.Estilo;
+import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class Inicio extends Tela {
+public class Inicio extends Tela implements ActionListener {
     
     private JButton novoParque;
     private JButton abrirParque;
@@ -21,14 +24,11 @@ public class Inicio extends Tela {
 
     private void start(){
 
-        SpringLayout layout = new SpringLayout();
+        novoParque = new JButton("Novo parque");
+        abrirParque = new JButton("Abrir parque");
 
-        this.center.setLayout( layout );
-
-        novoParque = new JButton("Novo parque", null);
-        abrirParque = new JButton("Abrir parque", null);
-
-        novoParque.paint(null);
+        novoParque.addActionListener( this );
+        abrirParque.addActionListener( this );
 
         novoParque.setFont(Estilo.robotoButton);
         abrirParque.setFont(Estilo.robotoButton);
@@ -50,22 +50,34 @@ public class Inicio extends Tela {
         this.center.add(novoParque);
         this.center.add(abrirParque);
 
-        layout.putConstraint(SpringLayout.VERTICAL_CENTER, novoParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
-        layout.putConstraint(SpringLayout.WEST, novoParque, 80, SpringLayout.WEST, this.center);
-        layout.putConstraint(SpringLayout.VERTICAL_CENTER, abrirParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
-        layout.putConstraint(SpringLayout.EAST, abrirParque, -80, SpringLayout.EAST, this.center);
+        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, novoParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
+        this.centerLayout.putConstraint(SpringLayout.WEST, novoParque, 80, SpringLayout.WEST, this.center);
+        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, abrirParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
+        this.centerLayout.putConstraint(SpringLayout.EAST, abrirParque, -80, SpringLayout.EAST, this.center);
 
         JLabel title = new JLabel( "GERENCIADOR" );
         title.setFont( Estilo.robotoTitle );
         title.setForeground( Estilo.branco );
 
-        layout = new SpringLayout();
+        this.headerLayout = new SpringLayout();
 
-        this.header.setLayout( layout );
+        this.header.setLayout( this.headerLayout );
         this.header.add(title);
 
-        layout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
-        layout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
+        this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if ( e.getSource() == this.novoParque ){
+            System.out.println( "Novo parque!" );
+            this.jan.trocarTela( "novo_parque" );
+        }
+
+        if ( e.getSource() == this.abrirParque ){
+            System.out.println( "Abrir parque!" );
+            this.jan.trocarTela( "abrir_parque" );
+        }
+    }
 }

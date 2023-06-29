@@ -6,15 +6,15 @@ import javax.swing.SpringLayout;
 import src.Interface.Estilo;
 import src.Interface.Tela;
 
-public class NovoParque extends Tela {
+public class AbrirParque extends Tela {
     
-    public NovoParque(){
+    public AbrirParque(){
         super();
         this.start();
     }
 
     public void start(){
-        JLabel title = new JLabel( "NOVO PARQUE" );
+        JLabel title = new JLabel( "ABRIR PARQUE" );
         title.setFont( Estilo.robotoTitle );
         title.setForeground( Estilo.branco );
 

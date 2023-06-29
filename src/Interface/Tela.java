@@ -1,9 +1,9 @@
 package src.Interface;
 
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 import java.awt.Dimension;
-
 import java.awt.BorderLayout;
 
 // Todas as telas devem estender esta classe!
@@ -16,6 +16,10 @@ public class Tela {
     protected JPanel main;
     protected JPanel footer;
 
+    protected SpringLayout headerLayout;
+    protected SpringLayout centerLayout;
+    protected SpringLayout footerLayout;
+
     // Estas regiões são referentes ao painel main!
     protected JPanel north;
     protected JPanel center;
@@ -23,8 +27,19 @@ public class Tela {
     protected JPanel east;
     protected JPanel west;
 
+    // Janela
+    protected Janela jan;
+
     public Tela(){
         this.initBody();
+    }
+
+    public Janela getJanela(){
+        return this.jan;
+    }
+
+    public void setJanela( Janela jan ){
+        this.jan = jan;
     }
 
     private void initBody(){
@@ -94,6 +109,10 @@ public class Tela {
         this.east.setPreferredSize( size );
         this.west.setPreferredSize( size );
 
+        this.centerLayout = new SpringLayout();
+
+        this.center.setLayout( centerLayout );
+
         this.north.setBackground( Estilo.vermelhao );
         this.center.setBackground( Estilo.vermelhao );
         this.south.setBackground( Estilo.vermelhao );
@@ -116,5 +135,26 @@ public class Tela {
         this.footer.setPreferredSize(size);
 
         this.footer.setBackground( Estilo.vermelhao );
+    }
+
+    private void resetHeader(){
+        this.initHeader();
+        this.body.add(this.header, BorderLayout.NORTH);
+    }
+
+    private void resetMain(){
+        this.initMain();
+        this.body.add(this.main, BorderLayout.CENTER);
+    }
+
+    private void resetFooter(){
+        this.initFooter();
+        this.body.add(this.footer, BorderLayout.SOUTH);
+    }
+
+    private void resetAll(){
+        this.resetHeader();
+        this.resetMain();
+        this.resetFooter();
     }
 }
