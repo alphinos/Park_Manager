@@ -19,20 +19,20 @@ public class Body extends JPanel {
 
     public Body( Dimension size ){
         super();
-        this.setSize( size );
         this.setLayout( new BorderLayout() );
+        this.setSize( size );
     }
 
     public Body( int width, int height ){
         super();
-        this.setSize( width, height );
         this.setLayout( new BorderLayout() );
+        this.setSize( width, height );
     }
 
     public Body( int width, int height, int hgap, int vgap ){
         super();
+        this.setLayout( new BorderLayout( hgap, vgap ) );
         this.setSize( width, height );
-        this.setLayout( new BorderLayout( hgap, vgap) );
     }
 
     public Dimension getSize(){
@@ -42,6 +42,11 @@ public class Body extends JPanel {
     public void setSize( Dimension size ){
         this.size = size;
         this.setPreferredSize(this.size);
+
+        int majorWidth = (int) this.getPreferredSize().getWidth();
+        int majorHeight = (int) this.getPreferredSize().getHeight();
+
+        System.out.println( majorWidth + "\n" + majorHeight);
     }
 
     public void setSize( int width, int height ){

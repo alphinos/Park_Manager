@@ -16,27 +16,28 @@ public class Main extends JPanel {
     
     public Main(){
         super();
+        this.setLayout( new BorderLayout() );
         this.initRegioes();
     }
 
     public Main( Dimension size ){
         super();
-        this.setSize( size );
         this.setLayout( new BorderLayout() );
+        this.setSize( size );
         this.initRegioes();
     }
 
     public Main( int width, int height ){
         super();
-        this.setSize( width, height );
         this.setLayout( new BorderLayout() );
+        this.setSize( width, height );
         this.initRegioes();
     }
 
     public Main( int width, int height, int hgap, int vgap ){
         super();
-        this.setSize( width, height );
         this.setLayout( new BorderLayout( hgap, vgap) );
+        this.setSize( width, height );
         this.initRegioes();
     }
 
@@ -47,6 +48,11 @@ public class Main extends JPanel {
     public void setSize( Dimension size ){
         this.size = size;
         this.setPreferredSize(this.size);
+
+        int majorWidth = (int) this.getPreferredSize().getWidth();
+        int majorHeight = (int) this.getPreferredSize().getHeight();
+
+        System.out.println( "Main: " + majorWidth + "_" + majorHeight);
     }
 
     public void setSize( int width, int height ){
@@ -67,22 +73,22 @@ public class Main extends JPanel {
         int majorWidth = (int) this.getPreferredSize().getWidth();
         int majorHeight = (int) this.getPreferredSize().getHeight();
 
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
+        Dimension size_aux = new Dimension(majorWidth , majorHeight/100 * 25);
 
-        north.setPreferredSize( size );
+        north.setPreferredSize( size_aux );
 
-        size = new Dimension(majorWidth/100 * 50 , majorHeight/100 * 50);
+        size_aux = new Dimension(majorWidth/100 * 50 , majorHeight/100 * 50);
 
-        center.setPreferredSize( size );
+        center.setPreferredSize( size_aux );
 
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
+        size_aux = new Dimension(majorWidth , majorHeight/100 * 25);
 
-        south.setPreferredSize( size );
+        south.setPreferredSize( size_aux );
 
-        size = new Dimension(majorWidth/100 * 25 , majorHeight/100 * 50);
+        size_aux = new Dimension(majorWidth/100 * 25 , majorHeight/100 * 50);
 
-        east.setPreferredSize( size );
-        west.setPreferredSize( size );
+        east.setPreferredSize( size_aux );
+        west.setPreferredSize( size_aux );
 
         this.estiloRegioes();
 

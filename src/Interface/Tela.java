@@ -26,21 +26,17 @@ public class Tela {
         this.janela.setSize(1280, 720);
         this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        this.body = new Body(1280, 720, 0, 40);
+        
         this.initBody();
-        this.janela.add( body );
+        this.janela.add( this.body );
 
         this.janela.setVisible(true);
     }
 
     private void initBody(){
-        this.body = new JPanel();
-        this.body.setLayout( new BorderLayout(0, 40) );
-
-        Dimension size = new Dimension(1280, 720);
-
-        this.body.setPreferredSize(size);
-
         this.body.setBackground( Estilo.branco );
+        // this.body.setLayout( new BorderLayout(0, 40) );
 
         this.initHeader();
         this.initMain();
@@ -52,91 +48,19 @@ public class Tela {
     }
 
     private void initHeader(){
-        this.header = new JPanel();
-
-        Dimension size = new Dimension(1280, 80);
-
-        this.header.setPreferredSize(size);
-
-        this.header.setBackground( Estilo.vermelhao );
-
+        this.header = new Header(  );
+        this.header.setPreferredSize( new Dimension(1280, 80) );
+        this.header.setBackground( Estilo.verdao );
     }
 
     private void initMain(){
-        this.main = new JPanel();
-
-        // this.main.setLayout( new BorderLayout( 20, 20) );
-        this.main.setLayout( new BorderLayout( 0, 0) );
-
-        Dimension size = new Dimension(1280, 480);
-
-        this.main.setPreferredSize(size);
-
-        this.main.setBackground( Estilo.vermelhao );
-
-        JLabel txt = new JLabel("JURASSIC PARK");
-
-        txt.setFont(Estilo.roboto);
-        txt.setForeground( Estilo.branco );
-        
-
-        JPanel north = new JPanel();
-        JPanel center = new JPanel();
-        JPanel south = new JPanel();
-        JPanel east = new JPanel();
-        JPanel west = new JPanel();
-
-        int majorWidth = (int) this.main.getPreferredSize().getWidth();
-        int majorHeight = (int) this.main.getPreferredSize().getHeight();
-
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
-
-        north.setPreferredSize( size );
-
-        size = new Dimension(majorWidth/100 * 50 , majorHeight/100 * 50);
-
-        center.setPreferredSize( size );
-
-        size = new Dimension(majorWidth , majorHeight/100 * 25);
-
-        south.setPreferredSize( size );
-
-        size = new Dimension(majorWidth/100 * 25 , majorHeight/100 * 50);
-
-        east.setPreferredSize( size );
-        west.setPreferredSize( size );
-
-        // north.setBackground( Paleta.vermelhinho );
-        // center.setBackground( Paleta.vermelhinho );
-        // south.setBackground( Paleta.vermelhinho );
-        // east.setBackground( Paleta.vermelhinho );
-        // west.setBackground( Paleta.vermelhinho );
-
-        north.setBackground( Estilo.vermelhao );
-        center.setBackground( Estilo.vermelhao );
-        south.setBackground( Estilo.vermelhao );
-        east.setBackground( Estilo.vermelhao );
-        west.setBackground( Estilo.vermelhao );
-
-        north.add(txt);
-        
-        center.setLayout( new SpringLayout() );
-
-        this.main.add(north, BorderLayout.NORTH);
-        this.main.add(center, BorderLayout.CENTER);
-        this.main.add(south, BorderLayout.SOUTH);
-        this.main.add(east, BorderLayout.EAST);
-        this.main.add(west, BorderLayout.WEST);
-
+        this.main = new Main(  );
+        this.main.setPreferredSize( new Dimension(1280, 480) );
     }
 
     private void initFooter(){
-        this.footer = new JPanel();
-
-        Dimension size = new Dimension(1280, 80);
-
-        this.footer.setPreferredSize(size);
-
-        this.footer.setBackground( Estilo.vermelhao );
+        this.footer = new Footer(  );
+        this.footer.setPreferredSize( new Dimension(1280, 80) );
+        this.footer.setBackground( Estilo.verdao );
     }
 }

@@ -29,6 +29,11 @@ public class Footer extends JPanel {
     public void setSize( Dimension size ){
         this.size = size;
         this.setPreferredSize(this.size);
+
+        int majorWidth = (int) this.getPreferredSize().getWidth();
+        int majorHeight = (int) this.getPreferredSize().getHeight();
+
+        System.out.println( "Footer: " + majorWidth + "_" + majorHeight);
     }
 
     public void setSize( int width, int height ){

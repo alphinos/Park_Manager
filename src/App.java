@@ -1,5 +1,6 @@
 package src;
 import src.Interface.Tela;
+import src.Interface.Gerenciador;
 
 public class App {
 	public static void main(String args[]) {
@@ -14,6 +15,7 @@ public class App {
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
 
-		Tela appGerenciador = new Tela();
+		// Tela appGerenciador = new Tela();
+		Gerenciador appGerenciador = new Gerenciador();
 	}
 }
