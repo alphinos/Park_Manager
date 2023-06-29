@@ -1,6 +1,7 @@
 package src;
+
+import src.Interface.Janela;
 import src.Interface.Tela;
-import src.Interface.Gerenciador;
 
 public class App {
 	public static void main(String args[]) {
@@ -16,6 +17,7 @@ public class App {
 		Max.mostrarAtracoes();
 
 		// Tela appGerenciador = new Tela();
-		Gerenciador appGerenciador = new Gerenciador();
+		// Tela appGerenciador = new Tela();
+		Janela janela = new Janela();
 	}
 }

@@ -1,42 +1,40 @@
 package src.Interface;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 
 import java.awt.Dimension;
 
 import java.awt.BorderLayout;
-import javax.swing.SpringLayout;
 
 // Todas as telas devem estender esta classe!
 // A partir desta, deve-se adicionar o que for necessário para cada uma.
 
 public class Tela {
 
-    private JFrame janela;
+    protected JPanel body;
+    protected JPanel header;
+    protected JPanel main;
+    protected JPanel footer;
 
-    private JPanel body;
-    private JPanel header;
-    private JPanel main;
-    private JPanel footer;
+    protected JPanel north;
+    protected JPanel center;
+    protected JPanel south;
+    protected JPanel east;
+    protected JPanel west;
 
     public Tela(){
-        this.janela = new JFrame("Gerenciador");
-        this.janela.setSize(1280, 720);
-        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.body = new Body(1280, 720, 0, 40);
-        
         this.initBody();
-        this.janela.add( this.body );
-
-        this.janela.setVisible(true);
     }
 
     private void initBody(){
+        this.body = new JPanel();
+        this.body.setLayout( new BorderLayout(0, 40) );
+
+        Dimension size = new Dimension(1280, 720);
+
+        this.body.setPreferredSize(size);
+
         this.body.setBackground( Estilo.branco );
-        // this.body.setLayout( new BorderLayout(0, 40) );
 
         this.initHeader();
         this.initMain();
@@ -48,19 +46,74 @@ public class Tela {
     }
 
     private void initHeader(){
-        this.header = new Header(  );
-        this.header.setPreferredSize( new Dimension(1280, 80) );
-        this.header.setBackground( Estilo.verdao );
+        this.header = new JPanel();
+
+        Dimension size = new Dimension(1280, 80);
+
+        this.header.setPreferredSize(size);
+
+        this.header.setBackground( Estilo.vermelhao );
+
     }
 
     private void initMain(){
-        this.main = new Main(  );
-        this.main.setPreferredSize( new Dimension(1280, 480) );
+        this.main = new JPanel();
+
+        this.main.setLayout( new BorderLayout( 0, 0) );
+
+        Dimension size = new Dimension(1280, 480);
+
+        this.main.setPreferredSize(size);
+
+        this.main.setBackground( Estilo.vermelhao );        
+
+        this.north = new JPanel();
+        this.center = new JPanel();
+        this.south = new JPanel();
+        this.east = new JPanel();
+        this.west = new JPanel();
+
+        int majorWidth = (int) this.main.getPreferredSize().getWidth();
+        int majorHeight = (int) this.main.getPreferredSize().getHeight();
+
+        size = new Dimension(majorWidth , majorHeight/100 * 25);
+
+        this.north.setPreferredSize( size );
+
+        size = new Dimension(majorWidth/100 * 50 , majorHeight/100 * 50);
+
+        this.center.setPreferredSize( size );
+
+        size = new Dimension(majorWidth , majorHeight/100 * 25);
+
+        this.south.setPreferredSize( size );
+
+        size = new Dimension(majorWidth/100 * 25 , majorHeight/100 * 50);
+
+        this.east.setPreferredSize( size );
+        this.west.setPreferredSize( size );
+
+        this.north.setBackground( Estilo.vermelhao );
+        this.center.setBackground( Estilo.vermelhao );
+        this.south.setBackground( Estilo.vermelhao );
+        this.east.setBackground( Estilo.vermelhao );
+        this.west.setBackground( Estilo.vermelhao );
+
+        this.main.add(this.north, BorderLayout.NORTH);
+        this.main.add(this.center, BorderLayout.CENTER);
+        this.main.add(this.south, BorderLayout.SOUTH);
+        this.main.add(this.east, BorderLayout.EAST);
+        this.main.add(this.west, BorderLayout.WEST);
+
     }
 
     private void initFooter(){
-        this.footer = new Footer(  );
-        this.footer.setPreferredSize( new Dimension(1280, 80) );
-        this.footer.setBackground( Estilo.verdao );
+        this.footer = new JPanel();
+
+        Dimension size = new Dimension(1280, 80);
+
+        this.footer.setPreferredSize(size);
+
+        this.footer.setBackground( Estilo.vermelhao );
     }
 }
