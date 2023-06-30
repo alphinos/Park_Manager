@@ -22,6 +22,11 @@ public class Inicio extends Tela implements ActionListener {
         this.start();
     }
 
+    public Inicio( Janela jan){
+        super( jan );
+        this.start();
+    }
+
     private void start(){
 
         novoParque = new JButton("Novo parque");

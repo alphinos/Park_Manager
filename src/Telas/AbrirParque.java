@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 import src.Interface.Estilo;
+import src.Interface.Janela;
 import src.Interface.Tela;
 
 public class AbrirParque extends Tela {
@@ -13,8 +14,13 @@ public class AbrirParque extends Tela {
         this.start();
     }
 
+    public AbrirParque( Janela jan){
+        super( jan );
+        this.start();
+    }
+
     public void start(){
-        JLabel title = new JLabel( "ABRIR PARQUE" );
+        JLabel title = new JLabel( "GERENCIADOR" );
         title.setFont( Estilo.robotoTitle );
         title.setForeground( Estilo.branco );
 

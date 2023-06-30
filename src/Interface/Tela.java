@@ -12,6 +12,9 @@ import java.awt.BorderLayout;
 public class Tela {
 
     protected JPanel body;
+
+    protected SpringLayout bodyLayout;
+
     protected JPanel header;
     protected JPanel main;
     protected JPanel footer;
@@ -34,6 +37,11 @@ public class Tela {
         this.initBody();
     }
 
+    public Tela( Janela jan ){
+        this.initBody();
+        setJanela(jan);
+    }
+
     public Janela getJanela(){
         return this.jan;
     }
@@ -44,7 +52,9 @@ public class Tela {
 
     private void initBody(){
         this.body = new JPanel();
-        this.body.setLayout( new BorderLayout(0, 40) );
+        
+        this.bodyLayout = new SpringLayout();
+        this.body.setLayout( this.bodyLayout );
 
         Dimension size = new Dimension(1280, 720);
 
@@ -56,9 +66,18 @@ public class Tela {
         this.initMain();
         this.initFooter();
 
-        this.body.add(this.header, BorderLayout.NORTH);
-        this.body.add(this.main, BorderLayout.CENTER);
-        this.body.add(this.footer, BorderLayout.SOUTH);
+        this.body.add(this.header);
+        this.body.add(this.main);
+        this.body.add(this.footer);
+
+        this.bodyLayout.putConstraint( SpringLayout.NORTH, this.header, 0, SpringLayout.NORTH, this.body);
+        this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.header, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
+
+        this.bodyLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.main, 0, SpringLayout.VERTICAL_CENTER, this.body);
+        this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.main, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
+
+        this.bodyLayout.putConstraint( SpringLayout.SOUTH, this.footer, 0, SpringLayout.SOUTH, this.body);
+        this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.footer, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
     }
 
     private void initHeader(){
