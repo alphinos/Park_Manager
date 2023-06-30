@@ -14,7 +14,7 @@ public class Janela {
     private JFrame janela;
     private Tela tela;
 
-    private Inicio inicio;
+    private Inicio Inicio;
     private NovoParque NovoParque;
     private AbrirParque AbrirParque;
     // private Tela Gerenciar;
@@ -32,8 +32,7 @@ public class Janela {
 
         // this.setupGlass();
 
-        this.tela = new Tela();
-        this.tela.setJanela( this );
+        this.tela = this.Inicio;
 
         this.janela.add( this.tela.body );
 
@@ -57,7 +56,7 @@ public class Janela {
     }
 
     public void initTelas(){
-        this.inicio = new Inicio( this );
+        this.Inicio = new Inicio( this );
         this.NovoParque = new NovoParque( this );
         this.AbrirParque = new AbrirParque( this );
     }
@@ -66,31 +65,34 @@ public class Janela {
     public void trocarTela( String tela ){
 
         // this.setGlassVisible(false);
+        this.janela.remove( this.tela.body );
 
         switch ( tela ){
             case "inicio":
-                this.janela.remove( this.tela.body );
-                this.tela = this.inicio;
-                this.janela.add(this.tela.body);
-                this.janela.setVisible(true);
+                this.Inicio = new Inicio( this );
+                this.tela = this.Inicio;
                 break;
             case "novo_parque":
-                this.janela.remove( this.tela.body );
+                this.NovoParque = new NovoParque( this );
                 this.tela = this.NovoParque;
-                this.janela.add(this.tela.body);
-                this.janela.setVisible(true);
                 break;
             case "abrir_parque":
-                this.janela.remove( this.tela.body );
+                this.AbrirParque = new AbrirParque( this );
                 this.tela = this.AbrirParque;
-                this.janela.add(this.tela.body);
-                this.janela.setVisible(true);
                 break;
+        }
+
+        this.janela.add( this.tela.body );
+        this.janela.setVisible(true);
+
+        if ( tela == "abrir_parque" ){
+            this.AbrirParque.showChooser();
         }
     }
 
     // Basicamente, estes 2 métodos servem para adicionar uma camada escura sobre a janela
     // Atualmente, não são utilizados
+    // Basicamente, um teste
     public void setupGlass(){
         this.janela.getRootPane().setGlassPane( new JComponent() {
             public void paintComponent( Graphics g){

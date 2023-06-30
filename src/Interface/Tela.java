@@ -40,8 +40,8 @@ public class Tela {
     }
 
     public Tela( Janela jan ){
-        this.initBody();
         setJanela(jan);
+        this.initBody();
     }
 
     public Janela getJanela(){
@@ -58,7 +58,7 @@ public class Tela {
         this.bodyLayout = new SpringLayout();
         this.body.setLayout( this.bodyLayout );
 
-        Dimension size = new Dimension(1280, 720);
+        Dimension size = new Dimension( 1280, 720 );
 
         this.body.setPreferredSize(size);
 
@@ -88,7 +88,7 @@ public class Tela {
     private void initHeader(){
         this.header = new JPanel();
 
-        Dimension size = new Dimension(1280, 80);
+        Dimension size = new Dimension( 1280 , 80);
 
         this.header.setPreferredSize(size);
 
@@ -101,7 +101,7 @@ public class Tela {
 
         this.main.setLayout( new BorderLayout( 0, 0) );
 
-        Dimension size = new Dimension(1280, 480);
+        Dimension size = new Dimension( 1280 , 480);
 
         this.main.setPreferredSize(size);
 
@@ -154,7 +154,7 @@ public class Tela {
     private void initFooter(){
         this.footer = new JPanel();
 
-        Dimension size = new Dimension(1280, 80);
+        Dimension size = new Dimension( 1280 , 80);
 
         this.footer.setPreferredSize(size);
 
@@ -163,17 +163,17 @@ public class Tela {
 
     private void resetHeader(){
         this.initHeader();
-        this.body.add(this.header, BorderLayout.NORTH);
+        this.body.add(this.header);
     }
 
     private void resetMain(){
         this.initMain();
-        this.body.add(this.main, BorderLayout.CENTER);
+        this.body.add(this.main);
     }
 
     private void resetFooter(){
         this.initFooter();
-        this.body.add(this.footer, BorderLayout.SOUTH);
+        this.body.add(this.footer);
     }
 
     private void resetAll(){

@@ -1,6 +1,8 @@
 package src.Telas;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,9 +14,23 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class NovoParque extends Tela {
+public class NovoParque extends Tela implements ActionListener {
 
     private JPanel novoParque;
+
+    private JLabel parque;
+
+    private JLabel nome;
+    private JTextField campo_nome ;
+
+    private JLabel descricao;
+    private JTextField campo_descricao;
+
+    private JLabel preco;
+    private JTextField campo_preco;
+
+    private JButton criar;
+    private JButton cancelar;
 
     public JPanel getNovoParque(){
         return this.novoParque;
@@ -61,19 +77,19 @@ public class NovoParque extends Tela {
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.novoParque, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
 
         // Título do card
-        JLabel parque = new JLabel( "Novo parque" );
+        this.parque = new JLabel( "Novo parque" );
 
-        JLabel nome = new JLabel( "Nome" );
-        JTextField campo_nome = new JTextField();
+        this.nome = new JLabel( "Nome" );
+        this.campo_nome = new JTextField();
 
-        JLabel descricao = new JLabel( "Descrição" );
-        JTextField campo_descricao = new JTextField();
+        this.descricao = new JLabel( "Descrição" );
+        this.campo_descricao = new JTextField();
 
-        JLabel preco = new JLabel( "Preço" );
-        JTextField campo_preco = new JTextField();
+        this.preco = new JLabel( "Preço" );
+        this.campo_preco = new JTextField();
 
-        JButton criar = new JButton( "Criar" );
-        JButton cancelar = new JButton( "Cancelar" );
+        this.criar = new JButton( "Criar" );
+        this.cancelar = new JButton( "Cancelar" );
 
         // Configurando estilos de fonte, cor de texto
         parque.setFont( Estilo.robotoTitle );
@@ -140,6 +156,9 @@ public class NovoParque extends Tela {
         this.novoParque.add(criar);
         this.novoParque.add(cancelar);
 
+        this.criar.addActionListener( this );
+        this.cancelar.addActionListener( this );
+
         // Posicionando os componentes dentro do painel de criação de novo parque
 
         // Título
@@ -174,5 +193,27 @@ public class NovoParque extends Tela {
         //Cancelar
         layout.putConstraint( SpringLayout.EAST, cancelar, 0, SpringLayout.EAST, campo_preco );
         layout.putConstraint( SpringLayout.NORTH, cancelar, 48, SpringLayout.SOUTH, campo_preco );
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event){
+        if ( event.getSource() == this.criar ){
+            System.out.println( "Novo parque criado!" );
+
+            String nome = this.campo_nome.getText();
+            String desc = this.campo_descricao.getText();
+            String preco = this.campo_preco.getText();
+
+            System.out.println("Nome: " + nome);
+            System.out.println("Descrição: " + desc);
+            System.out.println("Preço: " + preco);
+
+            this.jan.trocarTela( "novo_parque" );
+        }
+
+        if ( event.getSource() == this.cancelar ){
+            System.out.println( "Criação do parque cancelada!" );
+            this.jan.trocarTela( "inicio" );
+        }
     }
 }

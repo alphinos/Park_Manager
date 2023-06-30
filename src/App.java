@@ -1,7 +1,6 @@
 package src;
 
 import src.Interface.Janela;
-import src.Telas.Inicio;
 
 public class App {
 	public static void main(String args[]) {
@@ -16,6 +15,6 @@ public class App {
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
 
-		Janela janela = new Janela( new Inicio() );
+		Janela janela = new Janela(  );
 	}
 }
