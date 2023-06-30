@@ -1,6 +1,6 @@
 package src;
 
-import src.Interface.Janela;
+import src.Interface.Gerente;
 
 public class App {
 	public static void main(String args[]) {
@@ -15,6 +15,6 @@ public class App {
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
 
-		Janela janela = new Janela(  );
+		Gerente gerente = new Gerente( 1280, 720 );
 	}
 }

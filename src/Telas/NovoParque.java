@@ -36,13 +36,13 @@ public class NovoParque extends Tela implements ActionListener {
         return this.novoParque;
     }
     
-    public NovoParque(){
-        super();
+    public NovoParque( int width, int height ){
+        super( width, height);
         this.start();
     }
 
-    public NovoParque( Janela jan){
-        super( jan );
+    public NovoParque( int width, int height, Janela jan ){
+        super( width, height, jan );
         this.start();
     }
 

@@ -35,13 +35,32 @@ public class Tela {
     // Em especial, vai servir para a execução das ações a partir dos eventos
     protected Janela jan;
 
-    public Tela(){
-        this.initBody();
+    protected int width;
+    protected int height;
+
+    public Tela( int width, int height ){
+        this.initBody( width, height );
     }
 
-    public Tela( Janela jan ){
+    public Tela( int width, int height, Janela jan ){
         setJanela(jan);
-        this.initBody();
+        this.initBody(width, height);
+    }
+
+    public int getWidth(){
+        return this.width;
+    }
+
+    public void setWidth( int width ){
+        this.width = width;
+    }
+
+    public int getHeight(){
+        return this.height;
+    }
+
+    public void setHeight( int height ){
+        this.height = height;
     }
 
     public Janela getJanela(){
@@ -52,21 +71,23 @@ public class Tela {
         this.jan = jan;
     }
 
-    private void initBody(){
+    private void initBody( int width, int height){
         this.body = new JPanel();
 
         this.bodyLayout = new SpringLayout();
         this.body.setLayout( this.bodyLayout );
 
-        Dimension size = new Dimension( 1280, 720 );
+        Dimension size = new Dimension( width, height );
 
         this.body.setPreferredSize(size);
 
         this.body.setBackground( Estilo.branco );
 
-        this.initHeader();
-        this.initMain();
-        this.initFooter();
+
+
+        this.initHeader( width, (int) height/100 * 11 );
+        this.initMain( width, (int) height/100 * 67 );
+        this.initFooter( width, (int) height/100 * 11 );
 
         this.body.add(this.header);
         this.body.add(this.main);
@@ -85,10 +106,10 @@ public class Tela {
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.footer, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
     }
 
-    private void initHeader(){
+    private void initHeader( int width, int height){
         this.header = new JPanel();
 
-        Dimension size = new Dimension( 1280 , 80);
+        Dimension size = new Dimension( width , height);
 
         this.header.setPreferredSize(size);
 
@@ -96,12 +117,12 @@ public class Tela {
 
     }
 
-    private void initMain(){
+    private void initMain( int width, int height){
         this.main = new JPanel();
 
         this.main.setLayout( new BorderLayout( 0, 0) );
 
-        Dimension size = new Dimension( 1280 , 480);
+        Dimension size = new Dimension( width , height);
 
         this.main.setPreferredSize(size);
 
@@ -151,10 +172,10 @@ public class Tela {
 
     }
 
-    private void initFooter(){
+    private void initFooter( int width, int height){
         this.footer = new JPanel();
 
-        Dimension size = new Dimension( 1280 , 80);
+        Dimension size = new Dimension( width , height);
 
         this.footer.setPreferredSize(size);
 
@@ -162,17 +183,20 @@ public class Tela {
     }
 
     private void resetHeader(){
-        this.initHeader();
+        this.body.remove( this.header );
+        this.initHeader( width, (int) height/100 * 11 );
         this.body.add(this.header);
     }
 
     private void resetMain(){
-        this.initMain();
+        this.body.remove( this.main );
+        this.initMain( width, (int) height/100 * 78 );
         this.body.add(this.main);
     }
 
     private void resetFooter(){
-        this.initFooter();
+        this.body.remove( this.footer );
+        this.initFooter( width, (int) height/100 * 11 );
         this.body.add(this.footer);
     }
 

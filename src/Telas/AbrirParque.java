@@ -15,13 +15,13 @@ public class AbrirParque extends Tela {
 
     private JFileChooser chooser;
     
-    public AbrirParque(){
-        super();
+    public AbrirParque( int width, int height ){
+        super( width, height);
         this.start();
     }
 
-    public AbrirParque( Janela jan){
-        super( jan );
+    public AbrirParque( int width, int height, Janela jan ){
+        super( width, height, jan );
         this.start();
     }
 

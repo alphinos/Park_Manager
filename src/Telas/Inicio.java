@@ -17,13 +17,13 @@ public class Inicio extends Tela implements ActionListener {
     private JButton novoParque;
     private JButton abrirParque;
 
-    public Inicio(){
-        super();
+    public Inicio( int width, int height ){
+        super( width, height);
         this.start();
     }
 
-    public Inicio( Janela jan){
-        super( jan );
+    public Inicio( int width, int height, Janela jan ){
+        super( width, height, jan );
         this.start();
     }
 

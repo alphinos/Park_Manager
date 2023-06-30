@@ -5,90 +5,65 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import src.Telas.AbrirParque;
-import src.Telas.Inicio;
-import src.Telas.NovoParque;
+public abstract class Janela {
 
-public class Janela {
+    protected JFrame janela;
+    protected Tela tela;
 
-    private JFrame janela;
-    private Tela tela;
+    protected int width;
+    protected int height;
 
-    private Inicio Inicio;
-    private NovoParque NovoParque;
-    private AbrirParque AbrirParque;
-    // private Tela Gerenciar;
-    // private Tela Cliente;
+    public Janela( int width, int height){
+        this.janela = new JFrame();
+        this.janela.setSize( width, height );
+        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.width = width;
+        this.height = height;
+
+        this.janela.setVisible(false);
+    }
+
+    public Janela( int width, int height, Tela tela ){
+        this.janela = new JFrame();
+        this.janela.setSize( width, height );
+        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.width = width;
+        this.height = height;
+
+        this.setTela( tela );
+
+        this.janela.setVisible(false);
+    }
+
+    public Janela( int width, int height, Tela tela, String nome ){
+        this.janela = new JFrame( nome );
+        this.janela.setSize( width, height );
+        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.width = width;
+        this.height = height;
+
+        this.setTela( tela );
+
+        this.janela.setVisible(false);
+    }
 
     public JFrame getJanela(){
         return this.janela;
     }
 
-    public Janela(){
-        this.janela = new JFrame("Gerenciador");
-        this.janela.setSize(1280, 720);
-        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.initTelas();
-
-        // this.setupGlass();
-
-        this.tela = this.Inicio;
-
-        this.janela.add( this.tela.body );
-
-        this.janela.setVisible(true);
-    }
-
-    public Janela( Tela tela ){
-        this.janela = new JFrame("Gerenciador");
-        this.janela.setSize(1280, 720);
-        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.initTelas();
-
-        // this.setupGlass();
-
+    public void setTela( Tela tela ){
         this.tela = tela;
         this.tela.setJanela( this );
-
         this.janela.add( this.tela.body );
-
-        this.janela.setVisible(true);
     }
 
-    public void initTelas(){
-        this.Inicio = new Inicio( this );
-        this.NovoParque = new NovoParque( this );
-        this.AbrirParque = new AbrirParque( this );
-    }
+    public abstract void initTelas();
 
     // Este método só é chamado quando acontece algum evento em uma determinada tela
-    public void trocarTela( String tela ){
-
-        // this.setGlassVisible(false);
-        this.janela.remove( this.tela.body );
-
-        switch ( tela ){
-            case "inicio":
-                this.Inicio = new Inicio( this );
-                this.tela = this.Inicio;
-                break;
-            case "novo_parque":
-                this.NovoParque = new NovoParque( this );
-                this.tela = this.NovoParque;
-                break;
-            case "abrir_parque":
-                this.AbrirParque = new AbrirParque( this );
-                this.tela = this.AbrirParque;
-                break;
-        }
-
-        this.janela.add( this.tela.body );
-        this.janela.setVisible(true);
-
-        if ( tela == "abrir_parque" ){
-            this.AbrirParque.showChooser();
-        }
-    }
+    public abstract void trocarTela( String tela );
 
     // Basicamente, estes 2 métodos servem para adicionar uma camada escura sobre a janela
     // Atualmente, não são utilizados
