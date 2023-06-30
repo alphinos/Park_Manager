@@ -31,6 +31,8 @@ public class Tela {
     protected JPanel west;
 
     // Janela
+    // A principal função é permitir o contato com a janela principal
+    // Em especial, vai servir para a execução das ações a partir dos eventos
     protected Janela jan;
 
     public Tela(){
@@ -52,7 +54,7 @@ public class Tela {
 
     private void initBody(){
         this.body = new JPanel();
-        
+
         this.bodyLayout = new SpringLayout();
         this.body.setLayout( this.bodyLayout );
 
@@ -70,12 +72,15 @@ public class Tela {
         this.body.add(this.main);
         this.body.add(this.footer);
 
+        // Posicionando o header no topo da tela
         this.bodyLayout.putConstraint( SpringLayout.NORTH, this.header, 0, SpringLayout.NORTH, this.body);
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.header, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
 
+        // Posicionando o main no centro da tela
         this.bodyLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.main, 0, SpringLayout.VERTICAL_CENTER, this.body);
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.main, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
 
+        // Posicionando o foot no fundo da tela
         this.bodyLayout.putConstraint( SpringLayout.SOUTH, this.footer, 0, SpringLayout.SOUTH, this.body);
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.footer, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
     }

@@ -1,13 +1,11 @@
 package src.Telas;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.Spring;
 import javax.swing.SpringLayout;
 
 import src.Interface.Estilo;
@@ -42,9 +40,11 @@ public class NovoParque extends Tela {
         this.header.setLayout( this.headerLayout );
         this.header.add(title);
 
+        // Definição do posicionamento do título com base no painel "header" < this.header >
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
         this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
 
+        // Painel referente ao "card" de cadastro de um novo parque
         this.novoParque = new JPanel();
 
         SpringLayout layout = new SpringLayout();
@@ -56,9 +56,11 @@ public class NovoParque extends Tela {
 
         this.body.add(this.novoParque, 1);
 
+        // Centralizando o "card" de novo parque na tela
         this.bodyLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.novoParque, 0, SpringLayout.VERTICAL_CENTER, this.body);
         this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.novoParque, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
 
+        // Título do card
         JLabel parque = new JLabel( "Novo parque" );
 
         JLabel nome = new JLabel( "Nome" );
@@ -73,6 +75,7 @@ public class NovoParque extends Tela {
         JButton criar = new JButton( "Criar" );
         JButton cancelar = new JButton( "Cancelar" );
 
+        // Configurando estilos de fonte, cor de texto
         parque.setFont( Estilo.robotoTitle );
         parque.setForeground( Estilo.branco );
 
@@ -94,32 +97,35 @@ public class NovoParque extends Tela {
         criar.setBorderPainted(false);
         cancelar.setBorderPainted(false);
 
+        // Configurando tamanhos
+        Dimension dim = new Dimension( 144, 27 );
+
+        criar.setPreferredSize(dim);
+        cancelar.setPreferredSize(dim);
+
         criar.setBackground( Estilo.branco );
         cancelar.setBackground( Estilo.branco );
 
-        Dimension dim = new Dimension( 400, 27 );
+        dim = new Dimension( 400, 27 );
 
         campo_nome.setPreferredSize(dim);
         campo_descricao.setPreferredSize(dim);
         campo_preco.setPreferredSize(dim);
 
-        campo_nome.setFont( Estilo.robotoLabel );
+        // Configurando estilo dos campos de texto
+        campo_nome.setFont( Estilo.robotoText );
         campo_nome.setBackground( Estilo.branco );
         campo_nome.setForeground( Estilo.preto );
 
-        campo_descricao.setFont( Estilo.robotoLabel );
+        campo_descricao.setFont( Estilo.robotoText );
         campo_descricao.setBackground( Estilo.branco );
         campo_descricao.setForeground( Estilo.preto );
 
-        campo_preco.setFont( Estilo.robotoLabel );
+        campo_preco.setFont( Estilo.robotoText );
         campo_preco.setBackground( Estilo.branco );
         campo_preco.setForeground( Estilo.preto );
 
-        dim = new Dimension( 144, 27 );
-
-        criar.setPreferredSize(dim);
-        cancelar.setPreferredSize(dim);
-
+        // Adicionando componentes do painel principal desta tela
         this.novoParque.add(parque);
 
         this.novoParque.add(nome);
@@ -134,6 +140,9 @@ public class NovoParque extends Tela {
         this.novoParque.add(criar);
         this.novoParque.add(cancelar);
 
+        // Posicionando os componentes dentro do painel de criação de novo parque
+
+        // Título
         layout.putConstraint( SpringLayout.HORIZONTAL_CENTER, parque, 0, SpringLayout.HORIZONTAL_CENTER, this.novoParque );
         layout.putConstraint( SpringLayout.NORTH, parque, 16, SpringLayout.NORTH, this.novoParque );
 

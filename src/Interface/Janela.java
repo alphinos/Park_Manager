@@ -30,6 +30,7 @@ public class Janela {
         this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.initTelas();
 
+        // this.setupGlass();
 
         this.tela = new Tela();
         this.tela.setJanela( this );
@@ -44,7 +45,8 @@ public class Janela {
         this.janela.setSize(1280, 720);
         this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.initTelas();
-        this.setupGlass();
+
+        // this.setupGlass();
 
         this.tela = tela;
         this.tela.setJanela( this );
@@ -56,13 +58,14 @@ public class Janela {
 
     public void initTelas(){
         this.inicio = new Inicio( this );
-        this.NovoParque = new NovoParque( this);
-        this.AbrirParque = new AbrirParque( this);
+        this.NovoParque = new NovoParque( this );
+        this.AbrirParque = new AbrirParque( this );
     }
 
+    // Este método só é chamado quando acontece algum evento em uma determinada tela
     public void trocarTela( String tela ){
 
-        this.setGlassVisible(false);
+        // this.setGlassVisible(false);
 
         switch ( tela ){
             case "inicio":
@@ -86,6 +89,8 @@ public class Janela {
         }
     }
 
+    // Basicamente, estes 2 métodos servem para adicionar uma camada escura sobre a janela
+    // Atualmente, não são utilizados
     public void setupGlass(){
         this.janela.getRootPane().setGlassPane( new JComponent() {
             public void paintComponent( Graphics g){
@@ -100,7 +105,13 @@ public class Janela {
         this.janela.getRootPane().getGlassPane().setVisible( b );
     }
 
+    // Adiciona um compomente na janela de forma externa
     public void addComp( JComponent comp ){
         this.janela.add(comp);
+    }
+
+    // remove um compomente na janela de forma externa
+    public void rmComp( JComponent comp ){
+        this.janela.remove(comp);
     }
 }

@@ -38,12 +38,14 @@ public class Inicio extends Tela implements ActionListener {
         novoParque.setFont(Estilo.robotoButton);
         abrirParque.setFont(Estilo.robotoButton);
 
+        // Definindo as cores dos textos
         novoParque.setForeground( Estilo.branco );
         abrirParque.setForeground( Estilo.branco );
 
         novoParque.setBackground(Estilo.vermelhinho);
         abrirParque.setBackground(Estilo.vermelhinho);
 
+        // Tamanho dos botões
         Dimension size = new Dimension(320, 80);
 
         novoParque.setPreferredSize(size);
@@ -55,6 +57,7 @@ public class Inicio extends Tela implements ActionListener {
         this.center.add(novoParque);
         this.center.add(abrirParque);
 
+        // Definição do posicionamento dos componentes com base no painel em que estão
         this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, novoParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
         this.centerLayout.putConstraint(SpringLayout.WEST, novoParque, 80, SpringLayout.WEST, this.center);
         this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, abrirParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
@@ -69,6 +72,7 @@ public class Inicio extends Tela implements ActionListener {
         this.header.setLayout( this.headerLayout );
         this.header.add(title);
 
+        // Definição do posicionamento do título com base no painel "header" < this.header >
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
         this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
     }

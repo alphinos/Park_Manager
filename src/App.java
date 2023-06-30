@@ -1,7 +1,6 @@
 package src;
 
 import src.Interface.Janela;
-import src.Interface.Tela;
 import src.Telas.Inicio;
 
 public class App {

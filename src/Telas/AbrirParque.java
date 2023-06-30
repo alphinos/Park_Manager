@@ -29,6 +29,7 @@ public class AbrirParque extends Tela {
         this.header.setLayout( this.headerLayout );
         this.header.add(title);
 
+        // Definição do posicionamento do título com base no painel "header" < this.header >
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
         this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
     }

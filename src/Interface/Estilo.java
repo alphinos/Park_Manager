@@ -24,4 +24,5 @@ public class Estilo {
     public final static Font robotoTitle = new Font( "roboto" , Font.BOLD, 36);
     public final static Font robotoButton = new Font( "roboto" , Font.BOLD, 24);
     public final static Font robotoLabel = new Font( "roboto" , Font.BOLD, 24);
+    public final static Font robotoText = new Font( "roboto" , Font.PLAIN, 14);
 }
