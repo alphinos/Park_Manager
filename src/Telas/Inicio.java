@@ -16,6 +16,7 @@ public class Inicio extends Tela implements ActionListener {
     
     private JButton novoParque;
     private JButton abrirParque;
+    private JLabel title;
 
     public Inicio( int width, int height ){
         super( width, height);
@@ -29,52 +30,52 @@ public class Inicio extends Tela implements ActionListener {
 
     private void start(){
 
-        novoParque = new JButton("Novo parque");
-        abrirParque = new JButton("Abrir parque");
+        this.novoParque = new JButton("Novo parque");
+        this.abrirParque = new JButton("Abrir parque");
 
-        novoParque.addActionListener( this );
-        abrirParque.addActionListener( this );
+        this.novoParque.addActionListener( this );
+        this.abrirParque.addActionListener( this );
 
-        novoParque.setFont(Estilo.robotoButton);
-        abrirParque.setFont(Estilo.robotoButton);
+        this.novoParque.setFont(Estilo.robotoButton);
+        this.abrirParque.setFont(Estilo.robotoButton);
 
         // Definindo as cores dos textos
-        novoParque.setForeground( Estilo.branco );
-        abrirParque.setForeground( Estilo.branco );
+        this.novoParque.setForeground( Estilo.branco );
+        this.abrirParque.setForeground( Estilo.branco );
 
-        novoParque.setBackground(Estilo.vermelhinho);
-        abrirParque.setBackground(Estilo.vermelhinho);
+        this.novoParque.setBackground(Estilo.vermelhinho);
+        this.abrirParque.setBackground(Estilo.vermelhinho);
 
         // Tamanho dos botões
         Dimension size = new Dimension(320, 80);
 
-        novoParque.setPreferredSize(size);
-        abrirParque.setPreferredSize(size);
+        this.novoParque.setPreferredSize(size);
+        this.abrirParque.setPreferredSize(size);
 
-        novoParque.setBorderPainted(false);
-        abrirParque.setBorderPainted(false);
+        this.novoParque.setBorderPainted(false);
+        this.abrirParque.setBorderPainted(false);
 
-        this.center.add(novoParque);
-        this.center.add(abrirParque);
+        this.center.add(this.novoParque);
+        this.center.add(this.abrirParque);
 
         // Definição do posicionamento dos componentes com base no painel em que estão
-        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, novoParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
-        this.centerLayout.putConstraint(SpringLayout.WEST, novoParque, 80, SpringLayout.WEST, this.center);
-        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, abrirParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
-        this.centerLayout.putConstraint(SpringLayout.EAST, abrirParque, -80, SpringLayout.EAST, this.center);
+        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, this.novoParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
+        this.centerLayout.putConstraint(SpringLayout.WEST, this.novoParque, 80, SpringLayout.WEST, this.center);
+        this.centerLayout.putConstraint(SpringLayout.VERTICAL_CENTER, this.abrirParque, 0, SpringLayout.VERTICAL_CENTER, this.center);
+        this.centerLayout.putConstraint(SpringLayout.EAST, this.abrirParque, -80, SpringLayout.EAST, this.center);
 
-        JLabel title = new JLabel( "GERENCIADOR" );
-        title.setFont( Estilo.robotoTitle );
-        title.setForeground( Estilo.branco );
+        this.title = new JLabel( "GERENCIADOR" );
+        this.title.setFont( Estilo.robotoTitle );
+        this.title.setForeground( Estilo.branco );
 
         this.headerLayout = new SpringLayout();
 
         this.header.setLayout( this.headerLayout );
-        this.header.add(title);
+        this.header.add( this.title );
 
         // Definição do posicionamento do título com base no painel "header" < this.header >
-        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
-        this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.title, 0, SpringLayout.VERTICAL_CENTER, this.header);
+        this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
     }
 
     @Override

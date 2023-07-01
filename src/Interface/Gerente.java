@@ -1,7 +1,5 @@
 package src.Interface;
 
-import javax.swing.JFrame;
-
 import src.Telas.AbrirParque;
 import src.Telas.Inicio;
 import src.Telas.NovoParque;
