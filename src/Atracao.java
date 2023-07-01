@@ -2,6 +2,7 @@ package src;
 import  java.util.Random;
 
 public class Atracao {
+	
 	private String nome;
 	private String descricao;
 	private int ID;

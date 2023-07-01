@@ -16,7 +16,7 @@ public abstract class Janela {
     public Janela( int width, int height){
         this.janela = new JFrame();
         this.janela.setSize( width, height );
-        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         this.width = width;
         this.height = height;
@@ -27,7 +27,7 @@ public abstract class Janela {
     public Janela( int width, int height, Tela tela ){
         this.janela = new JFrame();
         this.janela.setSize( width, height );
-        this.janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         this.width = width;
         this.height = height;

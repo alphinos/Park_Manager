@@ -1,5 +1,6 @@
 package src;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import  java.util.Random;
 
@@ -45,6 +46,11 @@ public class Parque {
 
     public float getPrecoFicha(){
         return this.precoFicha;
+    }
+
+    public String getPrecoFichaFormat(){
+        DecimalFormat fmt = new DecimalFormat("#,###.00");
+        return fmt.format( this.precoFicha );
     }
 
     public ArrayList<Atracao> getAtracoes(){
