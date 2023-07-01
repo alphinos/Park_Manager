@@ -7,6 +7,7 @@ public class App {
 		Atracao sorveteria = new Atracao("Sorveteria", "Bom Sabor", 001, 30, 0, 0);
 		Visitante Max = new Visitante("Maxwell", 100);
 		
+		System.out.println("Você é demais!");
 		
 		sorveteria.receberVisitante(Max);
 		Max.mostrarAtracoes();
