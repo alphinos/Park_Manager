@@ -13,7 +13,6 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import src.Parque;
-import src.Interface.Cliente;
 import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
@@ -40,8 +39,6 @@ public class Comeco extends Tela implements ActionListener {
     private JLabel qtdVisitantes;
 
     private Parque parque; //Para carregar os dados do parque
-
-    private Cliente cliente;
 
     public Comeco( int width, int height ){
         super( width, height);
@@ -175,7 +172,7 @@ public class Comeco extends Tela implements ActionListener {
         this.JB_cliente.setFont( Estilo.robotoButton );
 
         // Configurando tamanhos
-        Dimension dimension = new Dimension( 192, 63 );
+        Dimension dimension = new Dimension( 160, 63 );
 
         this.JB_comeco.setPreferredSize(dimension);
         this.JB_parque.setPreferredSize(dimension);
@@ -206,19 +203,19 @@ public class Comeco extends Tela implements ActionListener {
         this.header.add( this.JB_cliente );
 
         // Posicionando os elementos no painel "header"
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.nomeParque, 64, SpringLayout.WEST, this.header);
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.nomeParque, 32, SpringLayout.WEST, this.header);
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.nomeParque, 0, SpringLayout.VERTICAL_CENTER, this.header);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_comeco, 64, SpringLayout.EAST, this.nomeParque );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_comeco, 32, SpringLayout.EAST, this.nomeParque );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_comeco, 0, SpringLayout.VERTICAL_CENTER, this.header);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_parque, 25, SpringLayout.EAST, this.JB_comeco );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_parque, 15, SpringLayout.EAST, this.JB_comeco );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_parque, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_atracoes, 25, SpringLayout.EAST, this.JB_parque );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_atracoes, 15, SpringLayout.EAST, this.JB_parque );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_atracoes, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_cliente, 25, SpringLayout.EAST, this.JB_atracoes );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_cliente, 15, SpringLayout.EAST, this.JB_atracoes );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_cliente, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
     }
 

@@ -35,6 +35,7 @@ public class Tela {
     // Em especial, vai servir para a execução das ações a partir dos eventos
     protected Janela jan;
 
+    // Tamanho da tela
     protected int width;
     protected int height;
 
@@ -118,6 +119,8 @@ public class Tela {
     }
 
     private void initMain( int width, int height){
+
+        // Definindo a área main
         this.main = new JPanel();
 
         this.main.setLayout( new BorderLayout( 0, 0) );
@@ -128,6 +131,7 @@ public class Tela {
 
         this.main.setBackground( Estilo.vermelhao );        
 
+        // Definindo regiões na faixa central da tela
         this.north = new JPanel();
         this.center = new JPanel();
         this.south = new JPanel();
@@ -137,6 +141,7 @@ public class Tela {
         int majorWidth = (int) this.main.getPreferredSize().getWidth();
         int majorHeight = (int) this.main.getPreferredSize().getHeight();
 
+        // Definindo os tamnanhos de cada região na área main
         size = new Dimension(majorWidth , majorHeight/100 * 15);
 
         this.north.setPreferredSize( size );
@@ -158,12 +163,14 @@ public class Tela {
 
         this.center.setLayout( centerLayout );
 
+        // Definindo as cores
         this.north.setBackground( Estilo.vermelhao );
         this.center.setBackground( Estilo.vermelhao );
         this.south.setBackground( Estilo.vermelhao );
         this.east.setBackground( Estilo.vermelhao );
         this.west.setBackground( Estilo.vermelhao );
 
+        // Adicionando as regiões na main
         this.main.add(this.north, BorderLayout.NORTH);
         this.main.add(this.center, BorderLayout.CENTER);
         this.main.add(this.south, BorderLayout.SOUTH);
@@ -182,24 +189,28 @@ public class Tela {
         this.footer.setBackground( Estilo.vermelhao );
     }
 
+    // Utilitária de reset
     private void resetHeader(){
         this.body.remove( this.header );
         this.initHeader( width, (int) height/100 * 11 );
         this.body.add(this.header);
     }
 
+    // Utilitária de reset
     private void resetMain(){
         this.body.remove( this.main );
         this.initMain( width, (int) height/100 * 78 );
         this.body.add(this.main);
     }
 
+    // Utilitária de reset
     private void resetFooter(){
         this.body.remove( this.footer );
         this.initFooter( width, (int) height/100 * 11 );
         this.body.add(this.footer);
     }
 
+    // Utilitária de reset
     private void resetAll(){
         this.resetHeader();
         this.resetMain();

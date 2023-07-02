@@ -23,7 +23,7 @@ public class TParque extends Tela implements ActionListener {
 
     private Parque parque;
 
-    private JLabel nomeParque;
+    private JTextField nomeParque;
 
     private JButton JB_comeco;
     private JButton JB_parque;
@@ -77,7 +77,7 @@ public class TParque extends Tela implements ActionListener {
         String precoFicha = parque.getPrecoFichaFormat();
         String qtdVisitantes = Integer.toString( parque.getQtdVisitantes() );
 
-        this.nomeParque = new JLabel( nomeParque, SwingConstants.CENTER );    
+        this.nomeParque = new JTextField( nomeParque, SwingConstants.CENTER );    
         this.descricao = new JLabel( "DESCRIÇÃO", SwingConstants.CENTER );
 
         this.DescTxt = new JTextArea();
@@ -89,6 +89,7 @@ public class TParque extends Tela implements ActionListener {
         this.visitantes = new JLabel( "Visitantes no parque", SwingConstants.CENTER );
         this.qtdVisitantes = new JLabel( qtdVisitantes, SwingConstants.CENTER );
 
+        this.nomeParque.setBackground( Estilo.vermelhinho );
         this.nomeParque.setForeground( Estilo.branco );
         this.nomeParque.setFont( Estilo.robotoTitle );
 
@@ -173,7 +174,7 @@ public class TParque extends Tela implements ActionListener {
         this.JB_salvar.setFont( Estilo.robotoButton );
 
         // Configurando tamanhos
-        Dimension dimension = new Dimension( 192, 63 );
+        Dimension dimension = new Dimension( 160, 63 );
 
         this.JB_comeco.setPreferredSize( dimension );
         this.JB_parque.setPreferredSize( dimension );
@@ -212,19 +213,19 @@ public class TParque extends Tela implements ActionListener {
         this.header.add( this.JB_cliente );
 
         // Posicionando os elementos no painel "header"
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.nomeParque, 64, SpringLayout.WEST, this.header);
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.nomeParque, 32, SpringLayout.WEST, this.header);
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.nomeParque, 0, SpringLayout.VERTICAL_CENTER, this.header);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_comeco, 64, SpringLayout.EAST, this.nomeParque );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_comeco, 32, SpringLayout.EAST, this.nomeParque );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_comeco, 0, SpringLayout.VERTICAL_CENTER, this.header);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_parque, 25, SpringLayout.EAST, this.JB_comeco );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_parque, 15, SpringLayout.EAST, this.JB_comeco );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_parque, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_atracoes, 25, SpringLayout.EAST, this.JB_parque );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_atracoes, 15, SpringLayout.EAST, this.JB_parque );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_atracoes, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
 
-        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_cliente, 25, SpringLayout.EAST, this.JB_atracoes );
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_cliente, 15, SpringLayout.EAST, this.JB_atracoes );
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_cliente, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
     }
 
@@ -274,7 +275,7 @@ public class TParque extends Tela implements ActionListener {
 
         //Botão de salvar
         this.centerLayout.putConstraint( SpringLayout.EAST, JB_salvar, 0, SpringLayout.EAST, this.DescTxt );
-        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_salvar, 40, SpringLayout.SOUTH, this.DescTxt );
+        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_salvar, 0, SpringLayout.VERTICAL_CENTER, this.precoValor );
     }
 
     private void initFooter(){

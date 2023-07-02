@@ -31,6 +31,12 @@ public class CarregarCliente extends Tela {
         this.main.setBackground( Estilo.verdao );
         this.footer.setBackground( Estilo.verdao );
 
+        this.north.setBackground( Estilo.verdao );
+        this.center.setBackground( Estilo.verdao );
+        this.south.setBackground( Estilo.verdao );
+        this.west.setBackground( Estilo.verdao );
+        this.east.setBackground( Estilo.verdao );
+
         JLabel title = new JLabel( "CLIENTE" );
         title.setFont( Estilo.robotoTitle );
         title.setForeground( Estilo.branco );
