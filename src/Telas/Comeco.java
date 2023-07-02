@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -19,7 +17,6 @@ import src.Interface.Cliente;
 import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
-import src.Telas.Cliente.InicioCliente;
 
 public class Comeco extends Tela implements ActionListener {
 

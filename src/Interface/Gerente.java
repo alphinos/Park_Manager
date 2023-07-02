@@ -5,6 +5,7 @@ import src.Telas.AbrirParque;
 import src.Telas.Comeco;
 import src.Telas.Inicio;
 import src.Telas.NovoParque;
+import src.Telas.TParque;
 
 public class Gerente extends Janela {
 
@@ -12,7 +13,7 @@ public class Gerente extends Janela {
     private NovoParque NovoParque;
     private AbrirParque AbrirParque;
     private Comeco Tela_Comeco;
-    // private Tela Cliente;
+    private TParque Aba_parque;
 
     private Parque parque;
     private Cliente cliente;
@@ -88,8 +89,12 @@ public class Gerente extends Janela {
                 this.tela = this.AbrirParque;
                 break;
             case "Começo":
-                this.Tela_Comeco = new Comeco( this.width, this.height, this, this.parque);
+                this.Tela_Comeco = new Comeco( this.width, this.height, this, this.parque );
                 this.tela = this.Tela_Comeco;
+                break;
+            case "Aba_parque":
+                this.Aba_parque = new TParque( this.width, this.height, this, this.parque );
+                this.tela = this.Aba_parque;
                 break;
             case "Novo_Cliente":
                 this.cliente.getJanela().setVisible( true );

@@ -16,7 +16,7 @@ public class Cliente extends Janela {
         super( width, height );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
-        this.janela.setTitle("Cliente");
+        this.janela.setTitle("Simulador Cliente");
 
         this.initTelas();
         this.setTela( this.inicio );
@@ -26,14 +26,14 @@ public class Cliente extends Janela {
         super( width, height, tela );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
-        this.janela.setTitle("Cliente");
+        this.janela.setTitle("Simulador Cliente");
     }
 
     public Cliente( int width, int height, Tela tela, String nome ){
         super( width, height, tela, nome );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
-        this.janela.setTitle("Cliente");
+        this.janela.setTitle("Simulador Cliente");
     }
 
     public void initTelas(){

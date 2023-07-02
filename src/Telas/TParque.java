@@ -2,6 +2,8 @@ package src.Telas;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,10 +15,11 @@ import javax.swing.SwingConstants;
 
 import src.Parque;
 import src.Interface.Estilo;
+import src.Interface.Gerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class TParque extends Tela {
+public class TParque extends Tela implements ActionListener {
 
     private Parque parque;
 
@@ -34,6 +37,8 @@ public class TParque extends Tela {
 
     private JLabel preco;
     private JTextField precoValor;
+
+    private JButton JB_salvar;
 
     private JLabel visitantes;
     private JLabel qtdVisitantes;
@@ -119,6 +124,9 @@ public class TParque extends Tela {
         Dimension dim = new Dimension( 560, 270 );
         this.DescTxt.setPreferredSize(dim);
 
+        // Configurando o campo de preço
+        this.precoValor.setHorizontalAlignment( SwingConstants.CENTER );
+
         // Tamanho dos labels de preco
         dim = new Dimension( 192, 45 );
         this.preco.setPreferredSize(dim);
@@ -141,6 +149,7 @@ public class TParque extends Tela {
         this.JB_parque = new JButton( "Parque" );
         this.JB_atracoes = new JButton( "Atrações" );
         this.JB_cliente = new JButton( "Cliente" );
+        this.JB_salvar = new JButton( "Salvar" );
 
         // Configurando o fundo, fonte e cor dos textos
         this.JB_comeco.setBackground( Estilo.vermelhinho );
@@ -158,20 +167,37 @@ public class TParque extends Tela {
         this.JB_cliente.setBackground( Estilo.verdao );
         this.JB_cliente.setForeground( Estilo.branco );
         this.JB_cliente.setFont( Estilo.robotoButton );
+        
+        this.JB_salvar.setBackground( Estilo.vermelhinho );
+        this.JB_salvar.setForeground( Estilo.quaseBranco );
+        this.JB_salvar.setFont( Estilo.robotoButton );
 
         // Configurando tamanhos
         Dimension dimension = new Dimension( 192, 63 );
 
-        this.JB_comeco.setPreferredSize(dimension);
-        this.JB_parque.setPreferredSize(dimension);
-        this.JB_atracoes.setPreferredSize(dimension);
-        this.JB_cliente.setPreferredSize(dimension);
+        this.JB_comeco.setPreferredSize( dimension );
+        this.JB_parque.setPreferredSize( dimension );
+        this.JB_atracoes.setPreferredSize( dimension );
+        this.JB_cliente.setPreferredSize( dimension );
+        
+        dimension = new Dimension( 160, 63 );
+
+        this.JB_salvar.setPreferredSize( dimension );
 
         // Removendo as linhas de borda
-        this.JB_comeco.setBorderPainted(false);
-        this.JB_parque.setBorderPainted(false);
-        this.JB_atracoes.setBorderPainted(false);
-        this.JB_cliente.setBorderPainted(false);
+        this.JB_comeco.setBorderPainted( false );
+        this.JB_parque.setBorderPainted( false );
+        this.JB_atracoes.setBorderPainted( false );
+        this.JB_cliente.setBorderPainted( false );
+
+        this.JB_salvar.setBorderPainted( false );
+
+        this.JB_comeco.addActionListener( this );
+        this.JB_parque.addActionListener( this );
+        this.JB_atracoes.addActionListener( this );
+        this.JB_cliente.addActionListener( this );
+
+        this.JB_salvar.addActionListener( this );
     }
 
     private void initHeader(){
@@ -224,6 +250,7 @@ public class TParque extends Tela {
         this.center.add( this.DescTxt );
         this.center.add( this.preco );
         this.center.add( this.precoValor );
+        this.center.add( this.JB_salvar );
 
         //Imagem
         this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.imagemParque, -320, SpringLayout.HORIZONTAL_CENTER, this.center );
@@ -244,6 +271,10 @@ public class TParque extends Tela {
         //Preço_valor_label
         this.centerLayout.putConstraint( SpringLayout.WEST, this.precoValor, 0, SpringLayout.EAST, this.preco );
         this.centerLayout.putConstraint( SpringLayout.NORTH, this.precoValor, 40, SpringLayout.SOUTH, this.DescTxt );
+
+        //Botão de salvar
+        this.centerLayout.putConstraint( SpringLayout.EAST, JB_salvar, 0, SpringLayout.EAST, this.DescTxt );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_salvar, 40, SpringLayout.SOUTH, this.DescTxt );
     }
 
     private void initFooter(){
@@ -260,5 +291,57 @@ public class TParque extends Tela {
 
         this.footerLayout.putConstraint( SpringLayout.WEST, this.qtdVisitantes, 0, SpringLayout.EAST, this.visitantes );
         this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.qtdVisitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if ( e.getSource() == this.JB_comeco ){
+            System.out.println( "Começo" );
+            this.jan.trocarTela( "Começo" );
+        }
+
+        if ( e.getSource() == this.JB_parque ){
+            System.out.println( "Parque!" );
+            this.jan.trocarTela( "Aba_parque" );
+        }
+
+        if ( e.getSource() == this.JB_atracoes ){
+            System.out.println( "Atrações!" );
+            this.jan.trocarTela( "Atrações" );
+        }
+
+        if ( e.getSource() == this.JB_cliente ){
+            System.out.println( "Abrir janela cliente!" );
+            this.jan.trocarTela( "Novo_Cliente" );
+        }
+
+        if ( e.getSource() == this.JB_salvar ){
+            System.out.println( "Salvar mudanças!" );
+
+            String nome = this.nomeParque.getText();
+            String desc = this.DescTxt.getText();
+            String preco = this.precoValor.getText();
+            
+            int i;
+            for ( i = 0; i < preco.length(); i++){
+                if ( Character.isDigit( preco.charAt(i) )){
+                    break;
+                }
+            }
+
+            preco = preco.substring( i );
+
+            System.out.println("Nome: " + nome);
+            System.out.println("Descrição: " + desc);
+            System.out.println("Preço: " + preco);
+
+            Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
+
+            if ( this.jan instanceof Gerente ){
+                ( (Gerente) this.jan ).setParque( parque );
+            }
+
+            this.jan.trocarTela( "Aba_parque" );
+        }
     }
 }
