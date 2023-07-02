@@ -10,7 +10,10 @@ public abstract class Atracao implements InterfaceAtrac {
 	protected int ID;
 	protected int capacidade_max;
 	protected int ocupacao_atual;
-	
+	protected LocalTime abertura;
+	protected LocalTime fechamento;
+	protected int preco; // Quantidade de fichas para poder entrar na atração
+
 	public Atracao( String n, String d, int ID, int c_max ) {
 		this.nome = n;
 		this.descricao = d;
@@ -18,6 +21,17 @@ public abstract class Atracao implements InterfaceAtrac {
 		this.capacidade_max = c_max;
 		Random generator = new Random(); 
 		this.ocupacao_atual = generator.nextInt(this.capacidade_max+1);
+	}
+
+	public Atracao( String n, String d, int ID, int c_max, int a_hour, int a_min, int f_hour, int f_min ) {
+		this.nome = n;
+		this.descricao = d;
+		this.ID = ID;
+		this.capacidade_max = c_max;
+		Random generator = new Random(); 
+		this.ocupacao_atual = generator.nextInt(this.capacidade_max+1);
+		this.setAbertura( a_hour, a_min );
+		this.setAbertura( f_hour, f_min );
 	}
 	
 	//GETS AND SETS
@@ -53,18 +67,68 @@ public abstract class Atracao implements InterfaceAtrac {
 		this.capacidade_max = capacidade_max;
 	}
 	
+	public int getPreco(){
+		return this.preco;
+	}
+
+	public void setPreco( int preco ){
+		if ( preco < 0 ){
+			System.out.println( "O cliente não vai receber pra brincar, né?" );
+			return;
+		}
+		this.preco = preco;
+	}
+
+	public LocalTime getAbertura(){
+		return this.abertura;
+	}
+
+	public void setAbertura( LocalTime abertura ){
+		this.abertura = abertura;
+	}
+
+	public void setAbertura( int hour, int minutes ){
+		if ( hour < 0 || minutes < 0 ){
+			System.out.println( "Horário inválido!" );
+		}
+		this.abertura = LocalTime.of(hour, minutes);
+	}
+
+	public LocalTime getFechamento(){
+		return this.fechamento;
+	}
+
+	public void setFechamento( LocalTime fechamento ){
+		this.fechamento = fechamento;
+	}
+
+	public void setFechamento( int hour, int minutes ){
+		if ( hour < 0 || minutes < 0 ){
+			System.out.println( "Horário inválido!" );
+		}
+		this.fechamento = LocalTime.of( hour, minutes );
+	}
+
+	public String getTimeString( LocalTime time ){
+		DateTimeFormatter format = DateTimeFormatter.ofPattern( "HH:mm" );
+		return time.format( format );
+	}
+
 	//METODOS 
 	public abstract String mostrarDetalhes();
 	
-	public void receberVisitante(Visitante v) {
-		if(v.getFichas() > 0) {
-			v.setFichas(v.getFichas()-1);
-			v.setAtracoes(this);
-			this.ocupacao_atual++;
-		}
-	}
+	public abstract String receberVisitante(Visitante v);
 	
 	public void deixarVisitante(Visitante v) {
+		
 		this.ocupacao_atual--;
+	}
+
+	public boolean estaNoHorarioDeFuncionamento(){
+		LocalTime now = LocalTime.now();
+		if ( now.compareTo( this.abertura ) > 0 && now.compareTo( this.fechamento ) < 0 ){
+			return true;
+		}
+		return false;
 	}
 }
