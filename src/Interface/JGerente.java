@@ -1,24 +1,24 @@
 package src.Interface;
 
 import src.Parque;
-import src.Telas.AbrirParque;
-import src.Telas.Comeco;
-import src.Telas.Inicio;
-import src.Telas.NovoParque;
+import src.Telas.TAbrirParque;
+import src.Telas.TComeco;
+import src.Telas.TInicio;
+import src.Telas.TNovoParque;
 import src.Telas.TParque;
 
-public class Gerente extends Janela {
+public class JGerente extends Janela {
 
-    private Inicio Inicio;
-    private NovoParque NovoParque;
-    private AbrirParque AbrirParque;
-    private Comeco Tela_Comeco;
+    private TInicio Inicio;
+    private TNovoParque NovoParque;
+    private TAbrirParque AbrirParque;
+    private TComeco Tela_Comeco;
     private TParque Aba_parque;
 
     private Parque parque;
-    private Cliente cliente;
+    private JCliente cliente;
 
-    public Gerente( int width, int height){
+    public JGerente( int width, int height){
         super( width, height );
 
         this.janela.setTitle( "Gerente" );
@@ -29,7 +29,7 @@ public class Gerente extends Janela {
         this.janela.setVisible( true );
     }
 
-    public Gerente( int width, int height, Tela tela ){
+    public JGerente( int width, int height, Tela tela ){
         super( width, height, tela );
         
         this.janela.setTitle( "Gerente" );
@@ -38,7 +38,7 @@ public class Gerente extends Janela {
         this.janela.setVisible( true );
     }
 
-    public Gerente( int width, int height, Tela tela, String nome ){
+    public JGerente( int width, int height, Tela tela, String nome ){
         super( width, height, tela, nome );
 
         this.janela.setTitle( "Gerente" );
@@ -55,18 +55,18 @@ public class Gerente extends Janela {
         this.parque = parque;
     }
 
-    public Cliente getCliente(){
+    public JCliente getCliente(){
         return this.cliente;
     }
 
-    public void setCliente( Cliente cliente ){
+    public void setCliente( JCliente cliente ){
         this.cliente = cliente;
     }
 
     public void initTelas(){
-        this.Inicio = new Inicio( this.width, this.height, this );
-        this.NovoParque = new NovoParque( this.width, this.height, this );
-        this.AbrirParque = new AbrirParque( this.width, this.height, this );
+        this.Inicio = new TInicio( this.width, this.height, this );
+        this.NovoParque = new TNovoParque( this.width, this.height, this );
+        this.AbrirParque = new TAbrirParque( this.width, this.height, this );
     }
 
     // Este método só é chamado quando acontece algum evento em uma determinada tela
@@ -77,19 +77,19 @@ public class Gerente extends Janela {
 
         switch ( tela ){
             case "inicio":
-                this.Inicio = new Inicio( this.width, this.height, this );
+                this.Inicio = new TInicio( this.width, this.height, this );
                 this.tela = this.Inicio;
                 break;
             case "novo_parque":
-                this.NovoParque = new NovoParque( this.width, this.height, this );
+                this.NovoParque = new TNovoParque( this.width, this.height, this );
                 this.tela = this.NovoParque;
                 break;
             case "abrir_parque":
-                this.AbrirParque = new AbrirParque( this.width, this.height, this );
+                this.AbrirParque = new TAbrirParque( this.width, this.height, this );
                 this.tela = this.AbrirParque;
                 break;
             case "Começo":
-                this.Tela_Comeco = new Comeco( this.width, this.height, this, this.parque );
+                this.Tela_Comeco = new TComeco( this.width, this.height, this, this.parque );
                 this.tela = this.Tela_Comeco;
                 break;
             case "Aba_parque":

@@ -1,4 +1,4 @@
-package src.Telas.Cliente;
+package src.Telas;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -11,33 +11,22 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class CarregarCliente extends Tela {
+public class TAbrirParque extends Tela {
 
     private JFileChooser chooser;
     
-    public CarregarCliente( int width, int height ){
+    public TAbrirParque( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public CarregarCliente( int width, int height, Janela jan ){
+    public TAbrirParque( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }
 
     public void start(){
-
-        this.header.setBackground( Estilo.verdao );
-        this.main.setBackground( Estilo.verdao );
-        this.footer.setBackground( Estilo.verdao );
-
-        this.north.setBackground( Estilo.verdao );
-        this.center.setBackground( Estilo.verdao );
-        this.south.setBackground( Estilo.verdao );
-        this.west.setBackground( Estilo.verdao );
-        this.east.setBackground( Estilo.verdao );
-
-        JLabel title = new JLabel( "CLIENTE" );
+        JLabel title = new JLabel( "GERENCIADOR" );
         title.setFont( Estilo.robotoTitle );
         title.setForeground( Estilo.branco );
 
@@ -51,7 +40,7 @@ public class CarregarCliente extends Tela {
         this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
 
         this.chooser = new JFileChooser( "Parques" );
-        FileFilter filter = new FileNameExtensionFilter("CLIENTE file", "cliente", "CLIENTE");
+        FileFilter filter = new FileNameExtensionFilter("PARK file", "park", "PARK");
         chooser.setFileFilter( filter );
         chooser.addChoosableFileFilter( filter );
     }

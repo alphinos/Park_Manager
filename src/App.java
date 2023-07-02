@@ -1,7 +1,7 @@
 package src;
 
-import src.Interface.Cliente;
-import src.Interface.Gerente;
+import src.Interface.JCliente;
+import src.Interface.JGerente;
 
 public class App {
 
@@ -16,8 +16,8 @@ public class App {
 		// sorveteria.receberVisitante(Max);
 		// Max.mostrarAtracoes();
 
-		Gerente gerente = new Gerente( 1280, 720 );
-		Cliente cliente = new Cliente( 1280, 720 );
+		JGerente gerente = new JGerente( 1280, 720 );
+		JCliente cliente = new JCliente( 1280, 720 );
 		gerente.setCliente( cliente );
 	}
 }

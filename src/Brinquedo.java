@@ -95,7 +95,6 @@ public class Brinquedo extends Atracao {
 						  "Altura Mín: "+this.altura_min+"\n"+
 						  "Idade Mín: "+this.idade_min+"\n"+
 						  "Ocupação Atual: "+this.ocupacao_atual;
-		
 		return resposta;
 	}
 
@@ -139,6 +138,7 @@ public class Brinquedo extends Atracao {
                 }
             }
         }
+        
         if ( vezesEntropia1 >= 2 ){
             foi2Entropia1 = true;
         } //Pequena redundância, mas facilita a compreensão

@@ -84,8 +84,6 @@ public class Tela {
 
         this.body.setBackground( Estilo.branco );
 
-
-
         this.initHeader( width, (int) height/100 * 11 );
         this.initMain( width, (int) height/100 * 67 );
         this.initFooter( width, (int) height/100 * 11 );

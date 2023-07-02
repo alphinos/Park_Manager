@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 
 import src.Parque;
 import src.Interface.Estilo;
-import src.Interface.Gerente;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -338,8 +338,8 @@ public class TParque extends Tela implements ActionListener {
 
             Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
 
-            if ( this.jan instanceof Gerente ){
-                ( (Gerente) this.jan ).setParque( parque );
+            if ( this.jan instanceof JGerente ){
+                ( (JGerente) this.jan ).setParque( parque );
             }
 
             this.jan.trocarTela( "Aba_parque" );

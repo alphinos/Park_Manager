@@ -120,7 +120,6 @@ public abstract class Atracao implements InterfaceAtrac {
 	public abstract String receberVisitante(Visitante v);
 	
 	public void deixarVisitante(Visitante v) {
-		
 		this.ocupacao_atual--;
 	}
 

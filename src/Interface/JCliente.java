@@ -2,17 +2,17 @@ package src.Interface;
 
 import javax.swing.JFrame;
 
-import src.Telas.Cliente.CarregarCliente;
-import src.Telas.Cliente.InicioCliente;
-import src.Telas.Cliente.NovoCliente;
+import src.Telas.Cliente.CTCarregarCliente;
+import src.Telas.Cliente.CTInicioCliente;
+import src.Telas.Cliente.CTNovoCliente;
 
-public class Cliente extends Janela {
+public class JCliente extends Janela {
 
-    private InicioCliente inicio;
-    private NovoCliente novoCliente;
-    private CarregarCliente carregarCliente;
+    private CTInicioCliente inicio;
+    private CTNovoCliente novoCliente;
+    private CTCarregarCliente carregarCliente;
     
-    public Cliente( int width, int height){
+    public JCliente( int width, int height){
         super( width, height );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
@@ -22,14 +22,14 @@ public class Cliente extends Janela {
         this.setTela( this.inicio );
     }
 
-    public Cliente( int width, int height, Tela tela ){
+    public JCliente( int width, int height, Tela tela ){
         super( width, height, tela );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
         this.janela.setTitle("Simulador Cliente");
     }
 
-    public Cliente( int width, int height, Tela tela, String nome ){
+    public JCliente( int width, int height, Tela tela, String nome ){
         super( width, height, tela, nome );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
@@ -37,9 +37,9 @@ public class Cliente extends Janela {
     }
 
     public void initTelas(){
-        this.inicio = new InicioCliente( this.width, this.height, this );
-        this.novoCliente = new NovoCliente( this.width, this.height, this );
-        this.carregarCliente = new CarregarCliente( this.width, this.height, this );
+        this.inicio = new CTInicioCliente( this.width, this.height, this );
+        this.novoCliente = new CTNovoCliente( this.width, this.height, this );
+        this.carregarCliente = new CTCarregarCliente( this.width, this.height, this );
     }
 
     public void trocarTela( String tela ){
@@ -47,15 +47,15 @@ public class Cliente extends Janela {
 
         switch ( tela ){
             case "inicio":
-                this.inicio = new InicioCliente( this.width, this.height, this );
+                this.inicio = new CTInicioCliente( this.width, this.height, this );
                 this.tela = this.inicio;
                 break;
             case "novo_Cliente":
-                this.novoCliente = new NovoCliente( this.width, this.height, this );
+                this.novoCliente = new CTNovoCliente( this.width, this.height, this );
                 this.tela = this.novoCliente;
                 break;
             case "carregar_Cliente":
-                this.carregarCliente = new CarregarCliente( this.width, this.height, this );
+                this.carregarCliente = new CTCarregarCliente( this.width, this.height, this );
                 this.tela = this.carregarCliente;
                 break;
         }

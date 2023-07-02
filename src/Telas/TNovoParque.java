@@ -12,12 +12,12 @@ import javax.swing.SpringLayout;
 
 import src.Parque;
 import src.Interface.Estilo;
-import src.Interface.Gerente;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
 // Tela para adição de novo parque
-public class NovoParque extends Tela implements ActionListener {
+public class TNovoParque extends Tela implements ActionListener {
 
     private JPanel novoParque; // Novo painel para adicionar os componentes referentes ao parque
 
@@ -35,12 +35,12 @@ public class NovoParque extends Tela implements ActionListener {
     private JButton criar; // Criar novo parque -> ir para a tela Comeco
     private JButton cancelar; // Cancelar -> voltar para a tela Inicio
     
-    public NovoParque( int width, int height ){
+    public TNovoParque( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public NovoParque( int width, int height, Janela jan ){
+    public TNovoParque( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }
@@ -213,8 +213,8 @@ public class NovoParque extends Tela implements ActionListener {
 
             Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
 
-            if ( this.jan instanceof Gerente ){
-                ( (Gerente) this.jan ).setParque( parque );
+            if ( this.jan instanceof JGerente ){
+                ( (JGerente) this.jan ).setParque( parque );
             }
 
             this.jan.trocarTela( "Começo" );

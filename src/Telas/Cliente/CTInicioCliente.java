@@ -12,17 +12,17 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class InicioCliente extends Tela implements ActionListener {
+public class CTInicioCliente extends Tela implements ActionListener {
     
     private JButton novoCliente;
     private JButton carregarCliente;
 
-    public InicioCliente( int width, int height ){
+    public CTInicioCliente( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public InicioCliente( int width, int height, Janela jan ){
+    public CTInicioCliente( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }

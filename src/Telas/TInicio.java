@@ -12,18 +12,18 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class Inicio extends Tela implements ActionListener {
+public class TInicio extends Tela implements ActionListener {
     
     private JButton novoParque;
     private JButton abrirParque;
     private JLabel title;
 
-    public Inicio( int width, int height ){
+    public TInicio( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public Inicio( int width, int height, Janela jan ){
+    public TInicio( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }

@@ -14,7 +14,7 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class NovoCliente extends Tela implements ActionListener {
+public class CTNovoCliente extends Tela implements ActionListener {
 
     private JPanel novoCliente;
 
@@ -36,12 +36,12 @@ public class NovoCliente extends Tela implements ActionListener {
         return this.novoCliente;
     }
     
-    public NovoCliente( int width, int height ){
+    public CTNovoCliente( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public NovoCliente( int width, int height, Janela jan ){
+    public CTNovoCliente( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }
