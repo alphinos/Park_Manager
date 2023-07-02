@@ -88,13 +88,14 @@ public class Brinquedo extends Atracao {
 
     @Override
     public String mostrarDetalhes() {
-		String resposta = "Nome: "+ this.nome+"\n"+
-						  "Descrição: "+this.descricao+"\n"+
-						  "ID: "+this.ID+"\n"+
-						  "Capacidade Máx: "+this.capacidade_max+"\n"+
-						  "Altura Mín: "+this.altura_min+"\n"+
-						  "Idade Mín: "+this.idade_min+"\n"+
-						  "Ocupação Atual: "+this.ocupacao_atual;
+		String resposta = "Nome: " + this.nome + "\n" +
+						  "Descrição: " + this.descricao + "\n" +
+						  "ID: " + this.ID + "\n" +
+						  "Capacidade Máx: " + this.capacidade_max+"\n" +
+						  "Altura Mín: " + this.altura_min+"\n" +
+						  "Idade Mín: " + this.idade_min + "\n" +
+						  "Ocupação Atual: " + this.ocupacao_atual + "\n" +
+                          "Preço: " + this.preco;
 		return resposta;
 	}
 
@@ -102,7 +103,7 @@ public class Brinquedo extends Atracao {
     public String receberVisitante(Visitante v){
 
         if ( !this.estaNoHorarioDeFuncionamento() ){
-            return "A atração está fora do seu horário de funcionamento!";
+            return "O brinquedo está fora do seu horário de funcionamento!";
         }
 
         if ( v.getIdade() < this.idade_min ){

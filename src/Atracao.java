@@ -67,6 +67,14 @@ public abstract class Atracao implements InterfaceAtrac {
 		this.capacidade_max = capacidade_max;
 	}
 	
+	public int getOcupacaoAtual(){
+		return this.ocupacao_atual;
+	}
+
+	public void setOcupacaoAtual( int ocupacao_atual ){
+		this.ocupacao_atual = ocupacao_atual;
+	}
+
 	public int getPreco(){
 		return this.preco;
 	}
