@@ -1,12 +1,15 @@
 package src.Telas;
 
 import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Label;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
 import src.Parque;
 import src.Interface.Estilo;
@@ -25,7 +28,7 @@ public class Comeco extends Tela {
     private JPanel imagemParque;
 
     private JLabel descricao;
-    private JPanel areaDescTxt;
+    // private JPanel areaDescTxt;
     private JTextArea DescTxt;
 
     private JLabel preco;
@@ -61,18 +64,15 @@ public class Comeco extends Tela {
     public void start(){
         this.initLabelsTextos();
         this.initBotoes();
+        this.initHeader();
+        this.initMain();
+        this.initFooter();
 
-        this.headerLayout = new SpringLayout();
-        this.header.setLayout( headerLayout );
-
-        this.header.add( this.nomeParque );
-        this.header.add( this.JB_comeco );
-        this.header.add( this.JB_parque );
-        this.header.add( this.JB_atracoes );
-        this.header.add( this.JB_cliente );
-
-        this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.nomeParque, this.header.getWidth()/4, SpringLayout.HORIZONTAL_CENTER, body);
-        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.nomeParque, 0, SpringLayout.VERTICAL_CENTER, body);
+        System.out.println( this.parque.getNome() );
+        System.out.println( this.parque.getDescricao() );
+        System.out.println( this.parque.getPrecoFicha() );
+        System.out.println( this.parque.getCapacidade() );
+        System.out.println( this.parque.getQtdVisitantes() );
     }
 
     private void initLabelsTextos(){
@@ -81,16 +81,17 @@ public class Comeco extends Tela {
         String precoFicha = parque.getPrecoFichaFormat();
         String qtdVisitantes = Integer.toString( parque.getQtdVisitantes() );
 
-        this.nomeParque = new JLabel( nomeParque );    
-        this.descricao = new JLabel( "DESCRIÇÃO" );
+        this.nomeParque = new JLabel( nomeParque, SwingConstants.CENTER );    
+        this.descricao = new JLabel( "DESCRIÇÃO", SwingConstants.CENTER );
+
         this.DescTxt = new JTextArea();
         this.DescTxt.setText( descParque );
 
-        this.preco = new JLabel( "Preço por ficha:" );
-        this.precoValor = new JLabel( precoFicha );
+        this.preco = new JLabel( "Preço por ficha:", SwingConstants.CENTER );
+        this.precoValor = new JLabel( precoFicha, SwingConstants.CENTER );
 
-        this.visitantes = new JLabel( "Visitantes no parque" );
-        this.qtdVisitantes = new JLabel( qtdVisitantes );
+        this.visitantes = new JLabel( "Visitantes no parque", SwingConstants.CENTER );
+        this.qtdVisitantes = new JLabel( qtdVisitantes, SwingConstants.CENTER );
 
         this.nomeParque.setForeground( Estilo.branco );
         this.nomeParque.setFont( Estilo.robotoTitle );
@@ -101,6 +102,12 @@ public class Comeco extends Tela {
         this.DescTxt.setBackground( Estilo.vermelhinho );
         this.DescTxt.setFont( Estilo.robotoText );
         this.DescTxt.setForeground( Estilo.branco );
+
+        this.DescTxt.setMargin( new Insets( 8, 8, 8, 8 ));
+        this.DescTxt.setLineWrap( true );
+        this.DescTxt.setWrapStyleWord( true );
+
+        this.DescTxt.setEditable( false );
 
         this.preco.setBackground( Estilo.vermelhinho );
         this.preco.setFont( Estilo.robotoLabel );
@@ -121,11 +128,18 @@ public class Comeco extends Tela {
         Dimension dim = new Dimension( 560, 270 );
         this.DescTxt.setPreferredSize(dim);
 
-        dim = new Dimension( 352, 45 );
+        dim = new Dimension( 192, 45 );
         this.preco.setPreferredSize(dim);
         this.precoValor.setPreferredSize(dim);
+
+        dim = new Dimension( 352, 45 );
         this.visitantes.setPreferredSize(dim);
         this.qtdVisitantes.setPreferredSize(dim);
+
+        this.preco.setOpaque( true );
+        this.precoValor.setOpaque( true );
+        this.visitantes.setOpaque( true );
+        this.qtdVisitantes.setOpaque( true );
     }
 
     private void initBotoes(){
@@ -142,23 +156,106 @@ public class Comeco extends Tela {
         this.JB_parque.setForeground( Estilo.quaseBranco );
         this.JB_parque.setFont( Estilo.robotoButton );
 
-        this.JB_parque.setBackground( Estilo.vermelhinho );
-        this.JB_parque.setForeground( Estilo.quaseBranco );
-        this.JB_parque.setFont( Estilo.robotoButton );
+        this.JB_atracoes.setBackground( Estilo.vermelhinho );
+        this.JB_atracoes.setForeground( Estilo.quaseBranco );
+        this.JB_atracoes.setFont( Estilo.robotoButton );
 
-        this.JB_comeco.setBackground( Estilo.verdao );
-        this.JB_comeco.setForeground( Estilo.branco );
-        this.JB_comeco.setFont( Estilo.robotoButton );
+        this.JB_cliente.setBackground( Estilo.verdao );
+        this.JB_cliente.setForeground( Estilo.branco );
+        this.JB_cliente.setFont( Estilo.robotoButton );
 
-        Dimension dimension = new Dimension( 128, 63 );
+        Dimension dimension = new Dimension( 192, 63 );
 
         this.JB_comeco.setPreferredSize(dimension);
         this.JB_parque.setPreferredSize(dimension);
         this.JB_atracoes.setPreferredSize(dimension);
         this.JB_cliente.setPreferredSize(dimension);
+
+        this.JB_comeco.setBorderPainted(false);
+        this.JB_parque.setBorderPainted(false);
+        this.JB_atracoes.setBorderPainted(false);
+        this.JB_cliente.setBorderPainted(false);
     }
 
-    private void posHeader(){
+    private void initHeader(){
+        this.headerLayout = new SpringLayout();
+        this.header.setLayout( headerLayout );
 
+        this.header.add( this.nomeParque );
+        this.header.add( this.JB_comeco );
+        this.header.add( this.JB_parque );
+        this.header.add( this.JB_atracoes );
+        this.header.add( this.JB_cliente );
+
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.nomeParque, 64, SpringLayout.WEST, this.header);
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.nomeParque, 0, SpringLayout.VERTICAL_CENTER, this.header);
+
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_comeco, 64, SpringLayout.EAST, this.nomeParque );
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_comeco, 0, SpringLayout.VERTICAL_CENTER, this.header);
+
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_parque, 25, SpringLayout.EAST, this.JB_comeco );
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_parque, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
+
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_atracoes, 25, SpringLayout.EAST, this.JB_parque );
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_atracoes, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
+
+        this.headerLayout.putConstraint( SpringLayout.WEST, this.JB_cliente, 25, SpringLayout.EAST, this.JB_atracoes );
+        this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_cliente, 0, SpringLayout.VERTICAL_CENTER, this.JB_comeco);
+    }
+
+    private void initMain(){
+
+        this.main.remove( this.north );
+        this.main.remove( this.south );
+        this.main.remove( this.west );
+        this.main.remove( this.east );
+
+        this.centerLayout = new SpringLayout();
+        this.center.setLayout( this.centerLayout );
+
+        this.imagemParque = new JPanel();
+        Dimension dim = new Dimension( 400, 400 );
+        this.imagemParque.setBackground( Estilo.quaseBranco );
+        this.imagemParque.setPreferredSize( dim );
+
+        this.center.add( this.imagemParque );
+        this.center.add( this.descricao );
+        this.center.add( this.DescTxt );
+        this.center.add( this.preco );
+        this.center.add( this.precoValor );
+
+        //Imagem
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.imagemParque, -320, SpringLayout.HORIZONTAL_CENTER, this.center );
+        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.imagemParque, 0, SpringLayout.VERTICAL_CENTER, this.center );
+
+        //Descrição
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.descricao, 240, SpringLayout.HORIZONTAL_CENTER, this.center );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.descricao, 40, SpringLayout.NORTH, this.center );
+
+        //Descrição_texto
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.DescTxt, 0, SpringLayout.HORIZONTAL_CENTER, this.descricao );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.DescTxt, 6, SpringLayout.SOUTH, this.descricao );
+
+        //Preço_label
+        this.centerLayout.putConstraint( SpringLayout.WEST, this.preco, 0, SpringLayout.WEST, this.DescTxt );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.preco, 40, SpringLayout.SOUTH, this.DescTxt );
+
+        //Preço_valor_label
+        this.centerLayout.putConstraint( SpringLayout.WEST, this.precoValor, 0, SpringLayout.EAST, this.preco );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.precoValor, 40, SpringLayout.SOUTH, this.DescTxt );
+    }
+
+    private void initFooter(){
+        this.footerLayout = new SpringLayout();
+        this.footer.setLayout( this.footerLayout );
+
+        this.footer.add( this.visitantes );
+        this.footer.add( this.qtdVisitantes );
+
+        this.footerLayout.putConstraint( SpringLayout.EAST, this.visitantes, 0, SpringLayout.HORIZONTAL_CENTER, this.footer );
+        this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.visitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
+
+        this.footerLayout.putConstraint( SpringLayout.WEST, this.qtdVisitantes, 0, SpringLayout.EAST, this.visitantes );
+        this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.qtdVisitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
     }
 }

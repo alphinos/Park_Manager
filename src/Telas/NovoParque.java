@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import src.Parque;
 import src.Interface.Estilo;
+import src.Interface.Gerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -208,7 +210,13 @@ public class NovoParque extends Tela implements ActionListener {
             System.out.println("Descrição: " + desc);
             System.out.println("Preço: " + preco);
 
-            this.jan.trocarTela( "novo_parque" );
+            Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
+
+            if ( this.jan instanceof Gerente ){
+                ( (Gerente) this.jan ).setParque( parque );
+            }
+
+            this.jan.trocarTela( "Começo" );
         }
 
         if ( event.getSource() == this.cancelar ){

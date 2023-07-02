@@ -50,7 +50,7 @@ public class Parque {
 
     public String getPrecoFichaFormat(){
         DecimalFormat fmt = new DecimalFormat("#,###.00");
-        return fmt.format( this.precoFicha );
+        return "R$ " + fmt.format( this.precoFicha );
     }
 
     public ArrayList<Atracao> getAtracoes(){
