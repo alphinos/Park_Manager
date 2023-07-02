@@ -16,11 +16,12 @@ import src.Interface.Gerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
+// Tela para adição de novo parque
 public class NovoParque extends Tela implements ActionListener {
 
-    private JPanel novoParque;
+    private JPanel novoParque; // Novo painel para adicionar os componentes referentes ao parque
 
-    private JLabel parque;
+    private JLabel parque; // Título
 
     private JLabel nome;
     private JTextField campo_nome ;
@@ -31,12 +32,8 @@ public class NovoParque extends Tela implements ActionListener {
     private JLabel preco;
     private JTextField campo_preco;
 
-    private JButton criar;
-    private JButton cancelar;
-
-    public JPanel getNovoParque(){
-        return this.novoParque;
-    }
+    private JButton criar; // Criar novo parque -> ir para a tela Comeco
+    private JButton cancelar; // Cancelar -> voltar para a tela Inicio
     
     public NovoParque( int width, int height ){
         super( width, height);
@@ -46,6 +43,10 @@ public class NovoParque extends Tela implements ActionListener {
     public NovoParque( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
+    }
+
+    public JPanel getNovoParque(){
+        return this.novoParque;
     }
 
     public void start(){
@@ -115,14 +116,14 @@ public class NovoParque extends Tela implements ActionListener {
         criar.setBorderPainted(false);
         cancelar.setBorderPainted(false);
 
+        criar.setBackground( Estilo.branco );
+        cancelar.setBackground( Estilo.branco );
+
         // Configurando tamanhos
         Dimension dim = new Dimension( 144, 27 );
 
         criar.setPreferredSize(dim);
         cancelar.setPreferredSize(dim);
-
-        criar.setBackground( Estilo.branco );
-        cancelar.setBackground( Estilo.branco );
 
         dim = new Dimension( 400, 27 );
 

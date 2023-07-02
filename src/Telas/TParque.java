@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
@@ -15,11 +16,12 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class Comeco extends Tela {
+public class TParque extends Tela {
+
+    private Parque parque;
 
     private JLabel nomeParque;
 
-    // Botões do header - basicamente, um menu
     private JButton JB_comeco;
     private JButton JB_parque;
     private JButton JB_atracoes;
@@ -31,33 +33,23 @@ public class Comeco extends Tela {
     private JTextArea DescTxt;
 
     private JLabel preco;
-    private JLabel precoValor;
+    private JTextField precoValor;
 
     private JLabel visitantes;
     private JLabel qtdVisitantes;
-
-    private Parque parque; //Para carregar os dados do parque
-
-    public Comeco( int width, int height ){
+    
+    public TParque( int width, int height ){
         super( width, height);
     }
 
-    public Comeco( int width, int height, Janela jan ){
+    public TParque( int width, int height, Janela jan ){
         super( width, height, jan );
     }
 
-    public Comeco( int width, int height, Janela jan, Parque parque ){
+    public TParque( int width, int height, Janela jan, Parque parque ){
         super( width, height, jan );
         this.parque = parque;
         this.start();
-    }
-
-    public Parque getParque(){
-        return this.parque;
-    }
-
-    public void setParque( Parque parque ){
-        this.parque = parque;
     }
 
     public void start(){
@@ -87,7 +79,7 @@ public class Comeco extends Tela {
         this.DescTxt.setText( descParque );
 
         this.preco = new JLabel( "Preço por ficha:", SwingConstants.CENTER );
-        this.precoValor = new JLabel( precoFicha, SwingConstants.CENTER );
+        this.precoValor = new JTextField( precoFicha );
 
         this.visitantes = new JLabel( "Visitantes no parque", SwingConstants.CENTER );
         this.qtdVisitantes = new JLabel( qtdVisitantes, SwingConstants.CENTER );
