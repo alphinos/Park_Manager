@@ -1,6 +1,8 @@
 package src.Interface;
 
+import src.Parque;
 import src.Telas.AbrirParque;
+import src.Telas.Comeco;
 import src.Telas.Inicio;
 import src.Telas.NovoParque;
 
@@ -9,8 +11,10 @@ public class Gerente extends Janela {
     private Inicio Inicio;
     private NovoParque NovoParque;
     private AbrirParque AbrirParque;
-    // private Tela Gerenciar;
+    private Comeco Tela_Comeco;
     // private Tela Cliente;
+
+    private Parque parque;
 
     public Gerente( int width, int height){
         super( width, height );
@@ -39,6 +43,14 @@ public class Gerente extends Janela {
         this.initTelas();
     }
 
+    public Parque getParque(){
+        return this.parque;
+    }
+
+    public void setParque( Parque parque ){
+        this.parque = parque;
+    }
+
     public void initTelas(){
         this.Inicio = new Inicio( this.width, this.height, this );
         this.NovoParque = new NovoParque( this.width, this.height, this );
@@ -64,6 +76,9 @@ public class Gerente extends Janela {
                 this.AbrirParque = new AbrirParque( this.width, this.height, this );
                 this.tela = this.AbrirParque;
                 break;
+            case "Começo":
+                this.Tela_Comeco = new Comeco( this.width, this.height, this, this.parque);
+                this.tela = this.Tela_Comeco;
         }
 
         this.janela.add( this.tela.body );
