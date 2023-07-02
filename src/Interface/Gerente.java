@@ -15,6 +15,7 @@ public class Gerente extends Janela {
     // private Tela Cliente;
 
     private Parque parque;
+    private Cliente cliente;
 
     public Gerente( int width, int height){
         super( width, height );
@@ -33,6 +34,7 @@ public class Gerente extends Janela {
         this.janela.setTitle( "Gerente" );
         
         this.initTelas();
+        this.janela.setVisible( true );
     }
 
     public Gerente( int width, int height, Tela tela, String nome ){
@@ -41,6 +43,7 @@ public class Gerente extends Janela {
         this.janela.setTitle( "Gerente" );
 
         this.initTelas();
+        this.janela.setVisible( true );
     }
 
     public Parque getParque(){
@@ -49,6 +52,14 @@ public class Gerente extends Janela {
 
     public void setParque( Parque parque ){
         this.parque = parque;
+    }
+
+    public Cliente getCliente(){
+        return this.cliente;
+    }
+
+    public void setCliente( Cliente cliente ){
+        this.cliente = cliente;
     }
 
     public void initTelas(){
@@ -79,6 +90,10 @@ public class Gerente extends Janela {
             case "Começo":
                 this.Tela_Comeco = new Comeco( this.width, this.height, this, this.parque);
                 this.tela = this.Tela_Comeco;
+                break;
+            case "Novo_Cliente":
+                this.cliente.getJanela().setVisible( true );
+                break;
         }
 
         this.janela.add( this.tela.body );

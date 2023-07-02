@@ -12,17 +12,17 @@ import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class Inicio extends Tela implements ActionListener {
+public class InicioCliente extends Tela implements ActionListener {
     
     private JButton novoCliente;
     private JButton carregarCliente;
 
-    public Inicio( int width, int height ){
+    public InicioCliente( int width, int height ){
         super( width, height);
         this.start();
     }
 
-    public Inicio( int width, int height, Janela jan ){
+    public InicioCliente( int width, int height, Janela jan ){
         super( width, height, jan );
         this.start();
     }
@@ -33,8 +33,14 @@ public class Inicio extends Tela implements ActionListener {
         this.main.setBackground( Estilo.verdao );
         this.footer.setBackground( Estilo.verdao );
 
+        this.north.setBackground( Estilo.verdao );
+        this.center.setBackground( Estilo.verdao );
+        this.south.setBackground( Estilo.verdao );
+        this.west.setBackground( Estilo.verdao );
+        this.east.setBackground( Estilo.verdao );
+
         novoCliente = new JButton("Novo Cliente");
-        carregarCliente = new JButton("carregar Cliente");
+        carregarCliente = new JButton("Carregar Cliente");
 
         novoCliente.addActionListener( this );
         carregarCliente.addActionListener( this );
@@ -89,7 +95,7 @@ public class Inicio extends Tela implements ActionListener {
         }
 
         if ( e.getSource() == this.carregarCliente ){
-            System.out.println( "carregar Cliente!" );
+            System.out.println( "Carregar Cliente!" );
             this.jan.trocarTela( "carregar_Cliente" );
         }
     }

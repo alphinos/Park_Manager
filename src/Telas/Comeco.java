@@ -2,8 +2,12 @@ package src.Telas;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -11,11 +15,13 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import src.Parque;
+import src.Interface.Cliente;
 import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
+import src.Telas.Cliente.InicioCliente;
 
-public class Comeco extends Tela {
+public class Comeco extends Tela implements ActionListener {
 
     private JLabel nomeParque;
 
@@ -37,6 +43,8 @@ public class Comeco extends Tela {
     private JLabel qtdVisitantes;
 
     private Parque parque; //Para carregar os dados do parque
+
+    private Cliente cliente;
 
     public Comeco( int width, int height ){
         super( width, height);
@@ -182,6 +190,11 @@ public class Comeco extends Tela {
         this.JB_parque.setBorderPainted(false);
         this.JB_atracoes.setBorderPainted(false);
         this.JB_cliente.setBorderPainted(false);
+
+        this.JB_comeco.addActionListener( this );
+        this.JB_parque.addActionListener( this );
+        this.JB_atracoes.addActionListener( this );
+        this.JB_cliente.addActionListener( this );
     }
 
     private void initHeader(){
@@ -270,5 +283,28 @@ public class Comeco extends Tela {
 
         this.footerLayout.putConstraint( SpringLayout.WEST, this.qtdVisitantes, 0, SpringLayout.EAST, this.visitantes );
         this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.qtdVisitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if ( e.getSource() == this.JB_comeco ){
+            System.out.println( "Começo" );
+            this.jan.trocarTela( "Começo" );
+        }
+
+        if ( e.getSource() == this.JB_parque ){
+            System.out.println( "Parque!" );
+            this.jan.trocarTela( "Aba_parque" );
+        }
+
+        if ( e.getSource() == this.JB_atracoes ){
+            System.out.println( "Atrações!" );
+            this.jan.trocarTela( "Atrações" );
+        }
+
+        if ( e.getSource() == this.JB_cliente ){
+            System.out.println( "Abrir janela cliente!" );
+            this.jan.trocarTela( "Novo_Cliente" );
+        }
     }
 }

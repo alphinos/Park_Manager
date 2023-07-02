@@ -98,8 +98,6 @@ public class TParque extends Tela {
         this.DescTxt.setLineWrap( true );                   // Para a quebra de linha do texto
         this.DescTxt.setWrapStyleWord( true );              // Para a quebra de linha do texto
 
-        this.DescTxt.setEditable( false );                  // Ficar o texto a ser mostrado
-
         // Estilizando os labels e campos
         this.preco.setBackground( Estilo.vermelhinho );
         this.preco.setFont( Estilo.robotoLabel );
@@ -145,12 +143,12 @@ public class TParque extends Tela {
         this.JB_cliente = new JButton( "Cliente" );
 
         // Configurando o fundo, fonte e cor dos textos
-        this.JB_comeco.setBackground( Estilo.quaseBranco );
-        this.JB_comeco.setForeground( Estilo.vermelhinho );
+        this.JB_comeco.setBackground( Estilo.vermelhinho );
+        this.JB_comeco.setForeground( Estilo.quaseBranco );
         this.JB_comeco.setFont( Estilo.robotoButton );
 
-        this.JB_parque.setBackground( Estilo.vermelhinho );
-        this.JB_parque.setForeground( Estilo.quaseBranco );
+        this.JB_parque.setBackground( Estilo.quaseBranco );
+        this.JB_parque.setForeground( Estilo.vermelhinho );
         this.JB_parque.setFont( Estilo.robotoButton );
 
         this.JB_atracoes.setBackground( Estilo.vermelhinho );
