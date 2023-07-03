@@ -1,16 +1,21 @@
 package src.Telas;
 
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
+import src.Atracao;
+import src.Brinquedo;
+import src.LC_Atracoes;
 import src.Parque;
+import src.Restaurante;
 import src.Interface.Estilo;
 import src.Interface.Janela;
 import src.Interface.Tela;
@@ -18,14 +23,27 @@ import src.Interface.Tela;
 public class TAtracoes extends Tela implements ActionListener {
 
     private Parque parque;
+    private LC_Atracoes atracoes;
 
+    // Header
     private JLabel nomeParque;
-
     private JButton JB_comeco;
     private JButton JB_parque;
     private JButton JB_atracoes;
     private JButton JB_cliente;
 
+    // Main
+    private JLabel JL_nome_atracao;     // Depende da atração
+    private JPanel JP_detalhe_atracao;  // Depende da atração
+
+    private JButton JB_prev;            // Navegar entre atrações
+    private JButton JB_next;            // Navegar entre atrações
+
+    private JButton JB_novo_brinquedo;      // Nova janela para criação de atração
+    private JButton JB_novo_restaurante;    // Nova janela para criação de restaurante
+    private JButton JB_salvar;              // Salvar criações
+
+    // Footer
     private JLabel visitantes;
     private JLabel qtdVisitantes;
     
@@ -59,8 +77,6 @@ public class TAtracoes extends Tela implements ActionListener {
 
     private void initLabelsTextos(){
         String nomeParque = parque.getNome();
-        String descParque = parque.getDescricao();
-        String precoFicha = parque.getPrecoFichaFormat();
         String qtdVisitantes = Integer.toString( parque.getQtdVisitantes() );
 
         this.nomeParque = new JLabel( nomeParque, SwingConstants.CENTER ); 
@@ -104,12 +120,12 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JB_comeco.setForeground( Estilo.quaseBranco );
         this.JB_comeco.setFont( Estilo.robotoButton );
 
-        this.JB_parque.setBackground( Estilo.quaseBranco );
-        this.JB_parque.setForeground( Estilo.vermelhinho );
+        this.JB_parque.setBackground( Estilo.vermelhinho );
+        this.JB_parque.setForeground( Estilo.quaseBranco );
         this.JB_parque.setFont( Estilo.robotoButton );
 
-        this.JB_atracoes.setBackground( Estilo.vermelhinho );
-        this.JB_atracoes.setForeground( Estilo.quaseBranco );
+        this.JB_atracoes.setBackground( Estilo.quaseBranco );
+        this.JB_atracoes.setForeground( Estilo.vermelhinho );
         this.JB_atracoes.setFont( Estilo.robotoButton );
 
         this.JB_cliente.setBackground( Estilo.verdao );
@@ -173,6 +189,128 @@ public class TAtracoes extends Tela implements ActionListener {
 
         this.centerLayout = new SpringLayout();
         this.center.setLayout( this.centerLayout );
+
+        this.atracoes = new LC_Atracoes( this.parque.getAtracoes() );
+
+        this.JL_nome_atracao = new JLabel(  );     // Depende da atração
+        this.JP_detalhe_atracao = new JPanel(  );  // Depende da atração
+
+        this.JB_prev = new JButton( "<" );            // Navegar entre atrações
+        this.JB_next = new JButton( ">" );            // Navegar entre atrações
+
+        this.JB_novo_brinquedo = new JButton( "Brinquedo" );      // Nova janela para criação de atração
+        this.JB_novo_restaurante = new JButton( "Restaurante" );    // Nova janela para criação de restaurante
+        this.JB_salvar = new JButton( "Salvar" );              // Salvar criações
+
+        Dimension dimension;
+        
+        // Nome da atração
+        dimension = new Dimension( 688, 72 );
+        this.JL_nome_atracao.setPreferredSize( dimension );
+        this.JL_nome_atracao.setForeground( Estilo.vermelhinho );
+        this.JL_nome_atracao.setBackground( Estilo.quaseBranco );
+        this.JL_nome_atracao.setFont( Estilo.robotoTitle );
+        this.JL_nome_atracao.setHorizontalAlignment( SwingConstants.CENTER );
+        this.JL_nome_atracao.setOpaque( true );
+
+        // Area detalhes
+        dimension = new Dimension( 688, 360 );
+        this.JP_detalhe_atracao.setPreferredSize( dimension );
+        this.JP_detalhe_atracao.setBackground( Estilo.quaseBranco );
+
+        // Botões navegação
+        dimension = new Dimension( 72, 208 );
+        
+        // Prev
+        this.JB_prev.setPreferredSize( dimension );
+        this.JB_prev.setForeground( Estilo.vermelhinho );
+        this.JB_prev.setBackground( Estilo.quaseBranco );
+        this.JB_prev.setFont( Estilo.robotoTitle );
+
+        // Next
+        this.JB_next.setPreferredSize( dimension );
+        this.JB_next.setForeground( Estilo.vermelhinho );
+        this.JB_next.setBackground( Estilo.quaseBranco );
+        this.JB_next.setFont( Estilo.robotoTitle );
+
+        // Botões de criação e salvar
+        dimension = new Dimension( 208, 90 );
+        this.JB_novo_brinquedo.setPreferredSize( dimension );
+        this.JB_novo_brinquedo.setForeground( Estilo.vermelhinho );
+        this.JB_novo_brinquedo.setBackground( Estilo.quaseBranco );
+        this.JB_novo_brinquedo.setFont( Estilo.robotoButton );
+        this.JB_novo_brinquedo.setHorizontalAlignment( SwingConstants.CENTER );
+
+        this.JB_novo_restaurante.setPreferredSize( dimension );
+        this.JB_novo_restaurante.setForeground( Estilo.vermelhinho );
+        this.JB_novo_restaurante.setBackground( Estilo.quaseBranco );
+        this.JB_novo_restaurante.setFont( Estilo.robotoButton );
+        this.JB_novo_restaurante.setHorizontalAlignment( SwingConstants.CENTER );
+
+        this.JB_salvar.setPreferredSize( dimension );
+        this.JB_salvar.setForeground( Estilo.vermelhinho );
+        this.JB_salvar.setBackground( Estilo.quaseBranco );
+        this.JB_salvar.setFont( Estilo.robotoButton );
+        this.JB_salvar.setHorizontalAlignment( SwingConstants.CENTER );
+
+        if ( !this.atracoes.getAtracoes().isEmpty() ){
+
+            Atracao atual = this.atracoes.getAtual();
+            this.JL_nome_atracao.setText( atual.getNome() );
+
+            if ( atual instanceof Brinquedo ){
+                this.initCardBrinquedo( (Brinquedo) atual );
+            }
+            if ( atual instanceof Restaurante ){
+                this.initCardRestaurante( (Restaurante) atual );
+            }
+        } else {
+            this.JL_nome_atracao.setText( "Parque vazio" );
+        }
+
+        this.center.add( this.JL_nome_atracao );
+        this.center.add( this.JB_prev );
+        this.center.add( this.JP_detalhe_atracao );
+        this.center.add( this.JB_next );
+        this.center.add( this.JB_novo_brinquedo );
+        this.center.add( this.JB_novo_restaurante );
+        this.center.add( this.JB_salvar );
+
+        // Posicionando prev
+        this.centerLayout.putConstraint( SpringLayout.WEST, this.JB_prev, 28, SpringLayout.WEST, this.center);
+        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_prev, 0, SpringLayout.VERTICAL_CENTER, this.center);
+
+        // Poisicionando detalhes da atração
+        this.centerLayout.putConstraint( SpringLayout.WEST, this.JP_detalhe_atracao, 64, SpringLayout.EAST, this.JB_prev );
+        this.centerLayout.putConstraint( SpringLayout.SOUTH, this.JP_detalhe_atracao, -16, SpringLayout.SOUTH, this.center);
+
+        // Poisicionando nome da atração
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JL_nome_atracao, 0, SpringLayout.HORIZONTAL_CENTER, this.JP_detalhe_atracao );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JL_nome_atracao, 16, SpringLayout.NORTH, this.center);
+
+        // Posicionando next
+        this.centerLayout.putConstraint( SpringLayout.WEST, this.JB_next, 64, SpringLayout.EAST, this.JP_detalhe_atracao);
+        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_next, 0, SpringLayout.VERTICAL_CENTER, this.center);
+
+        // Posicionando o botão do novo restaurante
+        this.centerLayout.putConstraint( SpringLayout.EAST, this.JB_novo_restaurante, -40, SpringLayout.EAST, this.center);
+        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_novo_restaurante, 0, SpringLayout.VERTICAL_CENTER, this.center);
+
+        // Posicionando o botão do novo brinquedo
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_novo_brinquedo, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_novo_restaurante);
+        this.centerLayout.putConstraint( SpringLayout.SOUTH, this.JB_novo_brinquedo, -48, SpringLayout.NORTH, this.JB_novo_restaurante);
+
+        // Posicionando o botão de salvar
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_salvar, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_novo_restaurante);
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_salvar, 48, SpringLayout.SOUTH, this.JB_novo_restaurante);
+    }
+
+    private void initCardBrinquedo( Brinquedo brinks ){
+
+    }
+
+    private void initCardRestaurante( Restaurante rest ){
+
     }
 
     private void initFooter(){
@@ -205,7 +343,7 @@ public class TAtracoes extends Tela implements ActionListener {
 
         if ( e.getSource() == this.JB_atracoes ){
             System.out.println( "Atrações!" );
-            this.jan.trocarTela( "Atrações" );
+            this.jan.trocarTela( "Aba_atrações" );
         }
 
         if ( e.getSource() == this.JB_cliente ){

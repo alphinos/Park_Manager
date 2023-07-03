@@ -2,6 +2,7 @@ package src.Interface;
 
 import src.Parque;
 import src.Telas.TAbrirParque;
+import src.Telas.TAtracoes;
 import src.Telas.TComeco;
 import src.Telas.TInicio;
 import src.Telas.TNovoParque;
@@ -14,6 +15,7 @@ public class JGerente extends Janela {
     private TAbrirParque AbrirParque;
     private TComeco Tela_Comeco;
     private TParque Aba_parque;
+    private TAtracoes Tela_atracoes;
 
     private Parque parque;
     private JCliente cliente;
@@ -95,6 +97,10 @@ public class JGerente extends Janela {
             case "Aba_parque":
                 this.Aba_parque = new TParque( this.width, this.height, this, this.parque );
                 this.tela = this.Aba_parque;
+                break;
+            case "Aba_atrações":
+                this.Tela_atracoes = new TAtracoes( this.width, this.height, this, this.parque );
+                this.tela = this.Tela_atracoes;
                 break;
             case "Novo_Cliente":
                 this.cliente.getJanela().setVisible( true );

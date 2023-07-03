@@ -14,6 +14,8 @@ public abstract class Atracao implements InterfaceAtrac {
 	protected LocalTime fechamento;
 	protected int preco; // Quantidade de fichas para poder entrar na atração
 
+	public Atracao(){}
+
 	public Atracao( String n, String d, int ID, int c_max ) {
 		this.nome = n;
 		this.descricao = d;

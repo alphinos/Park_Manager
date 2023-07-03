@@ -13,6 +13,10 @@ public class Brinquedo extends Atracao {
     // Para que um visitante vá a um brinquedo de entropia 2,
     // Deve ter ido em ao menos um de entropia 1
 
+    public Brinquedo(){
+        super();
+    }
+
     public Brinquedo( String n, String d, int ID, int c_max, float al_min, float al_max, int i_min, int ent ){
         super( n, d, ID, c_max );
         this.setAltura_min( al_min );

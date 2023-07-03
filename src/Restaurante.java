@@ -9,6 +9,10 @@ public class Restaurante extends Atracao {
     // Regras de entropia:
     // Um visitante não pode ir a um restaurante se acabou de ir a um brinquedo de entropia 3
     
+    public Restaurante(){
+        super();
+    }
+
     public Restaurante( String n, String d, int ID, int c_max ){
         super( n, d, ID, c_max );
         this.cardapio = new HashMap < String, Integer >();
@@ -35,7 +39,7 @@ public class Restaurante extends Atracao {
         String pratos = "";
 
         for ( String prato : this.cardapio.keySet() ){
-            pratos += prato + ":" + this.cardapio.get( prato ) + "\n";
+            pratos += prato + " " + this.cardapio.get( prato ) + "\n";
         }
 
         return pratos;

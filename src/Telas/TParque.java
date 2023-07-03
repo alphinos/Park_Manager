@@ -308,7 +308,7 @@ public class TParque extends Tela implements ActionListener {
 
         if ( e.getSource() == this.JB_atracoes ){
             System.out.println( "Atrações!" );
-            this.jan.trocarTela( "Atrações" );
+            this.jan.trocarTela( "Aba_atrações" );
         }
 
         if ( e.getSource() == this.JB_cliente ){
