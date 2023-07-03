@@ -13,6 +13,7 @@ import javax.swing.SpringLayout;
 import src.Atracao;
 import src.Brinquedo;
 import src.Parque;
+import src.Restaurante;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
 import src.Interface.Janela;
@@ -217,14 +218,30 @@ public class TNovoParque extends Tela implements ActionListener {
 
             // Teste **
 
-            Atracao atracao = new Brinquedo("Tiranossauro Rex", "Come cabra", 15, 200, 1f, 2f, 10, 3 );
-            atracao.setAbertura( 8, 30 );
-            atracao.setFechamento( 16, 30 );
-            parque.addAtracao( atracao );
+            Brinquedo brinks1 = new Brinquedo("Tiranossauro Rex", "Come cabra", 15, 200, 1f, 2f, 10, 3 );
+            brinks1.setAbertura( 8, 30 );
+            brinks1.setFechamento( 16, 30 );
+            parque.addAtracao( brinks1 );
+
+            Restaurante rest1 = new Restaurante("Sorveteria", "Come cabra com iogurte", 15, 200 );
+            rest1.setAbertura( 10, 00 );
+            rest1.setFechamento( 12, 00 );
+
+            rest1.addComida( "Chocolate", 2 );
+            rest1.addComida( "Morango", 2 );
+            rest1.addComida( "Baunilha", 1 );
+            rest1.addComida( "vsf", 4 );
+
+            parque.addAtracao( rest1 );
             // ** Teste
 
             if ( this.jan instanceof JGerente ){
                 ( (JGerente) this.jan ).setParque( parque );
+                if ( !parque.getAtracoes().isEmpty() ){
+                        ( (JGerente) this.jan ).setAtual( parque.getAtracoes().get( 0 ) );
+                }else{
+                        ( (JGerente) this.jan ).setAtual(null);
+                    }
             }
 
             this.jan.trocarTela( "Começo" );

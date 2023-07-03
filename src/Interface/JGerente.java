@@ -1,5 +1,6 @@
 package src.Interface;
 
+import src.Atracao;
 import src.Parque;
 import src.Telas.TAbrirParque;
 import src.Telas.TAtracoes;
@@ -20,6 +21,8 @@ public class JGerente extends Janela {
     private Parque parque;
     private JCliente cliente;
 
+    private Atracao atual;
+
     public JGerente( int width, int height){
         super( width, height );
 
@@ -29,6 +32,11 @@ public class JGerente extends Janela {
         this.tela = this.Inicio;
         this.setTela( this.tela );
         this.janela.setVisible( true );
+        if ( !this.parque.getAtracoes().isEmpty() ){
+            this.atual = this.parque.getAtracoes().get( 0 );
+    }   else{
+            this.atual = null;
+        }
     }
 
     public JGerente( int width, int height, Tela tela ){
@@ -38,6 +46,11 @@ public class JGerente extends Janela {
         
         this.initTelas();
         this.janela.setVisible( true );
+        if ( !this.parque.getAtracoes().isEmpty() ){
+            this.atual = this.parque.getAtracoes().get( 0 );
+    }   else{
+            this.atual = null;
+        }
     }
 
     public JGerente( int width, int height, Tela tela, String nome ){
@@ -47,6 +60,11 @@ public class JGerente extends Janela {
 
         this.initTelas();
         this.janela.setVisible( true );
+        if ( !this.parque.getAtracoes().isEmpty() ){
+            this.atual = this.parque.getAtracoes().get( 0 );
+    }   else{
+            this.atual = null;
+        }
     }
 
     public Parque getParque(){
@@ -63,6 +81,14 @@ public class JGerente extends Janela {
 
     public void setCliente( JCliente cliente ){
         this.cliente = cliente;
+    }
+
+    public Atracao getAtual(){
+        return this.atual;
+    }
+
+    public void setAtual( Atracao atual ){
+        this.atual = atual;
     }
 
     public void initTelas(){
@@ -99,7 +125,7 @@ public class JGerente extends Janela {
                 this.tela = this.Aba_parque;
                 break;
             case "Aba_atrações":
-                this.Tela_atracoes = new TAtracoes( this.width, this.height, this, this.parque );
+                this.Tela_atracoes = new TAtracoes( this.width, this.height, this, this.parque, this.atual );
                 this.tela = this.Tela_atracoes;
                 break;
             case "Novo_Cliente":

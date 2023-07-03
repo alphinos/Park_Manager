@@ -195,10 +195,13 @@ public class Tela {
     }
 
     // Utilitária de reset
-    private void resetMain(){
+    public void resetMain(){
         this.body.remove( this.main );
         this.initMain( width, (int) height/100 * 78 );
         this.body.add(this.main);
+        // Posicionando o main no centro da tela
+        this.bodyLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.main, 0, SpringLayout.VERTICAL_CENTER, this.body);
+        this.bodyLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.main, 0, SpringLayout.HORIZONTAL_CENTER, this.body);
     }
 
     // Utilitária de reset

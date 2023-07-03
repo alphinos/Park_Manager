@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -21,6 +22,7 @@ import src.LC_Atracoes;
 import src.Parque;
 import src.Restaurante;
 import src.Interface.Estilo;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -28,6 +30,7 @@ public class TAtracoes extends Tela implements ActionListener {
 
     private Parque parque;
     private LC_Atracoes atracoes;
+    private Atracao atual;
 
     // Header
     private JLabel nomeParque;
@@ -59,6 +62,14 @@ public class TAtracoes extends Tela implements ActionListener {
     private JTextField JTF_altura_max;
 
     // Restaurante
+    private JScrollPane JSP_cardapio;
+    private JPanel JP_cardapio;
+    private JLabel JL_titulo;
+    private ArrayList< JTextField > ALJTF_pratos;
+    private ArrayList< JTextField > ALJTF_precos;
+    private JTextField JTF_add_prato;
+    private JTextField JTF_add_preco;
+    private JButton JB_adicionar;
 
     private JButton JB_prev;            // Navegar entre atrações
     private JButton JB_next;            // Navegar entre atrações
@@ -73,16 +84,34 @@ public class TAtracoes extends Tela implements ActionListener {
     
     public TAtracoes( int width, int height ){
         super( width, height);
+        this.atual = null;
     }
 
     public TAtracoes( int width, int height, Janela jan ){
         super( width, height, jan );
+        this.atual = null;
     }
 
     public TAtracoes( int width, int height, Janela jan, Parque parque ){
         super( width, height, jan );
         this.parque = parque;
+        this.atual = null;
         this.start();
+    }
+
+    public TAtracoes( int width, int height, Janela jan, Parque parque, Atracao atual ){
+        super( width, height, jan );
+        this.parque = parque;
+        this.atual = atual;
+        this.start();
+    }
+
+    public LC_Atracoes getAtracoes(){
+        return this.atracoes;
+    }
+
+    public void setAtracoes( LC_Atracoes atracoes ){
+        this.atracoes = atracoes;
     }
 
     public void start(){
@@ -250,12 +279,14 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JB_prev.setForeground( Estilo.vermelhinho );
         this.JB_prev.setBackground( Estilo.quaseBranco );
         this.JB_prev.setFont( Estilo.robotoTitle );
+        this.JB_prev.addActionListener( this );
 
         // Next
         this.JB_next.setPreferredSize( dimension );
         this.JB_next.setForeground( Estilo.vermelhinho );
         this.JB_next.setBackground( Estilo.quaseBranco );
         this.JB_next.setFont( Estilo.robotoTitle );
+        this.JB_next.addActionListener( this );
 
         // Botões de criação e salvar
         dimension = new Dimension( 208, 90 );
@@ -280,12 +311,11 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JB_salvar.setHorizontalAlignment( SwingConstants.CENTER );
         this.JB_salvar.addActionListener( this );
 
-        if ( !this.atracoes.getAtracoes().isEmpty() ){
-
-            Atracao atual = this.atracoes.getAtual();
-            this.JL_nome_atracao.setText( atual.getNome() );
-
-            if ( atual instanceof Brinquedo ){
+        Atracao atual;
+        if ( this.atual != null ){
+            this.JL_nome_atracao.setText( this.atual.getNome() );
+            atual = this.atual;
+                if ( atual instanceof Brinquedo ){
                 this.initCardBrinquedo( (Brinquedo) atual );
             }
             if ( atual instanceof Restaurante ){
@@ -358,12 +388,14 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_id.setBackground( Estilo.vermelhinho );
         this.JTF_id.setForeground( Estilo.quaseBranco );
         this.JTF_id.setFont( Estilo.robotoLabel );
+        this.JTF_id.setHorizontalAlignment( SwingConstants.CENTER );
 
         //preco
         this.JTF_preco.setPreferredSize( dimension );
         this.JTF_preco.setBackground( Estilo.vermelhinho );
         this.JTF_preco.setForeground( Estilo.quaseBranco );
         this.JTF_preco.setFont( Estilo.robotoLabel );
+        this.JTF_preco.setHorizontalAlignment( SwingConstants.CENTER );
 
         // Descrição
         dimension = new Dimension( 413, 153 );
@@ -385,12 +417,14 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_capacidade.setBackground( Estilo.vermelhinho );
         this.JTF_capacidade.setForeground( Estilo.quaseBranco );
         this.JTF_capacidade.setFont( Estilo.robotoLabelData );
+        this.JTF_capacidade.setHorizontalAlignment( SwingConstants.CENTER );
 
         //Ocupação
         this.JL_ocupacao.setPreferredSize( dimension );
         this.JL_ocupacao.setBackground( Estilo.vermelhinho );
         this.JL_ocupacao.setForeground( Estilo.quaseBranco );
         this.JL_ocupacao.setFont( Estilo.robotoLabelData );
+        this.JL_ocupacao.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_ocupacao.setOpaque( true );
 
         //Abertura
@@ -398,12 +432,14 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_abertura.setBackground( Estilo.vermelhinho );
         this.JTF_abertura.setForeground( Estilo.quaseBranco );
         this.JTF_abertura.setFont( Estilo.robotoLabelData );
+        this.JTF_abertura.setHorizontalAlignment( SwingConstants.CENTER );
 
         //Fechamento
         this.JTF_fechamento.setPreferredSize( dimension );
         this.JTF_fechamento.setBackground( Estilo.vermelhinho );
         this.JTF_fechamento.setForeground( Estilo.quaseBranco );
         this.JTF_fechamento.setFont( Estilo.robotoLabelData );
+        this.JTF_fechamento.setHorizontalAlignment( SwingConstants.CENTER );
 
         this.JP_detalhe_atracao.add( this.JTF_id );
         this.JP_detalhe_atracao.add( this.JTF_preco );
@@ -457,18 +493,21 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_idade_min.setBackground( Estilo.vermelhinho );
         this.JTF_idade_min.setForeground( Estilo.quaseBranco );
         this.JTF_idade_min.setFont( Estilo.robotoLabelData );
+        this.JTF_idade_min.setHorizontalAlignment( SwingConstants.CENTER );
 
         //Altura máxima
         this.JTF_altura_max.setPreferredSize( dimension );
         this.JTF_altura_max.setBackground( Estilo.vermelhinho );
         this.JTF_altura_max.setForeground( Estilo.quaseBranco );
         this.JTF_altura_max.setFont( Estilo.robotoLabelData );
+        this.JTF_altura_max.setHorizontalAlignment( SwingConstants.CENTER );
 
         //Altura mínima
         this.JTF_altura_min.setPreferredSize( dimension );
         this.JTF_altura_min.setBackground( Estilo.vermelhinho );
         this.JTF_altura_min.setForeground( Estilo.quaseBranco );
         this.JTF_altura_min.setFont( Estilo.robotoLabelData );
+        this.JTF_altura_min.setHorizontalAlignment( SwingConstants.CENTER );
 
         this.JP_detalhe_atracao.add( this.JTF_idade_min );
         this.JP_detalhe_atracao.add( this.JTF_altura_max );
@@ -490,6 +529,138 @@ public class TAtracoes extends Tela implements ActionListener {
 
     private void initCardRestaurante( Restaurante rest ){
         this.initCardAtracao( rest );
+
+        this.JP_cardapio = new JPanel();
+        this.JL_titulo = new JLabel( "CARDÁPIO" );
+        this.ALJTF_pratos = new ArrayList<JTextField>();
+        this.ALJTF_precos = new ArrayList<JTextField>();
+        this.JTF_add_prato = new JTextField( "Prato" );
+        this.JTF_add_preco = new JTextField( "Preço" );
+        this.JB_adicionar = new JButton( "Adicionar" );
+
+        Dimension dimension;
+
+        // JP_cardápio
+        this.JP_cardapio.setBackground( Estilo.vermelhinho );
+
+        // Título
+        dimension = new Dimension( 189, 24 );
+
+        this.JL_titulo.setPreferredSize( dimension );
+        this.JL_titulo.setBackground( Estilo.vermelhinho );
+        this.JL_titulo.setForeground( Estilo.quaseBranco );
+        this.JL_titulo.setFont( Estilo.robotoTitle );
+
+        // Array List pratos e preços
+        dimension = new Dimension( 94, 27 );
+
+        if ( !rest.getCardapio().isEmpty() ){
+            for ( String key : rest.getCardapio().keySet() ){
+                JTextField n_prato = new JTextField( key );
+                JTextField n_preco = new JTextField( rest.getCardapio().get( key ).toString() );
+
+                n_prato.setPreferredSize( dimension );
+                n_preco.setPreferredSize( dimension );
+                
+                n_prato.setBackground( Estilo.vermelho );
+                n_prato.setForeground( Estilo.quaseBranco );
+                n_prato.setFont( Estilo.robotoLabelData );
+
+                n_preco.setBackground( Estilo.quaseBranco );
+                n_preco.setForeground( Estilo.vermelho );
+                n_preco.setFont( Estilo.robotoLabelData );
+
+                this.ALJTF_pratos.add( n_prato );
+                this.ALJTF_precos.add( n_preco );
+            }
+        }
+
+        // Add prato
+        this.JTF_add_prato.setPreferredSize( dimension );        
+        this.JTF_add_prato.setBackground( Estilo.vermelho );
+        this.JTF_add_prato.setForeground( Estilo.quaseBranco );
+        this.JTF_add_prato.setFont( Estilo.robotoLabelData );
+
+        // Add preço
+        this.JTF_add_preco.setPreferredSize( dimension );        
+        this.JTF_add_preco.setBackground( Estilo.vermelho );
+        this.JTF_add_preco.setForeground( Estilo.quaseBranco );
+        this.JTF_add_preco.setFont( Estilo.robotoLabelData );
+
+        // Adicionar
+        dimension = new Dimension( 189, 28 );
+
+        this.JB_adicionar.setPreferredSize( dimension );        
+        this.JB_adicionar.setBackground( Estilo.vermelho );
+        this.JB_adicionar.setForeground( Estilo.quaseBranco );
+        this.JB_adicionar.setFont( Estilo.robotoLabelData );
+        this.JB_adicionar.addActionListener( this );
+
+        // Adicionando componente no cardápio
+        SpringLayout cardapioLayout = new SpringLayout();
+        this.JP_cardapio.setLayout( cardapioLayout );
+        this.JP_cardapio.add( this.JL_titulo );
+
+        int size = this.ALJTF_pratos.size();
+
+        if ( size > 0 ){
+            for ( int i = 0; i < size; i++ ){
+                this.JP_cardapio.add( this.ALJTF_pratos.get( i ) );
+                this.JP_cardapio.add( this.ALJTF_precos.get( i ) );
+            }
+        }
+
+        cardapioLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JL_titulo, 0, SpringLayout.HORIZONTAL_CENTER, this.JP_cardapio);
+        cardapioLayout.putConstraint( SpringLayout.NORTH, this.JL_titulo, 0, SpringLayout.NORTH, this.JP_cardapio);
+
+        if ( size > 0 ){
+
+            cardapioLayout.putConstraint( SpringLayout.WEST, this.ALJTF_pratos.get( 0 ) , 0, SpringLayout.WEST, this.JP_cardapio);
+            cardapioLayout.putConstraint( SpringLayout.NORTH, this.ALJTF_pratos.get( 0 ) , 13, SpringLayout.SOUTH, this.JL_titulo);
+
+            cardapioLayout.putConstraint( SpringLayout.EAST, this.ALJTF_precos.get( 0 ), 0, SpringLayout.EAST, this.JP_cardapio);
+            cardapioLayout.putConstraint( SpringLayout.NORTH, this.ALJTF_precos.get( 0 ), 13, SpringLayout.SOUTH, this.JL_titulo);
+
+            if ( size > 1 ){
+                for ( int i = 1; i < size; i++ ){
+                    cardapioLayout.putConstraint( SpringLayout.WEST, this.ALJTF_pratos.get( i ) , 0, SpringLayout.WEST, this.ALJTF_pratos.get( i - 1 ));
+                    cardapioLayout.putConstraint( SpringLayout.NORTH, this.ALJTF_pratos.get( i ) , 6, SpringLayout.SOUTH, this.ALJTF_pratos.get( i - 1 ));
+
+                    cardapioLayout.putConstraint( SpringLayout.EAST, this.ALJTF_precos.get( i ), 0, SpringLayout.EAST, this.ALJTF_precos.get( i - 1 ));
+                    cardapioLayout.putConstraint( SpringLayout.NORTH, this.ALJTF_precos.get( i ), 6, SpringLayout.SOUTH, this.ALJTF_precos.get( i - 1 ));
+                }
+            }
+        }
+
+        this.JSP_cardapio = new JScrollPane( this.JP_cardapio );
+
+        // Scroll Pane
+        dimension = new Dimension( 189, 247 );
+
+        this.JSP_cardapio.setPreferredSize( dimension );
+        this.JSP_cardapio.setBackground( Estilo.vermelhinho );
+        this.JSP_cardapio.setForeground( Estilo.quaseBranco );
+
+        this.JSP_cardapio.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        this.JSP_cardapio.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED );
+
+        // Colocando no this.centro
+        this.JP_detalhe_atracao.add( this.JSP_cardapio );
+        this.JP_detalhe_atracao.add( this.JTF_add_prato );
+        this.JP_detalhe_atracao.add( this.JTF_add_preco );
+        this.JP_detalhe_atracao.add( this.JB_adicionar );
+
+        this.atracLayout.putConstraint( SpringLayout.WEST, this.JSP_cardapio, 24, SpringLayout.EAST, this.JTF_preco);
+        this.atracLayout.putConstraint( SpringLayout.NORTH, this.JSP_cardapio, 0, SpringLayout.NORTH, this.JTF_preco);
+
+        this.atracLayout.putConstraint( SpringLayout.WEST, this.JTF_add_prato, 0, SpringLayout.WEST, this.JSP_cardapio);
+        this.atracLayout.putConstraint( SpringLayout.NORTH, this.JTF_add_prato, 6, SpringLayout.SOUTH, this.JSP_cardapio);
+
+        this.atracLayout.putConstraint( SpringLayout.EAST, this.JTF_add_preco, 0, SpringLayout.EAST, this.JSP_cardapio);
+        this.atracLayout.putConstraint( SpringLayout.NORTH, this.JTF_add_preco, 6, SpringLayout.SOUTH, this.JSP_cardapio);
+
+        this.atracLayout.putConstraint( SpringLayout.WEST, this.JB_adicionar, 0, SpringLayout.WEST, this.JTF_add_prato);
+        this.atracLayout.putConstraint( SpringLayout.NORTH, this.JB_adicionar, 5, SpringLayout.SOUTH, this.JTF_add_prato);
     }
 
     private void initFooter(){
@@ -506,6 +677,12 @@ public class TAtracoes extends Tela implements ActionListener {
 
         this.footerLayout.putConstraint( SpringLayout.WEST, this.qtdVisitantes, 0, SpringLayout.EAST, this.visitantes );
         this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.qtdVisitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
+    }
+
+    // Utilitária de reset
+    private void resetMainT(){
+        this.resetMain();
+        this.initMain();
     }
 
     @Override
@@ -531,14 +708,14 @@ public class TAtracoes extends Tela implements ActionListener {
         }
 
         if ( e.getSource() == this.JB_prev ){
-            System.out.println( "Próxima atração" );
-            this.atracoes.gotoPrev();
+            System.out.println( "Atração anterior" );       
+            ( (JGerente) this.jan ).setAtual( this.atracoes.gotoPrev() );     
             this.jan.trocarTela( "Aba_atrações" );
         }
 
         if ( e.getSource() == this.JB_next ){
-            System.out.println( "Atração anterior" );
-            this.atracoes.gotoNext();
+            System.out.println( "Próxima atração" );
+            ( (JGerente) this.jan ).setAtual( this.atracoes.gotoNext() );   
             this.jan.trocarTela( "Aba_atrações" );
         }
 
