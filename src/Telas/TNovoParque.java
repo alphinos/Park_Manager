@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import src.Atracao;
+import src.Brinquedo;
 import src.Parque;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
@@ -212,6 +214,14 @@ public class TNovoParque extends Tela implements ActionListener {
             System.out.println("Preço: " + preco);
 
             Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
+
+            // Teste **
+
+            Atracao atracao = new Brinquedo("Tiranossauro Rex", "Come cabra", 15, 200, 1f, 2f, 10, 3 );
+            atracao.setAbertura( 8, 30 );
+            atracao.setFechamento( 16, 30 );
+            parque.addAtracao( atracao );
+            // ** Teste
 
             if ( this.jan instanceof JGerente ){
                 ( (JGerente) this.jan ).setParque( parque );

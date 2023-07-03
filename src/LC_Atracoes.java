@@ -63,6 +63,11 @@ public class LC_Atracoes {
     }
 
     public Atracao gotoNext(){
+        if ( this.al_atracoes.isEmpty() ){
+            System.out.println( "Lista vazia!" );
+            return null;
+        }
+        
         if ( this.atual == this.last ){
             this.setAtualPrimeiro();
             return this.atual;
@@ -73,6 +78,11 @@ public class LC_Atracoes {
     }
 
     public Atracao gotoPrev(){
+        if ( this.al_atracoes.isEmpty() ){
+            System.out.println( "Lista vazia!" );
+            return null;
+        }
+
         if ( this.atual == this.first ){
             this.setAtualUltimo();
             return this.atual;
