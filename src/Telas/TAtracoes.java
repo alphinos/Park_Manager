@@ -1,17 +1,13 @@
 package src.Telas;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -80,9 +76,11 @@ public class TAtracoes extends Tela implements ActionListener {
     private JTextField JTF_add_preco;
     private JButton JB_adicionar;
 
+    // Main
     private JButton JB_novo_brinquedo;      // Nova janela para criação de atração
     private JButton JB_novo_restaurante;    // Nova janela para criação de restaurante
     private JButton JB_salvar;              // Salvar criações
+    private JButton JB_remover;             // Remover atrações
 
     // Footer
     private JLabel visitantes;
@@ -255,6 +253,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JB_novo_brinquedo = new JButton( "Brinquedo" );      // Nova janela para criação de atração
         this.JB_novo_restaurante = new JButton( "Restaurante" );    // Nova janela para criação de restaurante
         this.JB_salvar = new JButton( "Salvar" );              // Salvar criações
+        this.JB_remover = new JButton( "Remover" );
 
         Dimension dimension;
         
@@ -293,7 +292,7 @@ public class TAtracoes extends Tela implements ActionListener {
         }
 
         // Botões de criação e salvar
-        dimension = new Dimension( 208, 90 );
+        dimension = new Dimension( 208, 72 );
         this.JB_novo_brinquedo.setPreferredSize( dimension );
         this.JB_novo_brinquedo.setForeground( Estilo.vermelhinho );
         this.JB_novo_brinquedo.setBackground( Estilo.quaseBranco );
@@ -314,6 +313,13 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JB_salvar.setFont( Estilo.robotoButton );
         this.JB_salvar.setHorizontalAlignment( SwingConstants.CENTER );
         this.JB_salvar.addActionListener( this );
+
+        this.JB_remover.setPreferredSize( dimension );
+        this.JB_remover.setForeground( Estilo.vermelhinho );
+        this.JB_remover.setBackground( Estilo.quaseBranco );
+        this.JB_remover.setFont( Estilo.robotoButton );
+        this.JB_remover.setHorizontalAlignment( SwingConstants.CENTER );
+        this.JB_remover.addActionListener( this );
 
         // Adicionando componente no painel de atrações
         SpringLayout atracoesLayout = new SpringLayout();
@@ -385,6 +391,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.center.add( this.JB_novo_brinquedo );
         this.center.add( this.JB_novo_restaurante );
         this.center.add( this.JB_salvar );
+        this.center.add( this.JB_remover );
 
         // Poisicionando detalhes da atração
         this.centerLayout.putConstraint( SpringLayout.WEST, this.JP_detalhe_atracao, 64, SpringLayout.WEST, this.center );
@@ -398,17 +405,22 @@ public class TAtracoes extends Tela implements ActionListener {
         // this.centerLayout.putConstraint( SpringLayout.WEST, this.JSP_atracoes, 32, SpringLayout.EAST, this.JP_detalhe_atracao );
         // this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JSP_atracoes, 0, SpringLayout.VERTICAL_CENTER, this.center );
 
-        // Posicionando o botão do novo restaurante
-        this.centerLayout.putConstraint( SpringLayout.EAST, this.JB_novo_restaurante, -40, SpringLayout.EAST, this.center);
-        this.centerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.JB_novo_restaurante, 0, SpringLayout.VERTICAL_CENTER, this.center);
-
         // Posicionando o botão do novo brinquedo
-        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_novo_brinquedo, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_novo_restaurante);
-        this.centerLayout.putConstraint( SpringLayout.SOUTH, this.JB_novo_brinquedo, -48, SpringLayout.NORTH, this.JB_novo_restaurante);
+        this.centerLayout.putConstraint( SpringLayout.EAST, this.JB_novo_brinquedo, -48, SpringLayout.EAST, this.center);
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_novo_brinquedo, 32, SpringLayout.NORTH, this.center);
+        
+        // Posicionando o botão do novo restaurante
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_novo_restaurante, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_novo_brinquedo);
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_novo_restaurante, 32, SpringLayout.SOUTH, this.JB_novo_brinquedo);
+
 
         // Posicionando o botão de salvar
         this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_salvar, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_novo_restaurante);
-        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_salvar, 48, SpringLayout.SOUTH, this.JB_novo_restaurante);
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_salvar, 32, SpringLayout.SOUTH, this.JB_novo_restaurante);
+
+        // Posicionando o botão de remover
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JB_remover, 0, SpringLayout.HORIZONTAL_CENTER, this.JB_salvar );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JB_remover, 32, SpringLayout.SOUTH, this.JB_salvar );
     }
 
     private void initCardAtracao( Atracao atrac ){
@@ -701,6 +713,8 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JSP_cardapio.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         this.JSP_cardapio.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
 
+        this.JP_cardapio.setPreferredSize( this.JP_cardapio.getPreferredSize() );
+
         // Colocando no this.centro
         this.JP_detalhe_atracao.add( this.JSP_cardapio );
         this.JP_detalhe_atracao.add( this.JTF_add_prato );
@@ -734,12 +748,6 @@ public class TAtracoes extends Tela implements ActionListener {
 
         this.footerLayout.putConstraint( SpringLayout.WEST, this.qtdVisitantes, 0, SpringLayout.EAST, this.visitantes );
         this.footerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, this.qtdVisitantes, 0, SpringLayout.VERTICAL_CENTER, this.footer );
-    }
-
-    // Utilitária de reset
-    private void resetMainT(){
-        this.resetMain();
-        this.initMain();
     }
 
     @Override
@@ -816,6 +824,29 @@ public class TAtracoes extends Tela implements ActionListener {
                 ( (Brinquedo) this.atual ).setIdade_min( Integer.parseInt( idade_min ) );
                 ( (Brinquedo) this.atual ).setAltura_max( Float.parseFloat( altura_max ) );
                 ( (Brinquedo) this.atual ).setAltura_min( Float.parseFloat( altura_min ) );
+            }
+
+            if ( this.atual instanceof Restaurante ){
+                
+            }
+
+            this.jan.trocarTela( "Aba_atrações" );
+        }
+
+        if ( e.getSource() == this.JB_remover ){
+
+            Atracao atrac;
+
+            this.AL_atracoes.remove( this.atual );
+
+            atrac = this.AL_atracoes.get( 0 );
+
+            ( (JGerente) this.jan ).getAtracoes().remove( this.atual.getID() );
+            
+            if ( this.AL_atracoes.isEmpty() ){
+                ( (JGerente) this.jan ).setIDAtrac( 0 );
+            } else {
+                ( (JGerente) this.jan ).setIDAtrac( atrac.getID() );
             }
 
             this.jan.trocarTela( "Aba_atrações" );

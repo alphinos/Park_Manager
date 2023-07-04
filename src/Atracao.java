@@ -14,6 +14,8 @@ public abstract class Atracao implements InterfaceAtrac {
 	protected LocalTime fechamento;
 	protected int preco; // Quantidade de fichas para poder entrar na atração
 
+	private String path;
+
 	public Atracao(){}
 
 	public Atracao( String n, String d, int ID, int c_max ) {
@@ -126,6 +128,14 @@ public abstract class Atracao implements InterfaceAtrac {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern( "HH:mm" );
 		return time.format( format );
 	}
+
+	public String getPath(){
+        return this.path;
+    }
+
+    public void setPath( String path ){
+        this.path = path;
+    }
 
 	//METODOS 
 	public abstract String mostrarDetalhes();

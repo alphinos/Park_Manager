@@ -12,6 +12,8 @@ public class Parque {
     private int capacidade;
     private int qtdVisitantes;
 
+    private String path;
+
     private ArrayList<Atracao> atracoes;
 
     public Parque(){
@@ -87,6 +89,14 @@ public class Parque {
 
     public void removeAtracao( Atracao atracao ){
         this.atracoes.remove(atracao);
+    }
+
+    public String getPath(){
+        return this.path;
+    }
+
+    public void setPath( String path ){
+        this.path = path;
     }
 
     public void setCapacidade( int capacidade ){

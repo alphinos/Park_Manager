@@ -14,6 +14,7 @@ import src.Atracao;
 import src.Brinquedo;
 import src.Parque;
 import src.Restaurante;
+import src.Files.FPark;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
 import src.Interface.Janela;
@@ -262,7 +263,7 @@ public class TNovoParque extends Tela implements ActionListener {
             rest5.setFechamento( 16, 0);
             parque.addAtracao( rest5 );
 
-            Restaurante rest6 = new Restaurante("Teu pai", "Aquele feio", 9, 40 );
+            Restaurante rest6 = new Restaurante("Ilalari", "Larialala", 9, 40 );
             rest6.setAbertura( 9, 0);
             rest6.setFechamento( 16, 0);
             parque.addAtracao( rest6 );
@@ -274,6 +275,8 @@ public class TNovoParque extends Tela implements ActionListener {
                     ( (JGerente) this.jan ).setIDAtrac( parque.getAtracoes().get( 0 ).getID() );
                 }
             }
+
+            FPark.escrever( parque );
 
             this.jan.trocarTela( "Começo" );
         }

@@ -14,6 +14,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import src.Parque;
+import src.Files.FPark;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
 import src.Interface.Janela;
@@ -341,6 +342,8 @@ public class TParque extends Tela implements ActionListener {
             if ( this.jan instanceof JGerente ){
                 ( (JGerente) this.jan ).setParque( parque );
             }
+
+            FPark.escrever( parque );
 
             this.jan.trocarTela( "Aba_parque" );
         }
