@@ -11,6 +11,7 @@ public class Estilo {
     public final static Color vermelhinho = new Color( 255, 33, 25, 255 );
     public final static Color vermelho = new Color( 245, 8, 1, 255 );
 
+    public final static Color verdaozao = new Color( 0, 57, 20, 255 );
     public final static Color verdao = new Color( 0, 168, 59, 255 );
     public final static Color verdinho = new Color( 0, 245, 85, 255 );
 

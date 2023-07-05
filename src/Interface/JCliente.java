@@ -2,7 +2,10 @@ package src.Interface;
 
 import javax.swing.JFrame;
 
+import src.Parque;
+import src.Visitante;
 import src.Telas.Cliente.CTCarregarCliente;
+import src.Telas.Cliente.CTComecoCliente;
 import src.Telas.Cliente.CTInicioCliente;
 import src.Telas.Cliente.CTNovoCliente;
 
@@ -11,6 +14,10 @@ public class JCliente extends Janela {
     private CTInicioCliente inicio;
     private CTNovoCliente novoCliente;
     private CTCarregarCliente carregarCliente;
+    private CTComecoCliente comecoCliente;
+
+    private Visitante cliente;
+    private Parque parque;
     
     public JCliente( int width, int height){
         super( width, height );
@@ -42,6 +49,22 @@ public class JCliente extends Janela {
         this.carregarCliente = new CTCarregarCliente( this.width, this.height, this );
     }
 
+    public Parque getParque(){
+        return this.parque;
+    }
+
+    public void setParque( Parque parque ){
+        this.parque = parque;
+    }
+
+    public Visitante getVisitante(){
+        return this.cliente;
+    }
+
+    public void setVisitante( Visitante cliente ){
+        this.cliente = cliente;
+    }
+
     public void trocarTela( String tela ){
         this.janela.remove( this.tela.body );
 
@@ -57,6 +80,14 @@ public class JCliente extends Janela {
             case "carregar_Cliente":
                 this.carregarCliente = new CTCarregarCliente( this.width, this.height, this );
                 this.tela = this.carregarCliente;
+                break;
+            case "Começo":
+                this.comecoCliente = new CTComecoCliente( width, height, this, cliente);
+                this.tela = this.comecoCliente;
+                break;
+            case "Bilheteria":
+                break;
+            case "Atrações":
                 break;
         }
 

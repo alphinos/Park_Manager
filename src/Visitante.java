@@ -10,6 +10,7 @@ public class Visitante {
 	private float altura;	
 	private ArrayList<Atracao> atracoes;
 	
+	public Visitante(  ) {}
 	
 	public Visitante( String nome, int idade, int altura, int dinheiro ) {
 		this.nome = nome;
@@ -29,7 +30,7 @@ public class Visitante {
 	public float getDinheiro() {
 		return dinheiro;
 	}
-	public void setDinheiro(int dinheiro) {
+	public void setDinheiro( float dinheiro) {
 		if ( dinheiro < 0 ){
 			System.out.println( "Não existe dinheiro negativo!!!" );
 			System.out.println( "Dívidas são um conceito além do dinheiro :D " );

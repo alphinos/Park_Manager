@@ -1,5 +1,8 @@
 package src.Telas.Cliente;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,11 +10,17 @@ import javax.swing.SpringLayout;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import src.Parque;
+import src.Visitante;
+import src.Files.FCliente;
+import src.Files.FPark;
 import src.Interface.Estilo;
+import src.Interface.JCliente;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class CTCarregarCliente extends Tela {
+public class CTCarregarCliente extends Tela implements ActionListener {
 
     private JFileChooser chooser;
     
@@ -50,7 +59,7 @@ public class CTCarregarCliente extends Tela {
         this.headerLayout.putConstraint( SpringLayout.VERTICAL_CENTER, title, 0, SpringLayout.VERTICAL_CENTER, this.header);
         this.headerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, this.header);
 
-        this.chooser = new JFileChooser( "Parques" );
+        this.chooser = new JFileChooser( "Clientes" );
         FileFilter filter = new FileNameExtensionFilter("CLIENTE file", "cliente", "CLIENTE");
         chooser.setFileFilter( filter );
         chooser.addChoosableFileFilter( filter );
@@ -59,5 +68,25 @@ public class CTCarregarCliente extends Tela {
     public void showChooser(){
         this.chooser.setDialogTitle( "Abrir parque" );
         this.chooser.showOpenDialog( new JFrame() );
+    }
+
+    @Override
+    public void actionPerformed( ActionEvent event ){
+        
+        if ( event.getSource() == this.chooser ){
+            if ( event.getActionCommand() == JFileChooser.APPROVE_SELECTION ){
+
+                Visitante cliente = FCliente.ler( this.chooser.getSelectedFile().getAbsolutePath() );
+
+                if ( this.jan instanceof JCliente ){
+                    ( (JCliente) this.jan ).setVisitante( cliente );
+                }
+
+                this.jan.trocarTela( "Começo" );
+
+            } else if ( event.getActionCommand() == JFileChooser.CANCEL_SELECTION ){
+                this.jan.trocarTela( "inicio" );
+            }
+        }
     }
 }

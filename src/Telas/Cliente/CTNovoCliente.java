@@ -10,7 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import src.Visitante;
+import src.Files.FCliente;
 import src.Interface.Estilo;
+import src.Interface.JCliente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -23,8 +26,11 @@ public class CTNovoCliente extends Tela implements ActionListener {
     private JLabel nome;
     private JTextField campo_nome ;
 
-    private JLabel descricao;
-    private JTextField campo_descricao;
+    private JLabel idade;
+    private JTextField campo_idade;
+
+    private JLabel altura;
+    private JTextField campo_altura;
 
     private JLabel dinheiro;
     private JTextField campo_dinheiro;
@@ -93,8 +99,11 @@ public class CTNovoCliente extends Tela implements ActionListener {
         this.nome = new JLabel( "Nome" );
         this.campo_nome = new JTextField();
 
-        this.descricao = new JLabel( "Descrição" );
-        this.campo_descricao = new JTextField();
+        this.idade = new JLabel( "Idade" );
+        this.campo_idade = new JTextField();
+
+        this.altura = new JLabel( "Altura" );
+        this.campo_altura = new JTextField();
 
         this.dinheiro = new JLabel( "Dinheiro" );
         this.campo_dinheiro = new JTextField();
@@ -109,8 +118,11 @@ public class CTNovoCliente extends Tela implements ActionListener {
         nome.setFont( Estilo.robotoLabel );
         nome.setForeground( Estilo.preto );
 
-        descricao.setFont( Estilo.robotoLabel );
-        descricao.setForeground( Estilo.preto );
+        idade.setFont( Estilo.robotoLabel );
+        idade.setForeground( Estilo.preto );
+
+        altura.setFont( Estilo.robotoLabel );
+        altura.setForeground( Estilo.preto );
 
         dinheiro.setFont( Estilo.robotoLabel );
         dinheiro.setForeground( Estilo.preto );
@@ -136,17 +148,24 @@ public class CTNovoCliente extends Tela implements ActionListener {
         dim = new Dimension( 400, 27 );
 
         campo_nome.setPreferredSize(dim);
-        campo_descricao.setPreferredSize(dim);
         campo_dinheiro.setPreferredSize(dim);
+        
+        dim = new Dimension( 150, 27 );
+        campo_idade.setPreferredSize(dim);
+        campo_altura.setPreferredSize(dim);
 
         // Configurando estilo dos campos de texto
         campo_nome.setFont( Estilo.robotoText );
         campo_nome.setBackground( Estilo.preto );
         campo_nome.setForeground( Estilo.branco );
 
-        campo_descricao.setFont( Estilo.robotoText );
-        campo_descricao.setBackground( Estilo.preto );
-        campo_descricao.setForeground( Estilo.branco );
+        campo_idade.setFont( Estilo.robotoText );
+        campo_idade.setBackground( Estilo.preto );
+        campo_idade.setForeground( Estilo.branco );
+
+        campo_altura.setFont( Estilo.robotoText );
+        campo_altura.setBackground( Estilo.preto );
+        campo_altura.setForeground( Estilo.branco );
 
         campo_dinheiro.setFont( Estilo.robotoText );
         campo_dinheiro.setBackground( Estilo.preto );
@@ -158,8 +177,11 @@ public class CTNovoCliente extends Tela implements ActionListener {
         this.novoCliente.add(nome);
         this.novoCliente.add(campo_nome);
 
-        this.novoCliente.add(descricao);
-        this.novoCliente.add(campo_descricao);
+        this.novoCliente.add(idade);
+        this.novoCliente.add(campo_idade);
+
+        this.novoCliente.add(altura);
+        this.novoCliente.add(campo_altura);
 
         this.novoCliente.add(dinheiro);
         this.novoCliente.add(campo_dinheiro);
@@ -183,16 +205,23 @@ public class CTNovoCliente extends Tela implements ActionListener {
         layout.putConstraint( SpringLayout.WEST, campo_nome, 0, SpringLayout.WEST, nome );
         layout.putConstraint( SpringLayout.NORTH, campo_nome, 4, SpringLayout.SOUTH, nome );
 
-        //Descrição
-        layout.putConstraint( SpringLayout.WEST, descricao, 0, SpringLayout.WEST, campo_nome );
-        layout.putConstraint( SpringLayout.NORTH, descricao, 32, SpringLayout.SOUTH, campo_nome );
+        //Idade
+        layout.putConstraint( SpringLayout.WEST, idade, 0, SpringLayout.WEST, campo_nome );
+        layout.putConstraint( SpringLayout.NORTH, idade, 32, SpringLayout.SOUTH, campo_nome );
 
-        layout.putConstraint( SpringLayout.WEST, campo_descricao, 0, SpringLayout.WEST, descricao );
-        layout.putConstraint( SpringLayout.NORTH, campo_descricao, 4, SpringLayout.SOUTH, descricao );
+        layout.putConstraint( SpringLayout.WEST, campo_idade, 0, SpringLayout.WEST, idade );
+        layout.putConstraint( SpringLayout.NORTH, campo_idade, 4, SpringLayout.SOUTH, idade );
+
+        //Altura
+        layout.putConstraint( SpringLayout.EAST, altura, 0, SpringLayout.EAST, campo_nome );
+        layout.putConstraint( SpringLayout.NORTH, altura, 32, SpringLayout.SOUTH, campo_nome );
+
+        layout.putConstraint( SpringLayout.EAST, campo_altura, 0, SpringLayout.EAST, altura );
+        layout.putConstraint( SpringLayout.NORTH, campo_altura, 4, SpringLayout.SOUTH, altura );
 
         //Dinheiro
-        layout.putConstraint( SpringLayout.WEST, dinheiro, 0, SpringLayout.WEST, campo_descricao );
-        layout.putConstraint( SpringLayout.NORTH, dinheiro, 32, SpringLayout.SOUTH, campo_descricao );
+        layout.putConstraint( SpringLayout.WEST, dinheiro, 0, SpringLayout.WEST, campo_idade );
+        layout.putConstraint( SpringLayout.NORTH, dinheiro, 32, SpringLayout.SOUTH, campo_idade );
 
         layout.putConstraint( SpringLayout.WEST, campo_dinheiro, 0, SpringLayout.WEST, dinheiro );
         layout.putConstraint( SpringLayout.NORTH, campo_dinheiro, 4, SpringLayout.SOUTH, dinheiro );
@@ -212,19 +241,46 @@ public class CTNovoCliente extends Tela implements ActionListener {
             System.out.println( "Novo cliente criado!" );
 
             String nome = this.campo_nome.getText();
-            String desc = this.campo_descricao.getText();
+            String idade = this.campo_idade.getText();
+            String altura = this.campo_altura.getText();
             String dinheiro = this.campo_dinheiro.getText();
 
             System.out.println("Nome: " + nome);
-            System.out.println("Descrição: " + desc);
+            System.out.println("Descrição: " + idade);
+            System.out.println("Descrição: " + altura);
             System.out.println("Dinheiro: " + dinheiro);
 
-            this.jan.trocarTela( "novo_cliente" );
+            Visitante cliente = new Visitante();
+            cliente.setNome( nome );
+
+            idade = getToDigitParts( idade );
+            altura = getToDigitParts( altura );
+            dinheiro = getToDigitParts( dinheiro );
+
+            cliente.setIdade( Integer.parseInt( idade ) );
+            cliente.setAltura( Float.parseFloat( altura ));
+            cliente.setDinheiro( Float.parseFloat( dinheiro ));
+
+            ( (JCliente) this.jan ).setVisitante( cliente );
+
+            FCliente.escrever( cliente );
+
+            this.jan.trocarTela( "Começo" );
         }
 
         if ( event.getSource() == this.cancelar ){
             System.out.println( "Criação do cliente cancelada!" );
             this.jan.trocarTela( "inicio" );
         }
+    }
+
+    private String getToDigitParts( String str ){
+        int i;
+        for ( i = 0; i < str.length(); i++){
+                if ( Character.isDigit( str.charAt(i) )){
+                    break;
+                }
+            }
+        return str.substring( i );  
     }
 }
