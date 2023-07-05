@@ -92,6 +92,7 @@ public class FRestaurante {
                         while( input.hasNext() ){
                             card.add( input.next() );
                         }
+                        
                         if ( card.size() >= 2 && ( card.size() - 1 ) % 2 == 0 ){
                             for ( int i = 0; i < card.size(); i += 2 ){
                                 chave = card.get(i);

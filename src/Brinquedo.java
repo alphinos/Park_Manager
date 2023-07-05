@@ -27,6 +27,7 @@ public class Brinquedo extends Atracao {
 
     public Brinquedo( String n, String d, int ID, int c_max, int a_hour, int a_min, int f_hour, int f_min, int ent ){
         super( n, d, ID, c_max, a_hour, a_min, f_hour, f_min );
+        this.setEntropia( ent );
     }
 
     public Brinquedo( String n, String d, int ID, int c_max, int a_hour, int a_min, int f_hour, int f_min, float al_min, int i_min, int ent ){
@@ -49,7 +50,8 @@ public class Brinquedo extends Atracao {
 	}
 
 	public void setIdade_min(int idade_min) {
-		this.idade_min = idade_min;
+        if ( idade_min > 0)
+    		this.idade_min = idade_min;
 	}
 
     public float getAltura_min() {

@@ -42,7 +42,7 @@ public class TAtracoes extends Tela implements ActionListener {
     private JButton JB_cliente;
 
     // Main
-    private JLabel JL_nome_atracao;     // Depende da atração
+    private JTextField JTF_nome_atracao;     // Depende da atração
     private JPanel JP_detalhe_atracao;  // Depende da atração
     private SpringLayout atracLayout;
 
@@ -62,6 +62,7 @@ public class TAtracoes extends Tela implements ActionListener {
     private JTextField JTF_idade_min;
     private JTextField JTF_altura_min;
     private JTextField JTF_altura_max;
+    private JTextField JTF_entropia;
 
     // Selecionar atração
     private JPanel JP_atracoes;
@@ -250,7 +251,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.centerLayout = new SpringLayout();
         this.center.setLayout( this.centerLayout );
 
-        this.JL_nome_atracao = new JLabel(  );     // Depende da atração
+        this.JTF_nome_atracao = new JTextField(  );     // Depende da atração
         this.JP_detalhe_atracao = new JPanel(  );  // Depende da atração
 
         this.JB_novo_brinquedo = new JButton( "Brinquedo" );      // Nova janela para criação de atração
@@ -262,12 +263,12 @@ public class TAtracoes extends Tela implements ActionListener {
         
         // Nome da atração
         dimension = new Dimension( 688, 72 );
-        this.JL_nome_atracao.setPreferredSize( dimension );
-        this.JL_nome_atracao.setForeground( Estilo.vermelhinho );
-        this.JL_nome_atracao.setBackground( Estilo.quaseBranco );
-        this.JL_nome_atracao.setFont( Estilo.robotoTitle );
-        this.JL_nome_atracao.setHorizontalAlignment( SwingConstants.CENTER );
-        this.JL_nome_atracao.setOpaque( true );
+        this.JTF_nome_atracao.setPreferredSize( dimension );
+        this.JTF_nome_atracao.setForeground( Estilo.vermelhinho );
+        this.JTF_nome_atracao.setBackground( Estilo.quaseBranco );
+        this.JTF_nome_atracao.setFont( Estilo.robotoTitle );
+        this.JTF_nome_atracao.setHorizontalAlignment( SwingConstants.CENTER );
+        this.JTF_nome_atracao.setOpaque( true );
 
         // Area detalhes
         dimension = new Dimension( 688, 360 );
@@ -326,8 +327,6 @@ public class TAtracoes extends Tela implements ActionListener {
 
         // Adicionando componente no painel de atrações
         SpringLayout atracoesLayout = new SpringLayout();
-        // BorderLayout atracoesLayout = new BorderLayout(  );
-        // FlowLayout atracoesLayout = new FlowLayout( FlowLayout.CENTER );
         this.JP_atracoes.setLayout( atracoesLayout );
 
         int size = this.AL_atracoes.size();
@@ -377,7 +376,7 @@ public class TAtracoes extends Tela implements ActionListener {
 
         Atracao atual;
         if ( this.atual != null ){
-            this.JL_nome_atracao.setText( this.atual.getNome() );
+            this.JTF_nome_atracao.setText( this.atual.getNome() );
             atual = this.atual;
                 if ( atual instanceof Brinquedo ){
                 this.initCardBrinquedo( (Brinquedo) atual );
@@ -386,10 +385,10 @@ public class TAtracoes extends Tela implements ActionListener {
                 this.initCardRestaurante( (Restaurante) atual );
             }
         } else {
-            this.JL_nome_atracao.setText( "Parque vazio" );
+            this.JTF_nome_atracao.setText( "Parque vazio" );
         }
 
-        this.center.add( this.JL_nome_atracao );
+        this.center.add( this.JTF_nome_atracao );
         this.center.add( this.JP_detalhe_atracao );
         this.center.add( this.JB_novo_brinquedo );
         this.center.add( this.JB_novo_restaurante );
@@ -401,8 +400,8 @@ public class TAtracoes extends Tela implements ActionListener {
         this.centerLayout.putConstraint( SpringLayout.SOUTH, this.JP_detalhe_atracao, -16, SpringLayout.SOUTH, this.center);
 
         // Poisicionando nome da atração
-        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JL_nome_atracao, 0, SpringLayout.HORIZONTAL_CENTER, this.JP_detalhe_atracao );
-        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JL_nome_atracao, 16, SpringLayout.NORTH, this.center);
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JTF_nome_atracao, 0, SpringLayout.HORIZONTAL_CENTER, this.JP_detalhe_atracao );
+        this.centerLayout.putConstraint( SpringLayout.NORTH, this.JTF_nome_atracao, 16, SpringLayout.NORTH, this.center);
 
         // Posicionando os botões de seleção da atração
         // this.centerLayout.putConstraint( SpringLayout.WEST, this.JSP_atracoes, 32, SpringLayout.EAST, this.JP_detalhe_atracao );
@@ -552,6 +551,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_idade_min = new JTextField( "Idade mínima: " + brinks.getIdade_min() );
         this.JTF_altura_max = new JTextField( "Altura máxima: " + brinks.getAltura_max() );
         this.JTF_altura_min = new JTextField( "Altura mínima: " + brinks.getAltura_min() );
+        this.JTF_entropia = new JTextField( "Entropia: " + brinks.getEntropia() );
 
         Dimension dimension = new Dimension( 189, 27 );
         //Idade mínima
@@ -575,9 +575,16 @@ public class TAtracoes extends Tela implements ActionListener {
         this.JTF_altura_min.setFont( Estilo.robotoLabelData );
         this.JTF_altura_min.setHorizontalAlignment( SwingConstants.CENTER );
 
+        this.JTF_entropia.setPreferredSize( dimension );
+        this.JTF_entropia.setBackground( Estilo.vermelhinho );
+        this.JTF_entropia.setForeground( Estilo.quaseBranco );
+        this.JTF_entropia.setFont( Estilo.robotoLabelData );
+        this.JTF_entropia.setHorizontalAlignment( SwingConstants.CENTER );
+
         this.JP_detalhe_atracao.add( this.JTF_idade_min );
         this.JP_detalhe_atracao.add( this.JTF_altura_max );
         this.JP_detalhe_atracao.add( this.JTF_altura_min );
+        this.JP_detalhe_atracao.add( this.JTF_entropia );
 
         // Poicionando a altura mínima
         this.atracLayout.putConstraint( SpringLayout.EAST, this.JTF_altura_max, -23, SpringLayout.EAST, this.JP_detalhe_atracao );
@@ -591,6 +598,9 @@ public class TAtracoes extends Tela implements ActionListener {
         this.atracLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JTF_altura_min, 0, SpringLayout.HORIZONTAL_CENTER, this.JTF_altura_max );
         this.atracLayout.putConstraint( SpringLayout.NORTH, this.JTF_altura_min, 27, SpringLayout.SOUTH, this.JTF_altura_max );
 
+        // Posicionando a entropia
+        this.atracLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JTF_entropia, 0, SpringLayout.HORIZONTAL_CENTER, this.JTF_altura_min );
+        this.atracLayout.putConstraint( SpringLayout.NORTH, this.JTF_entropia, 27, SpringLayout.SOUTH, this.JTF_altura_min );
     }
 
     private void initCardRestaurante( Restaurante rest ){
@@ -778,6 +788,7 @@ public class TAtracoes extends Tela implements ActionListener {
         for ( JButton jb : this.ALJB_atracoes ){
             if ( e.getSource() == jb ){
                 for ( Atracao a : this.AL_atracoes ){
+                    System.out.println( a.getNome() );
                     if ( jb.getText() == a.getNome() ){
                         ( (JGerente)this.jan ).setIDAtrac( a.getID() );
                         break;
@@ -787,10 +798,53 @@ public class TAtracoes extends Tela implements ActionListener {
             }
         }
 
+        if ( e.getSource() == this.JB_adicionar ){
+            String prato = JTF_add_prato.getText();
+            int preco =  Integer.parseInt( this.getToDigitParts( JTF_add_preco.getText() ) );
+
+            ( ( Restaurante ) this.atual ).addComida(prato, preco);
+
+            this.jan.trocarTela( "Aba_atrações" );
+        }
+
+        if ( e.getSource() == this.JB_novo_brinquedo ){
+            Brinquedo b = new Brinquedo( "Escolher nome", "Escolha uma descrição", 20, 0, 0, 0, 0, 0, 0 );
+            b.setAltura_max( 1 );
+            b.setAltura_min( 1 );
+            b.setIdade_min( 0 );
+            b.setEntropia( 1 );
+            this.parque.addAtracao( b );
+            int id = this.parque.getAtracoes().indexOf( b );
+
+            if ( this.jan instanceof JGerente ){
+                ( (JGerente) this.jan ).setParque( parque );
+                if ( !parque.getAtracoes().isEmpty() ){
+                    ( (JGerente) this.jan ).setAtracoes( parque.getAtracoes() );
+                    ( (JGerente) this.jan ).setIDAtrac( id );
+                }
+            }
+            this.jan.trocarTela( "Aba_atrações" );
+        }
+
+        if ( e.getSource() == this.JB_novo_restaurante){
+            Restaurante b = new Restaurante( "Escolher nome", "Escolha uma descrição", 20, 0 );
+            this.parque.addAtracao( b );
+            int id = this.parque.getAtracoes().indexOf( b );
+
+            if ( this.jan instanceof JGerente ){
+                ( (JGerente) this.jan ).setParque( parque );
+                if ( !parque.getAtracoes().isEmpty() ){
+                    ( (JGerente) this.jan ).setAtracoes( parque.getAtracoes() );
+                    ( (JGerente) this.jan ).setIDAtrac( id );
+                }
+            }
+            this.jan.trocarTela( "Aba_atrações" );
+        }
+
         if ( e.getSource() == this.JB_salvar ){
             System.out.println( "Salvar mudanças!" );
 
-            String nome = this.JL_nome_atracao.getText();
+            String nome = this.JTF_nome_atracao.getText();
             String id = this.JTF_id.getText();
             String preco = this.JTF_preco.getText();
             String descricao = this.JTA_desc.getText();
@@ -815,23 +869,55 @@ public class TAtracoes extends Tela implements ActionListener {
             this.atual.setAbertura( LocalTime.parse( abertura ) );
             this.atual.setFechamento( LocalTime.parse( fechamento ) );
 
+            String ext = "";
+                if ( this.atual instanceof Brinquedo ){
+                    ext = ".brinquedo";
+                }
+
+                if ( this.atual instanceof Restaurante ){
+                    ext = ".restaurante";
+                }
+
+            this.atual.setPath( "././Parques/" +parque.getNome() + "/" + this.atual.getNome() + ext );
+
             if ( this.atual instanceof Brinquedo ){
                 String idade_min = this.JTF_idade_min.getText();
                 String altura_max = this.JTF_altura_max.getText();
                 String altura_min = this.JTF_altura_min.getText();
+                String entropia = this.JTF_entropia.getText();
 
                 idade_min = getToDigitParts( idade_min );
                 altura_max = getToDigitParts( altura_max );
                 altura_min = getToDigitParts( altura_min );
+                entropia = getToDigitParts( entropia );
 
                 ( (Brinquedo) this.atual ).setIdade_min( Integer.parseInt( idade_min ) );
                 ( (Brinquedo) this.atual ).setAltura_max( Float.parseFloat( altura_max ) );
                 ( (Brinquedo) this.atual ).setAltura_min( Float.parseFloat( altura_min ) );
+
+                int ent = Integer.parseInt( entropia );
+
+                if ( ent > 0 && ent < 4 ){
+                    ( (Brinquedo) this.atual ).setIdade_min( ent );
+                }
+
+                FBrinquedo.escrever( (Brinquedo) this.atual );
             }
 
             if ( this.atual instanceof Restaurante ){
-                
+                int size = ALJTF_pratos.size();
+                if ( size == ALJTF_precos.size() ){
+                    for (int i = 0; i < size; i++ ){
+                        String prato = ALJTF_pratos.get( i ).getText();
+                        int ppreco = Integer.parseInt( this.getToDigitParts( ALJTF_precos.get( i ).getText() ) ); 
+                        ( (Restaurante) this.atual ).addComida( prato, ppreco);
+                    }
+                }
+
+                FRestaurante.escrever( (Restaurante) this.atual );
             }
+
+            FPark.escrever( parque );
 
             this.jan.trocarTela( "Aba_atrações" );
         }
@@ -839,17 +925,16 @@ public class TAtracoes extends Tela implements ActionListener {
         if ( e.getSource() == this.JB_remover ){
 
             Atracao atrac;
-
+            
             this.AL_atracoes.remove( this.atual );
-
-            atrac = this.AL_atracoes.get( 0 );
-
+            
             ( (JGerente) this.jan ).getAtracoes().remove( this.atual.getID() );
             this.parque.setAtracoes( AL_atracoes );
             
             if ( this.AL_atracoes.isEmpty() ){
                 ( (JGerente) this.jan ).setIDAtrac( 0 );
             } else {
+                atrac = this.AL_atracoes.get( 0 );
                 ( (JGerente) this.jan ).setIDAtrac( atrac.getID() );
             }
 

@@ -270,7 +270,7 @@ public class TNovoParque extends Tela implements ActionListener {
                 ( (JGerente) this.jan ).setParque( parque );
                 if ( !parque.getAtracoes().isEmpty() ){
                     ( (JGerente) this.jan ).setAtracoes( parque.getAtracoes() );
-                    ( (JGerente) this.jan ).setIDAtrac( parque.getAtracoes().get( 0 ).getID() );
+                    ( (JGerente) this.jan ).setIDAtrac( 0 );
                 }
             }
 

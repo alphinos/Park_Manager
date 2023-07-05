@@ -122,9 +122,9 @@ public abstract class Atracao implements InterfaceAtrac {
 	}
 
 	public String getTimeString( LocalTime time ){
-		// if ( time == null ){
-		// 	return "null";
-		// }
+		if ( time == null ){
+			return "00:00";
+		}
 		DateTimeFormatter format = DateTimeFormatter.ofPattern( "HH:mm" );
 		return time.format( format );
 	}

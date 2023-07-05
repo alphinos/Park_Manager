@@ -39,7 +39,7 @@ public class Restaurante extends Atracao {
         String pratos = "";
 
         for ( String prato : this.cardapio.keySet() ){
-            pratos += prato + " " + this.cardapio.get( prato ) + "\n";
+            pratos += prato + ";" + this.cardapio.get( prato ) + ";";
         }
 
         return pratos;
