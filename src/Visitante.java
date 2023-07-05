@@ -10,7 +10,9 @@ public class Visitante {
 	private float altura;	
 	private ArrayList<Atracao> atracoes;
 	
-	public Visitante(  ) {}
+	public Visitante(  ) {
+		this.atracoes = new ArrayList<Atracao>();
+	}
 	
 	public Visitante( String nome, int idade, int altura, int dinheiro ) {
 		this.nome = nome;
@@ -79,6 +81,9 @@ public class Visitante {
 	}
 
 	public Atracao getUltimAtracao(){
+		if ( this.atracoes.isEmpty() ){
+			return null;
+		}
 		return this.atracoes.get( this.atracoes.size() - 1 );
 	}
 	
@@ -96,6 +101,14 @@ public class Visitante {
 			return true;
 		} 
 		return false;
+	}
+
+	public void entregarFichas( int n_fichas ){
+		if ( this.fichas - n_fichas <= 0 ){
+			System.out.println( "Você não tem fichas o suficiente" );
+			return;
+		}
+		this.setFichas( this.fichas - n_fichas );
 	}
 
 }

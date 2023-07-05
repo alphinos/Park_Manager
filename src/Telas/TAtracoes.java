@@ -889,6 +889,8 @@ public class TAtracoes extends Tela implements ActionListener {
                 String altura_max = this.JTF_altura_max.getText();
                 String altura_min = this.JTF_altura_min.getText();
                 String entropia = this.JTF_entropia.getText();
+                
+                System.out.println( altura_min );
 
                 idade_min = getToDigitParts( idade_min );
                 altura_max = getToDigitParts( altura_max );
@@ -902,7 +904,7 @@ public class TAtracoes extends Tela implements ActionListener {
                 int ent = Integer.parseInt( entropia );
 
                 if ( ent > 0 && ent < 4 ){
-                    ( (Brinquedo) this.atual ).setIdade_min( ent );
+                    ( (Brinquedo) this.atual ).setEntropia(ent);
                 }
 
                 FBrinquedo.escrever( (Brinquedo) this.atual );

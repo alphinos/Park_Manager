@@ -95,6 +95,9 @@ public class FRestaurante {
                         
                         if ( card.size() >= 2 && ( card.size() - 1 ) % 2 == 0 ){
                             for ( int i = 0; i < card.size(); i += 2 ){
+                                if ( i + 1 == card.size() ){
+                                    break;
+                                }
                                 chave = card.get(i);
                                 valor = Integer.parseInt( card.get( i + 1) );
                                 cardapio.put(chave, valor);

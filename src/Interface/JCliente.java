@@ -1,9 +1,14 @@
 package src.Interface;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JFrame;
 
+import src.Atracao;
 import src.Parque;
 import src.Visitante;
+import src.Telas.Cliente.CTAtracoesCliente;
 import src.Telas.Cliente.CTBilheteriaCliente;
 import src.Telas.Cliente.CTCarregarCliente;
 import src.Telas.Cliente.CTComecoCliente;
@@ -17,15 +22,19 @@ public class JCliente extends Janela {
     private CTCarregarCliente carregarCliente;
     private CTComecoCliente comecoCliente;
     private CTBilheteriaCliente bilheteriaCliente;
+    private CTAtracoesCliente atracoesCliente;
 
     private Visitante cliente;
     private Parque parque;
+    private int ID_atrac;
+    private HashMap<Integer, Atracao> atracoes;
     
     public JCliente( int width, int height){
         super( width, height );
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
         this.janela.setTitle("Simulador Cliente");
+        this.atracoes = new HashMap<Integer, Atracao>();
 
         this.initTelas();
         this.setTela( this.inicio );
@@ -36,6 +45,7 @@ public class JCliente extends Janela {
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
         this.janela.setTitle("Simulador Cliente");
+        this.atracoes = new HashMap<Integer, Atracao>();
     }
 
     public JCliente( int width, int height, Tela tela, String nome ){
@@ -43,6 +53,7 @@ public class JCliente extends Janela {
         this.janela.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
 
         this.janela.setTitle("Simulador Cliente");
+        this.atracoes = new HashMap<Integer, Atracao>();
     }
 
     public void initTelas(){
@@ -67,6 +78,20 @@ public class JCliente extends Janela {
         this.cliente = cliente;
     }
 
+    public void setIDAtrac( int ID ){
+        this.ID_atrac = ID;
+    }
+
+    public void setAtracoes( HashMap< Integer, Atracao >atracoes ){
+        this.atracoes = atracoes;
+    }
+
+    public void setAtracoes( ArrayList<Atracao> atracoes ){
+        for ( Atracao a : atracoes ){
+            this.atracoes.put( a.getID(), a );
+        }
+    }
+
     public void trocarTela( String tela ){
         this.janela.remove( this.tela.body );
 
@@ -88,10 +113,12 @@ public class JCliente extends Janela {
                 this.tela = this.comecoCliente;
                 break;
             case "Bilheteria":
-            this.bilheteriaCliente = new CTBilheteriaCliente( this.width, this.height, this, this.cliente, this.parque );
-            this.tela = this.bilheteriaCliente;
+                this.bilheteriaCliente = new CTBilheteriaCliente( this.width, this.height, this, this.cliente, this.parque );
+                this.tela = this.bilheteriaCliente;
                 break;
             case "Atrações":
+                this.atracoesCliente = new CTAtracoesCliente( this.width, this.height, this, this.parque, this.atracoes.get( this.ID_atrac ), this.cliente);
+                this.tela = this.atracoesCliente;
                 break;
         }
 

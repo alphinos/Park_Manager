@@ -139,6 +139,9 @@ public class JGerente extends Janela {
                 this.tela = this.Tela_atracoes;
                 break;
             case "Novo_Cliente":
+                this.cliente.setParque( this.parque );
+                this.cliente.setAtracoes( this.parque.getAtracoes() );
+                this.cliente.setIDAtrac( 0 );
                 this.cliente.getJanela().setVisible( true );
                 break;
         }

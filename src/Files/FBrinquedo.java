@@ -29,7 +29,8 @@ public class FBrinquedo {
                         b.getPreco() + ";" +
                         b.getIdade_min() + ";" +
                         b.getAltura_min() + ";" +
-                        b.getAltura_max() + ";";
+                        b.getAltura_max() + ";" +
+                        b.getEntropia() + ";";
                     output.print(saida);
                     output.close();
                     return true;
@@ -53,7 +54,8 @@ public class FBrinquedo {
                             b.getPreco() + ";" +
                             b.getIdade_min() + ";" +
                             b.getAltura_min() + ";" +
-                            b.getAltura_max() + ";";
+                            b.getAltura_max() + ";" +
+                            b.getEntropia() + ";";
                         output.print(saida);
                         output.close();
                     }
@@ -87,6 +89,7 @@ public class FBrinquedo {
                         int idade_min = input.nextInt();
                         float altura_min = input.nextFloat();
                         float altura_max = input.nextFloat();
+                        int entropia = input.nextInt();
 
                         input.close();
             
@@ -102,6 +105,7 @@ public class FBrinquedo {
                         b.setIdade_min(idade_min);
                         b.setAltura_min(altura_min);
                         b.setAltura_max(altura_max);
+                        b.setEntropia(entropia);
                     }
         
                     b.setPath( path );

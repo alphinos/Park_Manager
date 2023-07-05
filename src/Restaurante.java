@@ -67,13 +67,15 @@ public class Restaurante extends Atracao {
 
         Brinquedo brinquedo;
 
-        if ( v.getUltimAtracao() instanceof Brinquedo ){
+        if ( v.getAtracoes() != null && v.getUltimAtracao() instanceof Brinquedo ){
             brinquedo = (Brinquedo) v.getUltimAtracao();
             if ( brinquedo.getEntropia() == 3 ){
                 return "Você acabou de ir a um restaurante!" + "\n"
                     + "Vá a um brinquedo mais leve!" + "\n";
             }
         }
+        v.entregarFichas( this.preco );
+        v.addAtracao( this );
         return "Acesso garantido!" + "\n"
                         + "Deleite-se!" + "\n";
     }

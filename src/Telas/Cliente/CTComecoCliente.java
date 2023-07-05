@@ -121,7 +121,7 @@ public class CTComecoCliente extends Tela implements ActionListener {
 
         // Configurando o fundo, fonte e cor dos textos
         this.JB_comeco.setBackground( Estilo.quaseBranco );
-        this.JB_comeco.setForeground( Estilo.verdao );
+        this.JB_comeco.setForeground( Estilo.verdaozao );
         this.JB_comeco.setFont( Estilo.robotoButton );
 
         this.JB_bilheteria.setBackground( Estilo.verdaozao );

@@ -59,7 +59,7 @@ public class Brinquedo extends Atracao {
 	}
 
 	public void setAltura_min(float altura_min) {
-        if ( altura_min > 0 ){
+        if ( altura_min >= 0 ){
             this.altura_min = altura_min;
         } else {
             System.out.println( "Valor inválido" );
@@ -124,24 +124,30 @@ public class Brinquedo extends Atracao {
             return "Você é muito grande para entrar nesse brinquedo!" + "\n";
         }
 
+        if ( v.getFichas() < this.preco ){
+            return "Você não tem fichas o suficiente para entrar nesse brinquedo!" + "\n";
+        }
+
         boolean foiEntropia2 = false;
         boolean foi2Entropia1 = false;
         boolean foi1Entropia1 = false;;
         int vezesEntropia1 = 0;
         Brinquedo brinquedo;
 
-        for ( Atracao atrac : v.getAtracoes() ){
-            if ( atrac instanceof Brinquedo ){
-                brinquedo = ( Brinquedo )atrac;
+        if ( v.getAtracoes() != null ){
+            for ( Atracao atrac : v.getAtracoes() ){
+                if ( atrac instanceof Brinquedo ){
+                    brinquedo = ( Brinquedo )atrac;
 
-                switch ( brinquedo.getEntropia() ){
-                    case 1:
-                        vezesEntropia1++;
-                        foi1Entropia1 = true;
-                        break;
-                    case 2:
-                        foiEntropia2 = true;
-                        break;
+                    switch ( brinquedo.getEntropia() ){
+                        case 1:
+                            vezesEntropia1++;
+                            foi1Entropia1 = true;
+                            break;
+                        case 2:
+                            foiEntropia2 = true;
+                            break;
+                    }
                 }
             }
         }
@@ -150,13 +156,15 @@ public class Brinquedo extends Atracao {
             foi2Entropia1 = true;
         } //Pequena redundância, mas facilita a compreensão
 
-        if ( this.entropia == 3 ){
+        if ( v.getAtracoes() != null && this.entropia == 3 ){
             if ( v.getUltimAtracao() instanceof Restaurante ){
                 return "Você acabou de ir a um restaurante!" + "\n"
                     + "Vá a um brinquedo mais leve!" + "\n";
             }
 
             if ( foiEntropia2 || foi2Entropia1 ){
+                v.entregarFichas( this.preco );
+                v.addAtracao( this );
                 return "Acesso garantido!" + "\n"
                     + "Divirta-se!" + "\n";
             } else {
@@ -167,6 +175,8 @@ public class Brinquedo extends Atracao {
 
         if ( this.entropia == 2 ){
             if ( foi1Entropia1 ){
+                v.entregarFichas( this.preco );
+                v.addAtracao( this );
                 return "Acesso garantido!" + "\n"
                         + "Divirta-se!" + "\n";
             } else {
@@ -176,6 +186,8 @@ public class Brinquedo extends Atracao {
         }
 
         if ( this.entropia == 1 ){
+            v.entregarFichas( this.preco );
+            v.addAtracao( this );
             return "Acesso garantido!" + "\n"
                 + "Divirta-se!" + "\n";
         } else {
