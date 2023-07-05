@@ -72,12 +72,6 @@ public class TComeco extends Tela implements ActionListener {
         this.initHeader();
         this.initMain();
         this.initFooter();
-
-        System.out.println( this.parque.getNome() );
-        System.out.println( this.parque.getDescricao() );
-        System.out.println( this.parque.getPrecoFicha() );
-        System.out.println( this.parque.getCapacidade() );
-        System.out.println( this.parque.getQtdVisitantes() );
     }
 
     private void initLabelsTextos(){

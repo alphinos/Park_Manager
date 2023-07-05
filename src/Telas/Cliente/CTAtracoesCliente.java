@@ -137,17 +137,17 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         this.fichas = new JLabel( "Fichas", SwingConstants.CENTER );
         this.qtd_fichas = new JLabel( qtd_fichas, SwingConstants.CENTER );
 
-        this.nomeCliente.setBackground( Estilo.vermelhinho );
+        this.nomeCliente.setBackground( Estilo.verdinho );
         this.nomeCliente.setForeground( Estilo.branco );
         this.nomeCliente.setFont( Estilo.robotoTitle );
 
-        this.fichas.setBackground( Estilo.vermelhinho );
+        this.fichas.setBackground( Estilo.verdinho );
         this.fichas.setFont( Estilo.robotoLabel );
-        this.fichas.setForeground( Estilo.branco );
+        this.fichas.setForeground( Estilo.preto );
 
-        this.qtd_fichas.setBackground( Estilo.quaseBranco );
+        this.qtd_fichas.setBackground( Estilo.preto );
         this.qtd_fichas.setFont( Estilo.robotoLabel );
-        this.qtd_fichas.setForeground( Estilo.vermelhinho );
+        this.qtd_fichas.setForeground( Estilo.verdinho );
 
         // 
         Dimension dim = new Dimension();
@@ -225,6 +225,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
 
     private void initMain(){
 
+        this.center.setBackground( Estilo.verdao );
+
         this.main.remove( this.north );
         this.main.remove( this.south );
         this.main.remove( this.west );
@@ -243,8 +245,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         // Nome da atração
         dimension = new Dimension( 688, 72 );
         this.JL_nome_atracao.setPreferredSize( dimension );
-        this.JL_nome_atracao.setForeground( Estilo.vermelhinho );
-        this.JL_nome_atracao.setBackground( Estilo.quaseBranco );
+        this.JL_nome_atracao.setForeground( Estilo.verdinho );
+        this.JL_nome_atracao.setBackground( Estilo.preto );
         this.JL_nome_atracao.setFont( Estilo.robotoTitle );
         this.JL_nome_atracao.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_nome_atracao.setOpaque( true );
@@ -252,11 +254,11 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         // Area detalhes
         dimension = new Dimension( 688, 360 );
         this.JP_detalhe_atracao.setPreferredSize( dimension );
-        this.JP_detalhe_atracao.setBackground( Estilo.quaseBranco );
+        this.JP_detalhe_atracao.setBackground( Estilo.preto );
 
         // Seleção de atrações
         this.JP_atracoes = new JPanel();
-        this.JP_atracoes.setBackground( Estilo.quaseBranco );
+        this.JP_atracoes.setBackground( Estilo.preto );
 
         // Botões navegação
         dimension = new Dimension( 176, 45 );
@@ -265,8 +267,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
 
         for ( Atracao atrac : this.AL_atracoes ){
             JButton b_atrac = new JButton( atrac.getNome() );
-            b_atrac.setBackground( Estilo.vermelhinho );
-            b_atrac.setForeground( Estilo.quaseBranco );
+            b_atrac.setBackground( Estilo.verdinho );
+            b_atrac.setForeground( Estilo.preto );
             b_atrac.setFont( Estilo.robotoButton );
             b_atrac.setHorizontalAlignment( SwingConstants.CENTER );
             b_atrac.setPreferredSize( dimension );
@@ -277,8 +279,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         // Botões de criação e salvar
         dimension = new Dimension( 208, 72 );
         this.JB_visitarParque.setPreferredSize( dimension );
-        this.JB_visitarParque.setForeground( Estilo.vermelhinho );
-        this.JB_visitarParque.setBackground( Estilo.quaseBranco );
+        this.JB_visitarParque.setForeground( Estilo.verdinho );
+        this.JB_visitarParque.setBackground( Estilo.preto );
         this.JB_visitarParque.setFont( Estilo.robotoButton );
         this.JB_visitarParque.setHorizontalAlignment( SwingConstants.CENTER );
         this.JB_visitarParque.addActionListener( this );
@@ -318,8 +320,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         this.JSP_atracoes = new JScrollPane( this.JP_atracoes );
         this.JSP_atracoes.setPreferredSize( dimension );
 
-        this.JSP_atracoes.setBackground( Estilo.quaseBranco );
-        this.JSP_atracoes.setForeground( Estilo.vermelhinho );
+        this.JSP_atracoes.setBackground( Estilo.preto );
+        this.JSP_atracoes.setForeground( Estilo.verdinho );
 
         this.JSP_atracoes.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         this.JSP_atracoes.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
@@ -386,16 +388,16 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         
         //id
         this.JL_id.setPreferredSize( dimension );
-        this.JL_id.setBackground( Estilo.vermelhinho );
-        this.JL_id.setForeground( Estilo.quaseBranco );
+        this.JL_id.setBackground( Estilo.verdinho );
+        this.JL_id.setForeground( Estilo.preto );
         this.JL_id.setFont( Estilo.robotoLabel );
         this.JL_id.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_id.setOpaque( true );
 
         //preco
         this.JL_preco.setPreferredSize( dimension );
-        this.JL_preco.setBackground( Estilo.vermelhinho );
-        this.JL_preco.setForeground( Estilo.quaseBranco );
+        this.JL_preco.setBackground( Estilo.verdinho );
+        this.JL_preco.setForeground( Estilo.preto );
         this.JL_preco.setFont( Estilo.robotoLabel );
         this.JL_preco.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_preco.setOpaque( true );
@@ -404,8 +406,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         dimension = new Dimension( 413, 153 );
 
         this.JTA_desc.setPreferredSize( dimension );
-        this.JTA_desc.setBackground( Estilo.vermelhinho );
-        this.JTA_desc.setForeground( Estilo.branco );
+        this.JTA_desc.setBackground( Estilo.verdinho );
+        this.JTA_desc.setForeground( Estilo.preto );
         this.JTA_desc.setFont( Estilo.robotoText );
         this.JTA_desc.setEditable( false );
 
@@ -418,32 +420,32 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
 
         //Capacidade
         this.JL_capacidade.setPreferredSize( dimension );
-        this.JL_capacidade.setBackground( Estilo.vermelhinho );
-        this.JL_capacidade.setForeground( Estilo.quaseBranco );
+        this.JL_capacidade.setBackground( Estilo.verdinho );
+        this.JL_capacidade.setForeground( Estilo.preto );
         this.JL_capacidade.setFont( Estilo.robotoLabelData );
         this.JL_capacidade.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_capacidade.setOpaque( true );
 
         //Ocupação
         this.JL_ocupacao.setPreferredSize( dimension );
-        this.JL_ocupacao.setBackground( Estilo.vermelhinho );
-        this.JL_ocupacao.setForeground( Estilo.quaseBranco );
+        this.JL_ocupacao.setBackground( Estilo.verdinho );
+        this.JL_ocupacao.setForeground( Estilo.preto );
         this.JL_ocupacao.setFont( Estilo.robotoLabelData );
         this.JL_ocupacao.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_ocupacao.setOpaque( true );
 
         //Abertura
         this.JL_abertura.setPreferredSize( dimension );
-        this.JL_abertura.setBackground( Estilo.vermelhinho );
-        this.JL_abertura.setForeground( Estilo.quaseBranco );
+        this.JL_abertura.setBackground( Estilo.verdinho );
+        this.JL_abertura.setForeground( Estilo.preto );
         this.JL_abertura.setFont( Estilo.robotoLabelData );
         this.JL_abertura.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_abertura.setOpaque( true );
 
         //Fechamento
         this.JL_fechamento.setPreferredSize( dimension );
-        this.JL_fechamento.setBackground( Estilo.vermelhinho );
-        this.JL_fechamento.setForeground( Estilo.quaseBranco );
+        this.JL_fechamento.setBackground( Estilo.verdinho );
+        this.JL_fechamento.setForeground( Estilo.preto );
         this.JL_fechamento.setFont( Estilo.robotoLabelData );
         this.JL_fechamento.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_fechamento.setOpaque( true );
@@ -500,31 +502,31 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         Dimension dimension = new Dimension( 189, 27 );
         //Idade mínima
         this.JL_idade_min.setPreferredSize( dimension );
-        this.JL_idade_min.setBackground( Estilo.vermelhinho );
-        this.JL_idade_min.setForeground( Estilo.quaseBranco );
+        this.JL_idade_min.setBackground( Estilo.verdinho );
+        this.JL_idade_min.setForeground( Estilo.preto );
         this.JL_idade_min.setFont( Estilo.robotoLabelData );
         this.JL_idade_min.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_idade_min.setOpaque( true );
 
         //Altura máxima
         this.JL_altura_max.setPreferredSize( dimension );
-        this.JL_altura_max.setBackground( Estilo.vermelhinho );
-        this.JL_altura_max.setForeground( Estilo.quaseBranco );
+        this.JL_altura_max.setBackground( Estilo.verdinho );
+        this.JL_altura_max.setForeground( Estilo.preto );
         this.JL_altura_max.setFont( Estilo.robotoLabelData );
         this.JL_altura_max.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_altura_max.setOpaque( true );
 
         //Altura mínima
         this.JL_altura_min.setPreferredSize( dimension );
-        this.JL_altura_min.setBackground( Estilo.vermelhinho );
-        this.JL_altura_min.setForeground( Estilo.quaseBranco );
+        this.JL_altura_min.setBackground( Estilo.verdinho );
+        this.JL_altura_min.setForeground( Estilo.preto );
         this.JL_altura_min.setFont( Estilo.robotoLabelData );
         this.JL_altura_min.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_altura_min.setOpaque( true );
 
         this.JL_entropia.setPreferredSize( dimension );
-        this.JL_entropia.setBackground( Estilo.vermelhinho );
-        this.JL_entropia.setForeground( Estilo.quaseBranco );
+        this.JL_entropia.setBackground( Estilo.verdinho );
+        this.JL_entropia.setForeground( Estilo.preto );
         this.JL_entropia.setFont( Estilo.robotoLabelData );
         this.JL_entropia.setHorizontalAlignment( SwingConstants.CENTER );
         this.JL_entropia.setOpaque( true );
@@ -562,14 +564,14 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         Dimension dimension;
 
         // JP_cardápio
-        this.JP_cardapio.setBackground( Estilo.vermelhinho );
+        this.JP_cardapio.setBackground( Estilo.verdinho );
 
         // Título
         dimension = new Dimension( 189, 24 );
 
         this.JL_titulo.setPreferredSize( dimension );
-        this.JL_titulo.setBackground( Estilo.vermelhinho );
-        this.JL_titulo.setForeground( Estilo.quaseBranco );
+        this.JL_titulo.setBackground( Estilo.verdinho );
+        this.JL_titulo.setForeground( Estilo.preto );
         this.JL_titulo.setFont( Estilo.robotoLabelData );
         this.JL_titulo.setHorizontalAlignment( SwingConstants.CENTER );
 
@@ -585,10 +587,10 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
                 n_preco.setPreferredSize( dimension );
                 
                 n_prato.setBackground( Estilo.vermelho );
-                n_prato.setForeground( Estilo.quaseBranco );
+                n_prato.setForeground( Estilo.preto );
                 n_prato.setFont( Estilo.robotoLabelData );
 
-                n_preco.setBackground( Estilo.quaseBranco );
+                n_preco.setBackground( Estilo.preto );
                 n_preco.setForeground( Estilo.vermelho );
                 n_preco.setFont( Estilo.robotoLabelData );
 
@@ -642,8 +644,8 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         dimension = new Dimension( 189, 247 );
 
         this.JSP_cardapio.setPreferredSize( dimension );
-        this.JSP_cardapio.setBackground( Estilo.vermelhinho );
-        this.JSP_cardapio.setForeground( Estilo.quaseBranco );
+        this.JSP_cardapio.setBackground( Estilo.verdinho );
+        this.JSP_cardapio.setForeground( Estilo.preto );
 
         this.JSP_cardapio.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         this.JSP_cardapio.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
@@ -658,6 +660,9 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
     }
 
     private void initFooter(){
+
+        this.footer.setBackground( Estilo.verdao );
+
         this.footerLayout = new SpringLayout();
         this.footer.setLayout( this.footerLayout );
 

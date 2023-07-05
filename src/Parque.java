@@ -81,10 +81,12 @@ public class Parque {
 
     public void setAtracoes( ArrayList<Atracao> atracoes ){
         this.atracoes = atracoes;
+        this.setAllQtdVisitante();
     }
 
     public void addAtracao( Atracao atracao ){
         this.atracoes.add( atracao );
+        this.setAllQtdVisitante();
     }
 
     public void removeAtracao( Atracao atracao ){
@@ -117,6 +119,16 @@ public class Parque {
         }
 
         this.qtdVisitantes = qtdVisitantes;
+    }
+
+    public void setAllQtdVisitante(  ){
+        if ( !this.atracoes.isEmpty() ){
+            int soma = 0;
+            for ( Atracao a : this.atracoes ){
+                soma += a.getOcupacaoAtual();
+            }
+            this.qtdVisitantes = soma;
+        }
     }
 
     public void randomQtdVisitantes(){
