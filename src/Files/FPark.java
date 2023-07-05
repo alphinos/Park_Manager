@@ -17,6 +17,7 @@ public class FPark {
 
     public static Parque ler( String parque_path ){
         File arq_parque = new File( parque_path );
+        Parque parque = new Parque();
 
         String nome;
         String descricao;
@@ -30,25 +31,24 @@ public class FPark {
         if ( arq_parque.exists() ){
             try{
                 if ( arq_parque.canRead() ){
-                    Scanner input = new Scanner( arq_parque ).useDelimiter( "\\;" );
-                    nome = input.next();
-                    descricao = input.next();
-                    precoFicha = input.nextFloat();
-                    capacidade = input.nextInt();
-                    qtdVisitantes = input.nextInt();
-                    while ( input.hasNext() ){
-                        path_atracoes.add( input.next() );
+                    try (Scanner input = new Scanner( arq_parque ).useDelimiter( "\\;" )) {
+                        nome = input.next();
+                        descricao = input.next();
+                        precoFicha = input.nextFloat();
+                        capacidade = input.nextInt();
+                        qtdVisitantes = input.nextInt();
+                        while ( input.hasNext() ){
+                            path_atracoes.add( input.next() );
+                        }
+
+                        parque.setNome( nome );
+                        parque.setDescricao( descricao );
+                        parque.setPrecoFicha( precoFicha );
+                        parque.setCapacidade( capacidade );
+                        parque.setQtdVisitantes( qtdVisitantes );
                     }
-                    input.close();
-
-                    Parque parque = new Parque();
-                    parque.setNome( nome );
-                    parque.setDescricao( descricao );
-                    parque.setPrecoFicha( precoFicha );
-                    parque.setCapacidade( capacidade );
-                    parque.setQtdVisitantes( qtdVisitantes );
-
                     for ( String path : path_atracoes ){
+                        System.out.println( path );
                         if ( path.contains( ".brinquedo") ){
                             atracoes.add( FBrinquedo.ler( path ) );
                         }
@@ -93,6 +93,7 @@ public class FPark {
                 }
 
                 a.setPath( "././Parques/" +parque.getNome() + "/" + a.getNome() + ext );
+                atracoes.add( a.getPath() );
             }
         }
 
@@ -150,7 +151,7 @@ public class FPark {
                 }
 
                 if ( a instanceof Restaurante ){
-                    FRestaurante.escrever( ( Brinquedo) a );
+                    FRestaurante.escrever( ( Restaurante) a );
                 }
             }
 
@@ -161,11 +162,11 @@ public class FPark {
                     System.out.println( "Diretório criado!" );
                     for ( Atracao a : parque.getAtracoes() ){
                         if ( a instanceof Brinquedo ){
-                            FBrinquedo.escrever( a );
+                            FBrinquedo.escrever( (Brinquedo) a );
                         }
 
                         if ( a instanceof Restaurante ){
-                            FRestaurante.escrever( a );
+                            FRestaurante.escrever( (Restaurante) a );
                         }
                     }
                     return true;
@@ -178,4 +179,26 @@ public class FPark {
 
         return false;
     }
+
+    public static boolean remove( String path ){
+        File r = new File( path );
+
+        Parque p = ler( path );
+
+        if ( r.exists() ){
+            if ( r.delete() ){
+                for ( Atracao a : p.getAtracoes() ){
+                    if ( a instanceof Brinquedo ){
+                        FBrinquedo.remove( a.getPath() );
+                    }
+
+                    if ( a instanceof Restaurante ){
+                        FRestaurante.remove( a.getPath() );
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }

@@ -1,5 +1,8 @@
 package src.Telas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,11 +10,14 @@ import javax.swing.SpringLayout;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import src.Parque;
+import src.Files.FPark;
 import src.Interface.Estilo;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
-public class TAbrirParque extends Tela {
+public class TAbrirParque extends Tela implements ActionListener {
 
     private JFileChooser chooser;
     
@@ -41,12 +47,37 @@ public class TAbrirParque extends Tela {
 
         this.chooser = new JFileChooser( "Parques" );
         FileFilter filter = new FileNameExtensionFilter("PARK file", "park", "PARK");
-        chooser.setFileFilter( filter );
-        chooser.addChoosableFileFilter( filter );
+        this.chooser.setFileFilter( filter );
+        this.chooser.addChoosableFileFilter( filter );
+        this.chooser.addActionListener( this );
     }
 
     public void showChooser(){
         this.chooser.setDialogTitle( "Abrir parque" );
         this.chooser.showOpenDialog( new JFrame() );
+    }
+
+     @Override
+    public void actionPerformed( ActionEvent event ){
+        
+        if ( event.getSource() == this.chooser ){
+            if ( event.getActionCommand() == JFileChooser.APPROVE_SELECTION ){
+
+                Parque parque = FPark.ler( this.chooser.getSelectedFile().getAbsolutePath() );
+
+                if ( this.jan instanceof JGerente ){
+                    ( (JGerente) this.jan ).setParque( parque );
+                    if ( !parque.getAtracoes().isEmpty() ){
+                        ( (JGerente) this.jan ).setAtracoes( parque.getAtracoes() );
+                        ( (JGerente) this.jan ).setIDAtrac( parque.getAtracoes().get( 0 ).getID() );
+                    }
+                }
+
+                this.jan.trocarTela( "Começo" );
+
+            } else if ( event.getActionCommand() == JFileChooser.CANCEL_SELECTION ){
+                this.jan.trocarTela( "inicio" );
+            }
+        }
     }
 }

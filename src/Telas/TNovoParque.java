@@ -10,14 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import src.Atracao;
 import src.Brinquedo;
 import src.Parque;
 import src.Restaurante;
 import src.Files.FPark;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
-import src.Interface.Janela;
 import src.Interface.Tela;
 
 // Tela para adição de novo parque

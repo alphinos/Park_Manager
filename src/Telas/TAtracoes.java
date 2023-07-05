@@ -21,6 +21,9 @@ import src.Atracao;
 import src.Brinquedo;
 import src.Parque;
 import src.Restaurante;
+import src.Files.FBrinquedo;
+import src.Files.FPark;
+import src.Files.FRestaurante;
 import src.Interface.Estilo;
 import src.Interface.JGerente;
 import src.Interface.Janela;
@@ -842,6 +845,7 @@ public class TAtracoes extends Tela implements ActionListener {
             atrac = this.AL_atracoes.get( 0 );
 
             ( (JGerente) this.jan ).getAtracoes().remove( this.atual.getID() );
+            this.parque.setAtracoes( AL_atracoes );
             
             if ( this.AL_atracoes.isEmpty() ){
                 ( (JGerente) this.jan ).setIDAtrac( 0 );
@@ -849,6 +853,15 @@ public class TAtracoes extends Tela implements ActionListener {
                 ( (JGerente) this.jan ).setIDAtrac( atrac.getID() );
             }
 
+            
+            if ( this.atual instanceof Brinquedo ){
+                FBrinquedo.remove( this.atual.getPath() );
+
+            } else if ( this.atual instanceof Restaurante ){
+                FRestaurante.remove( this.atual.getPath() );
+            }
+
+            FPark.escrever( parque );
             this.jan.trocarTela( "Aba_atrações" );
         }
     }

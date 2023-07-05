@@ -333,10 +333,6 @@ public class TParque extends Tela implements ActionListener {
 
             preco = preco.substring( i );
 
-            System.out.println("Nome: " + nome);
-            System.out.println("Descrição: " + desc);
-            System.out.println("Preço: " + preco);
-
             Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
 
             if ( this.jan instanceof JGerente ){
