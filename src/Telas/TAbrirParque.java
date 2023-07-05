@@ -73,6 +73,8 @@ public class TAbrirParque extends Tela implements ActionListener {
                     }
                 }
 
+                ( (JGerente) this.jan ).getCliente().setParque( parque );
+
                 this.jan.trocarTela( "Começo" );
 
             } else if ( event.getActionCommand() == JFileChooser.CANCEL_SELECTION ){

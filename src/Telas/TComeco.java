@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import src.Parque;
 import src.Interface.Estilo;
+import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -42,16 +43,19 @@ public class TComeco extends Tela implements ActionListener {
 
     public TComeco( int width, int height ){
         super( width, height);
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TComeco( int width, int height, Janela jan ){
         super( width, height, jan );
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TComeco( int width, int height, Janela jan, Parque parque ){
         super( width, height, jan );
         this.parque = parque;
         this.start();
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public Parque getParque(){
@@ -298,6 +302,7 @@ public class TComeco extends Tela implements ActionListener {
 
         if ( e.getSource() == this.JB_cliente ){
             System.out.println( "Abrir janela cliente!" );
+            ( (JGerente) this.jan ).getCliente().setParque( this.parque );
             this.jan.trocarTela( "Novo_Cliente" );
         }
     }

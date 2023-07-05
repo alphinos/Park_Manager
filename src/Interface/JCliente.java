@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import src.Parque;
 import src.Visitante;
+import src.Telas.Cliente.CTBilheteriaCliente;
 import src.Telas.Cliente.CTCarregarCliente;
 import src.Telas.Cliente.CTComecoCliente;
 import src.Telas.Cliente.CTInicioCliente;
@@ -15,6 +16,7 @@ public class JCliente extends Janela {
     private CTNovoCliente novoCliente;
     private CTCarregarCliente carregarCliente;
     private CTComecoCliente comecoCliente;
+    private CTBilheteriaCliente bilheteriaCliente;
 
     private Visitante cliente;
     private Parque parque;
@@ -82,10 +84,12 @@ public class JCliente extends Janela {
                 this.tela = this.carregarCliente;
                 break;
             case "Começo":
-                this.comecoCliente = new CTComecoCliente( width, height, this, cliente);
+                this.comecoCliente = new CTComecoCliente( this.width, this.height, this, this.cliente);
                 this.tela = this.comecoCliente;
                 break;
             case "Bilheteria":
+            this.bilheteriaCliente = new CTBilheteriaCliente( this.width, this.height, this, this.cliente, this.parque );
+            this.tela = this.bilheteriaCliente;
                 break;
             case "Atrações":
                 break;

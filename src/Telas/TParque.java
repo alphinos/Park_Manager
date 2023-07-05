@@ -46,16 +46,19 @@ public class TParque extends Tela implements ActionListener {
     
     public TParque( int width, int height ){
         super( width, height);
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TParque( int width, int height, Janela jan ){
         super( width, height, jan );
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TParque( int width, int height, Janela jan, Parque parque ){
         super( width, height, jan );
         this.parque = parque;
         this.start();
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public void start(){
@@ -314,6 +317,7 @@ public class TParque extends Tela implements ActionListener {
 
         if ( e.getSource() == this.JB_cliente ){
             System.out.println( "Abrir janela cliente!" );
+            ( (JGerente) this.jan ).getCliente().setParque( this.parque );
             this.jan.trocarTela( "Novo_Cliente" );
         }
 

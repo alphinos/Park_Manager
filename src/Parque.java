@@ -124,4 +124,7 @@ public class Parque {
         this.qtdVisitantes = gen.nextInt( this.capacidade + 1 );
     }
 
+    public boolean venderFichas( Visitante cliente, int n_fichas, float preco ){
+        return cliente.comprarFichas(n_fichas, preco);
+    }
 }

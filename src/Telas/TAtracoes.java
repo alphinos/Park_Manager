@@ -95,6 +95,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.atual = null;
         this.AL_atracoes = new ArrayList< Atracao >();
         this.ALJB_atracoes = new ArrayList< JButton >();
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TAtracoes( int width, int height, Janela jan ){
@@ -102,6 +103,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.atual = null;
         this.AL_atracoes = new ArrayList< Atracao >();
         this.ALJB_atracoes = new ArrayList< JButton >();
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TAtracoes( int width, int height, Janela jan, Parque parque ){
@@ -111,6 +113,7 @@ public class TAtracoes extends Tela implements ActionListener {
         this.AL_atracoes = new ArrayList< Atracao >();
         this.ALJB_atracoes = new ArrayList< JButton >();
         this.start();
+        ( (JGerente) this.jan ).getCliente().setParque( this.parque );
     }
 
     public TAtracoes( int width, int height, Janela jan, Parque parque, Atracao atual ){
@@ -782,6 +785,7 @@ public class TAtracoes extends Tela implements ActionListener {
 
         if ( e.getSource() == this.JB_cliente ){
             System.out.println( "Abrir janela cliente!" );
+            ( (JGerente) this.jan ).getCliente().setParque( this.parque );
             this.jan.trocarTela( "Novo_Cliente" );
         }
 

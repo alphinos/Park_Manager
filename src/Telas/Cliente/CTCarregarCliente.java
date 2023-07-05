@@ -10,13 +10,10 @@ import javax.swing.SpringLayout;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import src.Parque;
 import src.Visitante;
 import src.Files.FCliente;
-import src.Files.FPark;
 import src.Interface.Estilo;
 import src.Interface.JCliente;
-import src.Interface.JGerente;
 import src.Interface.Janela;
 import src.Interface.Tela;
 
@@ -61,8 +58,9 @@ public class CTCarregarCliente extends Tela implements ActionListener {
 
         this.chooser = new JFileChooser( "Clientes" );
         FileFilter filter = new FileNameExtensionFilter("CLIENTE file", "cliente", "CLIENTE");
-        chooser.setFileFilter( filter );
-        chooser.addChoosableFileFilter( filter );
+        this.chooser.setFileFilter( filter );
+        this.chooser.addChoosableFileFilter( filter );
+        this.chooser.addActionListener( this );
     }
 
     public void showChooser(){
@@ -84,7 +82,7 @@ public class CTCarregarCliente extends Tela implements ActionListener {
 
                 this.jan.trocarTela( "Começo" );
 
-            } else if ( event.getActionCommand() == JFileChooser.CANCEL_SELECTION ){
+            } else{
                 this.jan.trocarTela( "inicio" );
             }
         }
