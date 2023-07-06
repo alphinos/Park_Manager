@@ -216,56 +216,6 @@ public class TNovoParque extends Tela implements ActionListener {
 
             Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
 
-            Brinquedo brinks1 = new Brinquedo("dino", "sfd", 5, 100, 8, 0, 18, 30 );
-            brinks1.setAbertura( 7, 0);
-            brinks1.setFechamento( 17, 0);
-            parque.addAtracao( brinks1 );
-
-            Brinquedo brinks2 = new Brinquedo("montaria", "kkk", 4, 100, 8, 0, 18, 30 );
-            brinks2.setAbertura( 6, 0);
-            brinks2.setFechamento( 22, 0);
-            parque.addAtracao( brinks2 );
-
-            Restaurante rest1 = new Restaurante("Sorveteria", "Tem sorvete", 3, 40 );
-            rest1.setAbertura( 8, 0);
-            rest1.setFechamento( 18, 0);
-            parque.addAtracao( rest1 );
-
-            Restaurante rest2 = new Restaurante("Cabanhas", "Tem cabanhas", 2, 40 );
-            rest2.setAbertura( 9, 0);
-            rest2.setFechamento( 16, 0);
-            parque.addAtracao( rest2 );
-
-            Brinquedo brinks3 = new Brinquedo("manga", "Ai zé da manga", 1, 100, 8, 0, 18, 30 );
-            brinks3.setAbertura( 7, 0);
-            brinks3.setFechamento( 17, 0);
-            parque.addAtracao( brinks3 );
-
-            Brinquedo brinks4 = new Brinquedo("cavalo", "ratinhoo", 0, 100, 8, 0, 18, 30 );
-            brinks4.setAbertura( 6, 0);
-            brinks4.setFechamento( 22, 0);
-            parque.addAtracao( brinks4 );
-
-            Restaurante rest3 = new Restaurante("Lanchinho do zé", "Tem lanche :D", 7, 40 );
-            rest3.setAbertura( 8, 0);
-            rest3.setFechamento( 18, 0);
-            parque.addAtracao( rest3 );
-
-            Restaurante rest4 = new Restaurante("Tua mãe", "Aquela baleia", 6, 40 );
-            rest4.setAbertura( 9, 0);
-            rest4.setFechamento( 16, 0);
-            parque.addAtracao( rest4 );
-
-            Restaurante rest5 = new Restaurante("Teu pai", "Aquele feio", 8, 40 );
-            rest5.setAbertura( 9, 0);
-            rest5.setFechamento( 16, 0);
-            parque.addAtracao( rest5 );
-
-            Restaurante rest6 = new Restaurante("Ilalari", "Larialala", 9, 40 );
-            rest6.setAbertura( 9, 0);
-            rest6.setFechamento( 16, 0);
-            parque.addAtracao( rest6 );
-
             if ( this.jan instanceof JGerente ){
                 ( (JGerente) this.jan ).setParque( parque );
                 if ( !parque.getAtracoes().isEmpty() ){

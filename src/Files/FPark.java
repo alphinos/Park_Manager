@@ -201,4 +201,18 @@ public class FPark {
         return false;
     }
 
+    // public static boolean rename( String path, Parque parque ){
+    //     File arquivo = new File( parque.getPath() );
+    //     if(!arquivo.exists()){
+    //         System.out.println("O arquivo não existe!");
+    //         return false;
+    //     } else {
+    //         File novoNome = new File( path );
+    //         arquivo.renameTo( novoNome );
+    //         parque.setPath( path );
+    //         System.out.println( "Caminho: " + arquivo.getAbsoluteFile() );
+    //         return true;
+    //     }
+    // }
+
 }

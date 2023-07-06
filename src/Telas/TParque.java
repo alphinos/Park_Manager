@@ -24,7 +24,7 @@ public class TParque extends Tela implements ActionListener {
 
     private Parque parque;
 
-    private JTextField nomeParque;
+    private JLabel nomeParque;
 
     private JButton JB_comeco;
     private JButton JB_parque;
@@ -81,7 +81,7 @@ public class TParque extends Tela implements ActionListener {
         String precoFicha = parque.getPrecoFichaFormat();
         String qtdVisitantes = Integer.toString( parque.getQtdVisitantes() );
 
-        this.nomeParque = new JTextField( nomeParque, SwingConstants.CENTER );    
+        this.nomeParque = new JLabel( nomeParque, SwingConstants.CENTER );    
         this.descricao = new JLabel( "DESCRIÇÃO", SwingConstants.CENTER );
 
         this.DescTxt = new JTextArea();
@@ -337,7 +337,10 @@ public class TParque extends Tela implements ActionListener {
 
             preco = preco.substring( i );
 
-            Parque parque = new Parque( nome, desc, Float.parseFloat(preco), 100);
+            Parque parque = ( (JGerente) this.jan ).getParque(  );
+            parque.setNome( nome );
+            parque.setDescricao( desc );
+            parque.setPrecoFicha( Float.parseFloat( preco ) );
 
             if ( this.jan instanceof JGerente ){
                 ( (JGerente) this.jan ).setParque( parque );

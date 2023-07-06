@@ -104,7 +104,7 @@ public class Visitante {
 	}
 
 	public void entregarFichas( int n_fichas ){
-		if ( this.fichas - n_fichas <= 0 ){
+		if ( this.fichas - n_fichas < 0 ){
 			System.out.println( "Você não tem fichas o suficiente" );
 			return;
 		}

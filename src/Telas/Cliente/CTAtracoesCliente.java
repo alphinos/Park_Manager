@@ -586,12 +586,12 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
                 n_prato.setPreferredSize( dimension );
                 n_preco.setPreferredSize( dimension );
                 
-                n_prato.setBackground( Estilo.vermelho );
+                n_prato.setBackground( Estilo.verdinho );
                 n_prato.setForeground( Estilo.preto );
                 n_prato.setFont( Estilo.robotoLabelData );
 
-                n_preco.setBackground( Estilo.preto );
-                n_preco.setForeground( Estilo.vermelho );
+                n_preco.setBackground( Estilo.verdinho );
+                n_preco.setForeground( Estilo.preto );
                 n_preco.setFont( Estilo.robotoLabelData );
 
                 n_prato.setHorizontalAlignment( SwingConstants.CENTER );
@@ -711,7 +711,9 @@ public class CTAtracoesCliente extends Tela implements ActionListener {
         if ( this.JB_pratos != null ){
             for ( JButton jb : this.JB_pratos ){
                 if ( e.getSource() == jb ){
+                    System.out.println( jb.getText() );
                     ( (Restaurante) this.atual ).venderPrato( this.cliente , jb.getText() );
+                    ( (JCliente) this.jan ).setVisitante( this.cliente );
                     this.jan.trocarTela( "Atrações" );
                 }
             }

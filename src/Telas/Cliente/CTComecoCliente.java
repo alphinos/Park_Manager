@@ -199,7 +199,7 @@ public class CTComecoCliente extends Tela implements ActionListener {
         this.center.add( this.JL_fichas );
 
         //Idade
-        this.centerLayout.putConstraint( SpringLayout.EAST, this.JL_idade, -16, SpringLayout.HORIZONTAL_CENTER, this.center );
+        this.centerLayout.putConstraint( SpringLayout.HORIZONTAL_CENTER, this.JL_idade, 0, SpringLayout.HORIZONTAL_CENTER, this.center );
         this.centerLayout.putConstraint( SpringLayout.NORTH, this.JL_idade, 48, SpringLayout.NORTH, this.center );
 
         //Altura

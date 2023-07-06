@@ -83,7 +83,7 @@ public class Restaurante extends Atracao {
     public boolean venderPrato( Visitante v, String prato ){
         if ( this.cardapio.containsKey( prato ) ){
             if ( v.getFichas() >= this.cardapio.get( prato ) ){
-                v.setFichas( v.getFichas() - this.cardapio.get( prato ) );
+                v.entregarFichas( this.cardapio.get( prato ) );
                 return true;
             }
         }
